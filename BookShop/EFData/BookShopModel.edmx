@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BookShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountTypeId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ChineseName" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar" MaxLength="256" />
+          <Property Name="SpouseFirstName" Type="nvarchar(max)" />
+          <Property Name="OrganizationName" Type="nvarchar(max)" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="256" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="256" />
+          <Property Name="Email" Type="nvarchar" MaxLength="512" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="LanguageId" Type="int" />
+        </EntityType>
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitSuiteNumber" Type="int" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="256" />
+          <Property Name="StreetNumber" Type="int" />
+          <Property Name="City" Type="nvarchar" MaxLength="256" />
+          <Property Name="Province" Type="nvarchar" MaxLength="256" />
+          <Property Name="Country" Type="nvarchar" MaxLength="256" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offerings">
+          <Key>
+            <PropertyRef Name="OfferingId" />
+          </Key>
+          <Property Name="OfferingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="int" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="OfferingYear" Type="int" />
+          <Property Name="BatchId" Type="int" />
+          <Property Name="ReceivedDate" Type="datetime" />
+          <Property Name="MethodId" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="Goods" Type="nvarchar(max)" />
+          <Property Name="ReceiptIssuedDate" Type="datetime" />
+          <Property Name="ReceiptDate" Type="datetime" />
+          <Property Name="ReceiptId" Type="int" />
+          <Property Name="YTDReceiptIssuedDate" Type="datetime" />
+          <Property Name="YTDReceiptId" Type="int" />
+          <Property Name="TaxDeductable" Type="bit" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="SignatureUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+          <Property Name="SignatureImageName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="TakenOnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="SignatureImageExtension" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="SignatureImageBytes" Type="varbinary" MaxLength="1" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BookShopModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offerings" EntityType="Self.Offerings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BookShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChineseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SpouseFirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="LanguageId" Type="Int32" />
+          <NavigationProperty Name="Address" Relationship="BookShopModel.AddressAccount" FromRole="Account" ToRole="Address" />
+          <NavigationProperty Name="Offerings" Relationship="BookShopModel.AccountOffering" FromRole="Account" ToRole="Offering" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitSuiteNumber" Type="Int32" />
+          <Property Name="StreetName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="StreetNumber" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="BookShopModel.AddressAccount" FromRole="Address" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offering">
+          <Key>
+            <PropertyRef Name="OfferingId" />
+          </Key>
+          <Property Name="OfferingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="Int32" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="OfferingYear" Type="Int32" />
+          <Property Name="BatchId" Type="Int32" />
+          <Property Name="ReceivedDate" Type="DateTime" Precision="3" />
+          <Property Name="MethodId" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="Goods" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiptIssuedDate" Type="DateTime" Precision="3" />
+          <Property Name="ReceiptDate" Type="DateTime" Precision="3" />
+          <Property Name="ReceiptId" Type="Int32" />
+          <Property Name="YTDReceiptIssuedDate" Type="DateTime" Precision="3" />
+          <Property Name="YTDReceiptId" Type="Int32" />
+          <Property Name="TaxDeductable" Type="Boolean" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="BookShopModel.AccountOffering" FromRole="Offering" ToRole="Account" />
+          <Property Name="SignatureUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="BookShopModel.UserOffering" FromRole="Offering" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="SignatureImageName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TakenOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SignatureImageExtension" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SignatureImageBytes" Type="Binary" MaxLength="1" FixedLength="false" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Offerings" Relationship="BookShopModel.UserOffering" FromRole="User" ToRole="Offering" />
+        </EntityType>
+        <EntityContainer Name="BookShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Offerings" EntityType="Self.Offering" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="AddressAccount" Association="BookShopModel.AddressAccount">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="AccountOffering" Association="BookShopModel.AccountOffering">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Offering" EntitySet="Offerings" />
+          </AssociationSet>
+          <AssociationSet Name="UserOffering" Association="BookShopModel.UserOffering">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Offering" EntitySet="Offerings" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="AddressAccount">
+          <End Type="BookShopModel.Address" Role="Address" Multiplicity="1" />
+          <End Type="BookShopModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountOffering">
+          <End Type="BookShopModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="BookShopModel.Offering" Role="Offering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Offering">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserOffering">
+          <End Type="BookShopModel.User" Role="User" Multiplicity="1" />
+          <End Type="BookShopModel.Offering" Role="Offering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Offering">
+              <PropertyRef Name="SignatureUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BookShopModelStoreContainer" CdmEntityContainer="BookShopEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="BookShopModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ChineseName" ColumnName="ChineseName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SpouseFirstName" ColumnName="SpouseFirstName" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="BookShopModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="UnitSuiteNumber" ColumnName="UnitSuiteNumber" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="BookShopModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offerings">
+            <EntityTypeMapping TypeName="BookShopModel.Offering">
+              <MappingFragment StoreEntitySet="Offerings">
+                <ScalarProperty Name="SignatureUserId" ColumnName="SignatureUserId" />
+                <ScalarProperty Name="OfferingId" ColumnName="OfferingId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="OfferingYear" ColumnName="OfferingYear" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+                <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+                <ScalarProperty Name="MethodId" ColumnName="MethodId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Goods" ColumnName="Goods" />
+                <ScalarProperty Name="ReceiptIssuedDate" ColumnName="ReceiptIssuedDate" />
+                <ScalarProperty Name="ReceiptDate" ColumnName="ReceiptDate" />
+                <ScalarProperty Name="ReceiptId" ColumnName="ReceiptId" />
+                <ScalarProperty Name="YTDReceiptIssuedDate" ColumnName="YTDReceiptIssuedDate" />
+                <ScalarProperty Name="YTDReceiptId" ColumnName="YTDReceiptId" />
+                <ScalarProperty Name="TaxDeductable" ColumnName="TaxDeductable" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BookShopModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="SignatureImageName" ColumnName="SignatureImageName" />
+                <ScalarProperty Name="TakenOnDateTime" ColumnName="TakenOnDateTime" />
+                <ScalarProperty Name="SignatureImageExtension" ColumnName="SignatureImageExtension" />
+                <ScalarProperty Name="SignatureImageBytes" ColumnName="SignatureImageBytes" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
