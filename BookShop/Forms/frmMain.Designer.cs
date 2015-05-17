@@ -71,11 +71,49 @@
             this.cmbAccountId = new System.Windows.Forms.ComboBox();
             this.lblAccountId = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.maskedTxtOfferingDateReceiptIssued = new System.Windows.Forms.MaskedTextBox();
+            this.lblOfferingDateReceiptIssued = new System.Windows.Forms.Label();
+            this.cmbOfferingReceiptType = new System.Windows.Forms.ComboBox();
+            this.lblOfferingReceiptType = new System.Windows.Forms.Label();
+            this.cmbOfferingMethod = new System.Windows.Forms.ComboBox();
+            this.lblOfferingMethod = new System.Windows.Forms.Label();
+            this.txtOfferingCountry = new System.Windows.Forms.TextBox();
+            this.txtOfferingProvince = new System.Windows.Forms.TextBox();
+            this.txtOfferingPostalCode = new System.Windows.Forms.TextBox();
+            this.lblOfferingPostalCode = new System.Windows.Forms.Label();
+            this.lblOfferingCountry = new System.Windows.Forms.Label();
+            this.lblOfferingProvince = new System.Windows.Forms.Label();
+            this.txtOfferingCity = new System.Windows.Forms.TextBox();
+            this.lblOfferingCity = new System.Windows.Forms.Label();
+            this.txtOfferingStreet = new System.Windows.Forms.TextBox();
+            this.lblOfferingStreet = new System.Windows.Forms.Label();
+            this.txtOfferingUnit = new System.Windows.Forms.TextBox();
+            this.lblOfferingUnit = new System.Windows.Forms.Label();
+            this.maskedTxtOfferingPhone = new System.Windows.Forms.MaskedTextBox();
+            this.txtOfferingEmail = new System.Windows.Forms.TextBox();
+            this.lblOfferingEmail = new System.Windows.Forms.Label();
+            this.lblOfferingPhone = new System.Windows.Forms.Label();
+            this.txtOfferingOrganization = new System.Windows.Forms.TextBox();
+            this.lblOfferingOrganization = new System.Windows.Forms.Label();
+            this.txtOfferingFirstName = new System.Windows.Forms.TextBox();
+            this.txtOfferingLastName = new System.Windows.Forms.TextBox();
+            this.lblOfferingFirstName = new System.Windows.Forms.Label();
+            this.lblOfferingLastName = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.cmbOfferingAccountType = new System.Windows.Forms.ComboBox();
+            this.lblOfferingAccountType = new System.Windows.Forms.Label();
+            this.lblOfferingAccountId = new System.Windows.Forms.Label();
+            this.txtOfferingAccountId = new System.Windows.Forms.TextBox();
+            this.btnOfferingSearch = new System.Windows.Forms.Button();
+            this.btnOfferingClear = new System.Windows.Forms.Button();
+            this.btnNewOffering = new System.Windows.Forms.Button();
+            this.dataGridViewOfferings = new System.Windows.Forms.DataGridView();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferings)).BeginInit();
             this.SuspendLayout();
             // 
             // tabBookShop
@@ -462,6 +500,42 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dataGridViewOfferings);
+            this.tabPage2.Controls.Add(this.btnOfferingSearch);
+            this.tabPage2.Controls.Add(this.btnOfferingClear);
+            this.tabPage2.Controls.Add(this.btnNewOffering);
+            this.tabPage2.Controls.Add(this.txtOfferingAccountId);
+            this.tabPage2.Controls.Add(this.cmbOfferingAccountType);
+            this.tabPage2.Controls.Add(this.lblOfferingAccountType);
+            this.tabPage2.Controls.Add(this.lblOfferingAccountId);
+            this.tabPage2.Controls.Add(this.maskedTxtOfferingDateReceiptIssued);
+            this.tabPage2.Controls.Add(this.lblOfferingDateReceiptIssued);
+            this.tabPage2.Controls.Add(this.cmbOfferingReceiptType);
+            this.tabPage2.Controls.Add(this.lblOfferingReceiptType);
+            this.tabPage2.Controls.Add(this.cmbOfferingMethod);
+            this.tabPage2.Controls.Add(this.lblOfferingMethod);
+            this.tabPage2.Controls.Add(this.txtOfferingCountry);
+            this.tabPage2.Controls.Add(this.txtOfferingProvince);
+            this.tabPage2.Controls.Add(this.txtOfferingPostalCode);
+            this.tabPage2.Controls.Add(this.lblOfferingPostalCode);
+            this.tabPage2.Controls.Add(this.lblOfferingCountry);
+            this.tabPage2.Controls.Add(this.lblOfferingProvince);
+            this.tabPage2.Controls.Add(this.txtOfferingCity);
+            this.tabPage2.Controls.Add(this.lblOfferingCity);
+            this.tabPage2.Controls.Add(this.txtOfferingStreet);
+            this.tabPage2.Controls.Add(this.lblOfferingStreet);
+            this.tabPage2.Controls.Add(this.txtOfferingUnit);
+            this.tabPage2.Controls.Add(this.lblOfferingUnit);
+            this.tabPage2.Controls.Add(this.maskedTxtOfferingPhone);
+            this.tabPage2.Controls.Add(this.txtOfferingEmail);
+            this.tabPage2.Controls.Add(this.lblOfferingEmail);
+            this.tabPage2.Controls.Add(this.lblOfferingPhone);
+            this.tabPage2.Controls.Add(this.txtOfferingOrganization);
+            this.tabPage2.Controls.Add(this.lblOfferingOrganization);
+            this.tabPage2.Controls.Add(this.txtOfferingFirstName);
+            this.tabPage2.Controls.Add(this.txtOfferingLastName);
+            this.tabPage2.Controls.Add(this.lblOfferingFirstName);
+            this.tabPage2.Controls.Add(this.lblOfferingLastName);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -469,6 +543,239 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Offerings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // maskedTxtOfferingDateReceiptIssued
+            // 
+            this.maskedTxtOfferingDateReceiptIssued.Location = new System.Drawing.Point(647, 189);
+            this.maskedTxtOfferingDateReceiptIssued.Mask = "00/00/0000";
+            this.maskedTxtOfferingDateReceiptIssued.Name = "maskedTxtOfferingDateReceiptIssued";
+            this.maskedTxtOfferingDateReceiptIssued.Size = new System.Drawing.Size(142, 20);
+            this.maskedTxtOfferingDateReceiptIssued.TabIndex = 103;
+            this.maskedTxtOfferingDateReceiptIssued.ValidatingType = typeof(System.DateTime);
+            // 
+            // lblOfferingDateReceiptIssued
+            // 
+            this.lblOfferingDateReceiptIssued.AutoSize = true;
+            this.lblOfferingDateReceiptIssued.Location = new System.Drawing.Point(526, 192);
+            this.lblOfferingDateReceiptIssued.Name = "lblOfferingDateReceiptIssued";
+            this.lblOfferingDateReceiptIssued.Size = new System.Drawing.Size(119, 13);
+            this.lblOfferingDateReceiptIssued.TabIndex = 102;
+            this.lblOfferingDateReceiptIssued.Text = "Date Receipt Issued <=";
+            // 
+            // cmbOfferingReceiptType
+            // 
+            this.cmbOfferingReceiptType.FormattingEnabled = true;
+            this.cmbOfferingReceiptType.Items.AddRange(new object[] {
+            "Personal",
+            "Organization",
+            "Other"});
+            this.cmbOfferingReceiptType.Location = new System.Drawing.Point(364, 189);
+            this.cmbOfferingReceiptType.Name = "cmbOfferingReceiptType";
+            this.cmbOfferingReceiptType.Size = new System.Drawing.Size(121, 21);
+            this.cmbOfferingReceiptType.TabIndex = 101;
+            // 
+            // lblOfferingReceiptType
+            // 
+            this.lblOfferingReceiptType.AutoSize = true;
+            this.lblOfferingReceiptType.Location = new System.Drawing.Point(283, 192);
+            this.lblOfferingReceiptType.Name = "lblOfferingReceiptType";
+            this.lblOfferingReceiptType.Size = new System.Drawing.Size(74, 13);
+            this.lblOfferingReceiptType.TabIndex = 100;
+            this.lblOfferingReceiptType.Text = "Receipt Type:";
+            // 
+            // cmbOfferingMethod
+            // 
+            this.cmbOfferingMethod.FormattingEnabled = true;
+            this.cmbOfferingMethod.Location = new System.Drawing.Point(110, 189);
+            this.cmbOfferingMethod.Name = "cmbOfferingMethod";
+            this.cmbOfferingMethod.Size = new System.Drawing.Size(121, 21);
+            this.cmbOfferingMethod.TabIndex = 99;
+            // 
+            // lblOfferingMethod
+            // 
+            this.lblOfferingMethod.AutoSize = true;
+            this.lblOfferingMethod.Location = new System.Drawing.Point(59, 192);
+            this.lblOfferingMethod.Name = "lblOfferingMethod";
+            this.lblOfferingMethod.Size = new System.Drawing.Size(46, 13);
+            this.lblOfferingMethod.TabIndex = 98;
+            this.lblOfferingMethod.Text = "Method:";
+            // 
+            // txtOfferingCountry
+            // 
+            this.txtOfferingCountry.Location = new System.Drawing.Point(111, 144);
+            this.txtOfferingCountry.Name = "txtOfferingCountry";
+            this.txtOfferingCountry.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingCountry.TabIndex = 97;
+            // 
+            // txtOfferingProvince
+            // 
+            this.txtOfferingProvince.Location = new System.Drawing.Point(363, 116);
+            this.txtOfferingProvince.Name = "txtOfferingProvince";
+            this.txtOfferingProvince.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingProvince.TabIndex = 96;
+            // 
+            // txtOfferingPostalCode
+            // 
+            this.txtOfferingPostalCode.Location = new System.Drawing.Point(363, 144);
+            this.txtOfferingPostalCode.Name = "txtOfferingPostalCode";
+            this.txtOfferingPostalCode.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingPostalCode.TabIndex = 95;
+            // 
+            // lblOfferingPostalCode
+            // 
+            this.lblOfferingPostalCode.AutoSize = true;
+            this.lblOfferingPostalCode.Location = new System.Drawing.Point(290, 147);
+            this.lblOfferingPostalCode.Name = "lblOfferingPostalCode";
+            this.lblOfferingPostalCode.Size = new System.Drawing.Size(67, 13);
+            this.lblOfferingPostalCode.TabIndex = 94;
+            this.lblOfferingPostalCode.Text = "Postal Code:";
+            // 
+            // lblOfferingCountry
+            // 
+            this.lblOfferingCountry.AutoSize = true;
+            this.lblOfferingCountry.Location = new System.Drawing.Point(59, 147);
+            this.lblOfferingCountry.Name = "lblOfferingCountry";
+            this.lblOfferingCountry.Size = new System.Drawing.Size(46, 13);
+            this.lblOfferingCountry.TabIndex = 93;
+            this.lblOfferingCountry.Text = "Country:";
+            // 
+            // lblOfferingProvince
+            // 
+            this.lblOfferingProvince.AutoSize = true;
+            this.lblOfferingProvince.Location = new System.Drawing.Point(305, 119);
+            this.lblOfferingProvince.Name = "lblOfferingProvince";
+            this.lblOfferingProvince.Size = new System.Drawing.Size(52, 13);
+            this.lblOfferingProvince.TabIndex = 92;
+            this.lblOfferingProvince.Text = "Province:";
+            // 
+            // txtOfferingCity
+            // 
+            this.txtOfferingCity.Location = new System.Drawing.Point(111, 116);
+            this.txtOfferingCity.Name = "txtOfferingCity";
+            this.txtOfferingCity.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingCity.TabIndex = 91;
+            // 
+            // lblOfferingCity
+            // 
+            this.lblOfferingCity.AutoSize = true;
+            this.lblOfferingCity.Location = new System.Drawing.Point(78, 119);
+            this.lblOfferingCity.Name = "lblOfferingCity";
+            this.lblOfferingCity.Size = new System.Drawing.Size(27, 13);
+            this.lblOfferingCity.TabIndex = 90;
+            this.lblOfferingCity.Text = "City:";
+            // 
+            // txtOfferingStreet
+            // 
+            this.txtOfferingStreet.Location = new System.Drawing.Point(364, 90);
+            this.txtOfferingStreet.Name = "txtOfferingStreet";
+            this.txtOfferingStreet.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingStreet.TabIndex = 89;
+            // 
+            // lblOfferingStreet
+            // 
+            this.lblOfferingStreet.AutoSize = true;
+            this.lblOfferingStreet.Location = new System.Drawing.Point(319, 93);
+            this.lblOfferingStreet.Name = "lblOfferingStreet";
+            this.lblOfferingStreet.Size = new System.Drawing.Size(38, 13);
+            this.lblOfferingStreet.TabIndex = 88;
+            this.lblOfferingStreet.Text = "Street:";
+            // 
+            // txtOfferingUnit
+            // 
+            this.txtOfferingUnit.Location = new System.Drawing.Point(111, 90);
+            this.txtOfferingUnit.Name = "txtOfferingUnit";
+            this.txtOfferingUnit.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingUnit.TabIndex = 87;
+            // 
+            // lblOfferingUnit
+            // 
+            this.lblOfferingUnit.AutoSize = true;
+            this.lblOfferingUnit.Location = new System.Drawing.Point(26, 93);
+            this.lblOfferingUnit.Name = "lblOfferingUnit";
+            this.lblOfferingUnit.Size = new System.Drawing.Size(79, 13);
+            this.lblOfferingUnit.TabIndex = 86;
+            this.lblOfferingUnit.Text = "Apt/Unit/Suite:";
+            // 
+            // maskedTxtOfferingPhone
+            // 
+            this.maskedTxtOfferingPhone.Location = new System.Drawing.Point(111, 45);
+            this.maskedTxtOfferingPhone.Mask = "(999) 000-0000";
+            this.maskedTxtOfferingPhone.Name = "maskedTxtOfferingPhone";
+            this.maskedTxtOfferingPhone.Size = new System.Drawing.Size(120, 20);
+            this.maskedTxtOfferingPhone.TabIndex = 85;
+            // 
+            // txtOfferingEmail
+            // 
+            this.txtOfferingEmail.Location = new System.Drawing.Point(362, 46);
+            this.txtOfferingEmail.Name = "txtOfferingEmail";
+            this.txtOfferingEmail.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingEmail.TabIndex = 84;
+            // 
+            // lblOfferingEmail
+            // 
+            this.lblOfferingEmail.AutoSize = true;
+            this.lblOfferingEmail.Location = new System.Drawing.Point(322, 48);
+            this.lblOfferingEmail.Name = "lblOfferingEmail";
+            this.lblOfferingEmail.Size = new System.Drawing.Size(35, 13);
+            this.lblOfferingEmail.TabIndex = 83;
+            this.lblOfferingEmail.Text = "Email:";
+            // 
+            // lblOfferingPhone
+            // 
+            this.lblOfferingPhone.AutoSize = true;
+            this.lblOfferingPhone.Location = new System.Drawing.Point(64, 48);
+            this.lblOfferingPhone.Name = "lblOfferingPhone";
+            this.lblOfferingPhone.Size = new System.Drawing.Size(41, 13);
+            this.lblOfferingPhone.TabIndex = 82;
+            this.lblOfferingPhone.Text = "Phone:";
+            // 
+            // txtOfferingOrganization
+            // 
+            this.txtOfferingOrganization.Location = new System.Drawing.Point(647, 16);
+            this.txtOfferingOrganization.Name = "txtOfferingOrganization";
+            this.txtOfferingOrganization.Size = new System.Drawing.Size(142, 20);
+            this.txtOfferingOrganization.TabIndex = 38;
+            // 
+            // lblOfferingOrganization
+            // 
+            this.lblOfferingOrganization.AutoSize = true;
+            this.lblOfferingOrganization.Location = new System.Drawing.Point(564, 19);
+            this.lblOfferingOrganization.Name = "lblOfferingOrganization";
+            this.lblOfferingOrganization.Size = new System.Drawing.Size(69, 13);
+            this.lblOfferingOrganization.TabIndex = 37;
+            this.lblOfferingOrganization.Text = "Organization:";
+            // 
+            // txtOfferingFirstName
+            // 
+            this.txtOfferingFirstName.Location = new System.Drawing.Point(362, 16);
+            this.txtOfferingFirstName.Name = "txtOfferingFirstName";
+            this.txtOfferingFirstName.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingFirstName.TabIndex = 36;
+            // 
+            // txtOfferingLastName
+            // 
+            this.txtOfferingLastName.Location = new System.Drawing.Point(110, 16);
+            this.txtOfferingLastName.Name = "txtOfferingLastName";
+            this.txtOfferingLastName.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingLastName.TabIndex = 35;
+            // 
+            // lblOfferingFirstName
+            // 
+            this.lblOfferingFirstName.AutoSize = true;
+            this.lblOfferingFirstName.Location = new System.Drawing.Point(297, 19);
+            this.lblOfferingFirstName.Name = "lblOfferingFirstName";
+            this.lblOfferingFirstName.Size = new System.Drawing.Size(60, 13);
+            this.lblOfferingFirstName.TabIndex = 34;
+            this.lblOfferingFirstName.Text = "First Name:";
+            // 
+            // lblOfferingLastName
+            // 
+            this.lblOfferingLastName.AutoSize = true;
+            this.lblOfferingLastName.Location = new System.Drawing.Point(44, 19);
+            this.lblOfferingLastName.Name = "lblOfferingLastName";
+            this.lblOfferingLastName.Size = new System.Drawing.Size(61, 13);
+            this.lblOfferingLastName.TabIndex = 33;
+            this.lblOfferingLastName.Text = "Last Name:";
             // 
             // tabPage3
             // 
@@ -488,6 +795,81 @@
             this.tabPage4.Text = "Summary";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // cmbOfferingAccountType
+            // 
+            this.cmbOfferingAccountType.FormattingEnabled = true;
+            this.cmbOfferingAccountType.Items.AddRange(new object[] {
+            "Church",
+            "Individual",
+            "Organization",
+            "Y-Church",
+            "Y-Individual",
+            "Y-Organization"});
+            this.cmbOfferingAccountType.Location = new System.Drawing.Point(363, 218);
+            this.cmbOfferingAccountType.Name = "cmbOfferingAccountType";
+            this.cmbOfferingAccountType.Size = new System.Drawing.Size(121, 21);
+            this.cmbOfferingAccountType.TabIndex = 107;
+            // 
+            // lblOfferingAccountType
+            // 
+            this.lblOfferingAccountType.AutoSize = true;
+            this.lblOfferingAccountType.Location = new System.Drawing.Point(281, 221);
+            this.lblOfferingAccountType.Name = "lblOfferingAccountType";
+            this.lblOfferingAccountType.Size = new System.Drawing.Size(77, 13);
+            this.lblOfferingAccountType.TabIndex = 106;
+            this.lblOfferingAccountType.Text = "Account Type:";
+            // 
+            // lblOfferingAccountId
+            // 
+            this.lblOfferingAccountId.AutoSize = true;
+            this.lblOfferingAccountId.Location = new System.Drawing.Point(43, 221);
+            this.lblOfferingAccountId.Name = "lblOfferingAccountId";
+            this.lblOfferingAccountId.Size = new System.Drawing.Size(62, 13);
+            this.lblOfferingAccountId.TabIndex = 104;
+            this.lblOfferingAccountId.Text = "Account Id:";
+            // 
+            // txtOfferingAccountId
+            // 
+            this.txtOfferingAccountId.Location = new System.Drawing.Point(111, 218);
+            this.txtOfferingAccountId.Name = "txtOfferingAccountId";
+            this.txtOfferingAccountId.Size = new System.Drawing.Size(120, 20);
+            this.txtOfferingAccountId.TabIndex = 108;
+            // 
+            // btnOfferingSearch
+            // 
+            this.btnOfferingSearch.Location = new System.Drawing.Point(669, 253);
+            this.btnOfferingSearch.Name = "btnOfferingSearch";
+            this.btnOfferingSearch.Size = new System.Drawing.Size(120, 32);
+            this.btnOfferingSearch.TabIndex = 111;
+            this.btnOfferingSearch.Text = "Search";
+            this.btnOfferingSearch.UseVisualStyleBackColor = true;
+            // 
+            // btnOfferingClear
+            // 
+            this.btnOfferingClear.Location = new System.Drawing.Point(544, 253);
+            this.btnOfferingClear.Name = "btnOfferingClear";
+            this.btnOfferingClear.Size = new System.Drawing.Size(110, 32);
+            this.btnOfferingClear.TabIndex = 110;
+            this.btnOfferingClear.Text = "Clear";
+            this.btnOfferingClear.UseVisualStyleBackColor = true;
+            // 
+            // btnNewOffering
+            // 
+            this.btnNewOffering.Location = new System.Drawing.Point(12, 253);
+            this.btnNewOffering.Name = "btnNewOffering";
+            this.btnNewOffering.Size = new System.Drawing.Size(93, 32);
+            this.btnNewOffering.TabIndex = 109;
+            this.btnNewOffering.Text = "New Offering";
+            this.btnNewOffering.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewOfferings
+            // 
+            this.dataGridViewOfferings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOfferings.Location = new System.Drawing.Point(12, 291);
+            this.dataGridViewOfferings.Name = "dataGridViewOfferings";
+            this.dataGridViewOfferings.Size = new System.Drawing.Size(777, 203);
+            this.dataGridViewOfferings.TabIndex = 112;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,6 +882,9 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferings)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -551,6 +936,42 @@
         private System.Windows.Forms.TextBox txtOrganization;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.TextBox txtOfferingOrganization;
+        private System.Windows.Forms.Label lblOfferingOrganization;
+        private System.Windows.Forms.TextBox txtOfferingFirstName;
+        private System.Windows.Forms.TextBox txtOfferingLastName;
+        private System.Windows.Forms.Label lblOfferingFirstName;
+        private System.Windows.Forms.Label lblOfferingLastName;
+        private System.Windows.Forms.MaskedTextBox maskedTxtOfferingPhone;
+        private System.Windows.Forms.TextBox txtOfferingEmail;
+        private System.Windows.Forms.Label lblOfferingEmail;
+        private System.Windows.Forms.Label lblOfferingPhone;
+        private System.Windows.Forms.TextBox txtOfferingCountry;
+        private System.Windows.Forms.TextBox txtOfferingProvince;
+        private System.Windows.Forms.TextBox txtOfferingPostalCode;
+        private System.Windows.Forms.Label lblOfferingPostalCode;
+        private System.Windows.Forms.Label lblOfferingCountry;
+        private System.Windows.Forms.Label lblOfferingProvince;
+        private System.Windows.Forms.TextBox txtOfferingCity;
+        private System.Windows.Forms.Label lblOfferingCity;
+        private System.Windows.Forms.TextBox txtOfferingStreet;
+        private System.Windows.Forms.Label lblOfferingStreet;
+        private System.Windows.Forms.TextBox txtOfferingUnit;
+        private System.Windows.Forms.Label lblOfferingUnit;
+        private System.Windows.Forms.ComboBox cmbOfferingMethod;
+        private System.Windows.Forms.Label lblOfferingMethod;
+        private System.Windows.Forms.ComboBox cmbOfferingReceiptType;
+        private System.Windows.Forms.Label lblOfferingReceiptType;
+        private System.Windows.Forms.Label lblOfferingDateReceiptIssued;
+        private System.Windows.Forms.MaskedTextBox maskedTxtOfferingDateReceiptIssued;
+        private System.Windows.Forms.ComboBox cmbOfferingAccountType;
+        private System.Windows.Forms.Label lblOfferingAccountType;
+        private System.Windows.Forms.Label lblOfferingAccountId;
+        private System.Windows.Forms.TextBox txtOfferingAccountId;
+        private System.Windows.Forms.Button btnOfferingSearch;
+        private System.Windows.Forms.Button btnOfferingClear;
+        private System.Windows.Forms.Button btnNewOffering;
+        private System.Windows.Forms.DataGridView dataGridViewOfferings;
     }
 }
 
