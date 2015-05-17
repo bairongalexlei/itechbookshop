@@ -24,7 +24,6 @@ namespace BookShop.Forms
         public frmAddress(int addressId)
         {
             InitializeComponent();
-            //SetAddressId(addressId);
             Addressid = addressId;
             BindAddress();
         }
@@ -32,11 +31,6 @@ namespace BookShop.Forms
         private void BindAddress()
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-
-            //if (Addressid <= 0)
-            //{
-            //    return;
-            //}
 
             try
             {
@@ -60,11 +54,6 @@ namespace BookShop.Forms
                 MessageBox.Show("Error occurs when binding address. Please contact iTech support for assistance.");
             }
         }
-
-        //public void SetAddressId(int addressId)
-        //{
-        //    Addressid = addressId;
-        //}
 
         private void btnSave_Click(object sender, EventArgs e)
         {

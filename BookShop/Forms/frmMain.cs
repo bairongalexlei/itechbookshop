@@ -97,12 +97,6 @@ namespace BookShop
                 var addressIdCell = senderGrid.Rows[e.RowIndex].Cells[11];
                 int addressId = addressIdCell.Value != null ? (int)addressIdCell.Value : 0;
 
-                //if (addressId <= 0)
-                //{
-                //    MessageBox.Show("This account has no address.");
-                //    return;
-                //}
-
                 var addressForm = new frmAddress(addressId);
                 addressForm.StartPosition = FormStartPosition.CenterParent;
                 addressForm.ShowDialog();
