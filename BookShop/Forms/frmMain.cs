@@ -430,5 +430,31 @@ namespace BookShop
 
             return isSearchParamsEmpty;
         }
+
+        private void btnOfferingClear_Click(object sender, EventArgs e)
+        {
+            txtOfferingLastName.Clear();
+            txtOfferingFirstName.Clear();
+            txtOfferingOrganization.Clear();
+            maskedTxtOfferingPhone.Clear();
+            txtOfferingEmail.Clear();
+
+            txtOfferingUnit.Clear();
+
+            txtOfferingStreet.Clear();
+            txtOfferingCity.Clear();
+            txtOfferingProvince.Clear();
+            txtOfferingCountry.Clear();
+            txtOfferingPostalCode.Clear();
+
+            cmbOfferingMethod.SelectedIndex = -1;
+            cmbOfferingReceiptType.SelectedIndex = -1;
+
+            maskedTxtOfferingDateReceiptIssued.Clear();
+
+            txtOfferingAccountId.Clear();
+
+            cmbOfferingAccountType.SelectedIndex = -1;
+        }
     }
 }
