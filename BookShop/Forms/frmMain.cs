@@ -456,5 +456,10 @@ namespace BookShop
 
             cmbOfferingAccountType.SelectedIndex = -1;
         }
+
+        private void btnNewOffering_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

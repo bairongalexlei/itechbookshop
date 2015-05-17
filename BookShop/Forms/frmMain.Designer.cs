@@ -674,6 +674,7 @@
             this.btnNewOffering.TabIndex = 109;
             this.btnNewOffering.Text = "New Offering";
             this.btnNewOffering.UseVisualStyleBackColor = true;
+            this.btnNewOffering.Click += new System.EventHandler(this.btnNewOffering_Click);
             // 
             // txtOfferingAccountId
             // 
