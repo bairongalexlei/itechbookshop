@@ -45,6 +45,21 @@
           <Property Name="DepartmentName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="OfferingLines">
+          <Key>
+            <PropertyRef Name="OfferingLineId" />
+          </Key>
+          <Property Name="OfferingLineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="int" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="OfferingId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="Percent" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Offerings">
           <Key>
             <PropertyRef Name="OfferingId" />
@@ -88,6 +103,7 @@
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfferingLines" EntityType="Self.OfferingLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offerings" EntityType="Self.Offerings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -164,6 +180,7 @@
           <Property Name="SignatureUserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="BookShopModel.UserOffering" FromRole="Offering" ToRole="User" />
           <Property Name="ReceiptTypeId" Type="Int32" />
+          <NavigationProperty Name="OfferingLines" Relationship="BookShopModel.OfferingOfferingLine" FromRole="Offering" ToRole="OfferingLine" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -197,6 +214,11 @@
           <AssociationSet Name="UserOffering" Association="BookShopModel.UserOffering">
             <End Role="User" EntitySet="Users" />
             <End Role="Offering" EntitySet="Offerings" />
+          </AssociationSet>
+          <EntitySet Name="OfferingLines" EntityType="BookShopModel.OfferingLine" />
+          <AssociationSet Name="OfferingOfferingLine" Association="BookShopModel.OfferingOfferingLine">
+            <End Role="Offering" EntitySet="Offerings" />
+            <End Role="OfferingLine" EntitySet="OfferingLines" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="AddressAccount">
@@ -232,6 +254,34 @@
             </Principal>
             <Dependent Role="Offering">
               <PropertyRef Name="SignatureUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OfferingLine">
+          <Key>
+            <PropertyRef Name="OfferingLineId" />
+          </Key>
+          <Property Name="OfferingLineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="Int32" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OfferingId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+          <Property Name="Percent" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Offering" Relationship="BookShopModel.OfferingOfferingLine" FromRole="OfferingLine" ToRole="Offering" />
+        </EntityType>
+        <Association Name="OfferingOfferingLine">
+          <End Type="BookShopModel.Offering" Role="Offering" Multiplicity="1" />
+          <End Type="BookShopModel.OfferingLine" Role="OfferingLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offering">
+              <PropertyRef Name="OfferingId" />
+            </Principal>
+            <Dependent Role="OfferingLine">
+              <PropertyRef Name="OfferingId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -322,6 +372,22 @@
                 <ScalarProperty Name="SignatureImageExtension" ColumnName="SignatureImageExtension" />
                 <ScalarProperty Name="SignatureImageBytes" ColumnName="SignatureImageBytes" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfferingLines">
+            <EntityTypeMapping TypeName="BookShopModel.OfferingLine">
+              <MappingFragment StoreEntitySet="OfferingLines">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Percent" ColumnName="Percent" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="OfferingId" ColumnName="OfferingId" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="OfferingLineId" ColumnName="OfferingLineId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,6 +14,11 @@ namespace BookShop.EFData
     
     public partial class Offering
     {
+        public Offering()
+        {
+            this.OfferingLines = new HashSet<OfferingLine>();
+        }
+    
         public int OfferingId { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
@@ -37,5 +42,6 @@ namespace BookShop.EFData
     
         public virtual Account Account { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<OfferingLine> OfferingLines { get; set; }
     }
 }
