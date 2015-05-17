@@ -31,9 +31,9 @@ namespace BookShop.EFData
         public Nullable<int> ReceiptId { get; set; }
         public Nullable<System.DateTime> YTDReceiptIssuedDate { get; set; }
         public Nullable<int> YTDReceiptId { get; set; }
-        public Nullable<bool> TaxDeductable { get; set; }
         public int StatusId { get; set; }
         public int SignatureUserId { get; set; }
+        public Nullable<int> ReceiptTypeId { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual User User { get; set; }

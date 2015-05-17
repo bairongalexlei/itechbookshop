@@ -341,5 +341,94 @@ namespace BookShop
             dataGridViewAccounts.DataSource = null;
             dataGridViewAccounts.Rows.Clear();
         }
+
+        private void SetupOfferingGridViewColumns()
+        {
+            dataGridViewOfferings.Columns[0].DataPropertyName = "AccountId";
+            dataGridViewOfferings.Columns[1].DataPropertyName = "FirstName";
+            dataGridViewOfferings.Columns[2].DataPropertyName = "LastName";
+            dataGridViewOfferings.Columns[3].DataPropertyName = "ChineseName";
+            dataGridViewOfferings.Columns[4].DataPropertyName = "Title";
+            dataGridViewOfferings.Columns[5].DataPropertyName = "SpouseFirstName";
+            dataGridViewOfferings.Columns[6].DataPropertyName = "PostalCode";
+            dataGridViewOfferings.Columns[7].DataPropertyName = "OrganizationName";
+            dataGridViewOfferings.Columns[8].DataPropertyName = "Phone";
+            dataGridViewOfferings.Columns[9].DataPropertyName = "Fax";
+            dataGridViewOfferings.Columns[10].DataPropertyName = "Email";
+            dataGridViewOfferings.Columns[11].DataPropertyName = "AddressId";
+        }
+
+        private void btnOfferingSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isSearchParamsEmpty = IsOfferingSearchParamsEmpty();
+                if (isSearchParamsEmpty)
+                {
+                    MessageBox.Show("Empty search parameters!");
+                    return;
+                }
+
+                MessageBox.Show("Not empty search parameters!");
+
+                //using (var dbContext = new BookShopEntities())
+                //{
+
+                //}
+            }
+            catch
+            {
+
+            }
+        }
+
+        private bool IsOfferingSearchParamsEmpty()
+        {
+            string searchedLastName = Common.Helper.TrimString(txtOfferingLastName.Text);
+            string searchedFirstName = Common.Helper.TrimString(txtOfferingFirstName.Text);
+            string searchedOrganization = Common.Helper.TrimString(txtOfferingOrganization.Text);
+            bool isSearchedPhoneCompleted = maskedTxtOfferingPhone.MaskCompleted;
+            string searchedEmail = Common.Helper.TrimString(txtOfferingEmail.Text);
+
+            int unitNumber = 0;
+            string strUnitNumber = Common.Helper.TrimString(txtOfferingUnit.Text);
+            int.TryParse(Common.Helper.TrimString(strUnitNumber), out unitNumber);
+
+            string searchedStreet = Common.Helper.TrimString(txtOfferingStreet.Text);
+            string searchedCity = Common.Helper.TrimString(txtOfferingCity.Text);
+            string searchedProvince = Common.Helper.TrimString(txtOfferingProvince.Text);
+            string searchedCountry = Common.Helper.TrimString(txtOfferingCountry.Text);
+            string searchedPostalCode = Common.Helper.TrimString(txtOfferingPostalCode.Text);
+
+            int searchedMethodId = cmbOfferingMethod.SelectedIndex;
+            int searchedReceiptType = cmbOfferingReceiptType.SelectedIndex;
+
+            bool isSearchedReceiptIssuedDateCompleted = maskedTxtOfferingDateReceiptIssued.MaskCompleted;
+
+            int accountId = 0;
+            string strAccountId = Common.Helper.TrimString(txtOfferingAccountId.Text);
+            int.TryParse(Common.Helper.TrimString(strAccountId), out accountId);
+
+            int searchedAccountTypeId = cmbOfferingAccountType.SelectedIndex;
+
+            bool isSearchParamsEmpty = (string.IsNullOrEmpty(searchedLastName) &&
+                                        string.IsNullOrEmpty(searchedFirstName) &&
+                                        string.IsNullOrEmpty(searchedOrganization) &&
+                                        !isSearchedPhoneCompleted &&
+                                        string.IsNullOrEmpty(searchedEmail) &&
+                                        unitNumber <= 0 &&
+                                        string.IsNullOrEmpty(searchedStreet) &&
+                                        string.IsNullOrEmpty(searchedCity) &&
+                                        string.IsNullOrEmpty(searchedProvince) &&
+                                        string.IsNullOrEmpty(searchedCountry) &&
+                                        string.IsNullOrEmpty(searchedPostalCode) &&
+                                        searchedMethodId < 0 &&
+                                        searchedReceiptType < 0 &&
+                                        !isSearchedReceiptIssuedDateCompleted &&
+                                        accountId <= 0 &&
+                                        searchedAccountTypeId < 0);
+
+            return isSearchParamsEmpty;
+        }
     }
 }

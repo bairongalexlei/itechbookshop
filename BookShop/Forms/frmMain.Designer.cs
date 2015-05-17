@@ -109,6 +109,17 @@
             this.btnOfferingClear = new System.Windows.Forms.Button();
             this.btnNewOffering = new System.Windows.Forms.Button();
             this.dataGridViewOfferings = new System.Windows.Forms.DataGridView();
+            this.lblOfferDateHint = new System.Windows.Forms.Label();
+            this.OfferingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingOrganization = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingPaymentMethod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingReceiptType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingAccountId = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.OfferingAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
@@ -500,6 +511,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblOfferDateHint);
             this.tabPage2.Controls.Add(this.dataGridViewOfferings);
             this.tabPage2.Controls.Add(this.btnOfferingSearch);
             this.tabPage2.Controls.Add(this.btnOfferingClear);
@@ -843,6 +855,7 @@
             this.btnOfferingSearch.TabIndex = 111;
             this.btnOfferingSearch.Text = "Search";
             this.btnOfferingSearch.UseVisualStyleBackColor = true;
+            this.btnOfferingSearch.Click += new System.EventHandler(this.btnOfferingSearch_Click);
             // 
             // btnOfferingClear
             // 
@@ -865,10 +878,92 @@
             // dataGridViewOfferings
             // 
             this.dataGridViewOfferings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOfferings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OfferingId,
+            this.OfferingLastName,
+            this.OfferingFirstName,
+            this.OfferingPhone,
+            this.OfferingOrganization,
+            this.OfferingEmail,
+            this.OfferingPaymentMethod,
+            this.OfferingReceiptType,
+            this.OfferingAccountId,
+            this.OfferingAccountType});
             this.dataGridViewOfferings.Location = new System.Drawing.Point(12, 291);
             this.dataGridViewOfferings.Name = "dataGridViewOfferings";
             this.dataGridViewOfferings.Size = new System.Drawing.Size(777, 203);
             this.dataGridViewOfferings.TabIndex = 112;
+            // 
+            // lblOfferDateHint
+            // 
+            this.lblOfferDateHint.AutoSize = true;
+            this.lblOfferDateHint.Location = new System.Drawing.Point(644, 218);
+            this.lblOfferDateHint.Name = "lblOfferDateHint";
+            this.lblOfferDateHint.Size = new System.Drawing.Size(71, 13);
+            this.lblOfferDateHint.TabIndex = 113;
+            this.lblOfferDateHint.Text = "(MM/DD/YY)";
+            // 
+            // OfferingId
+            // 
+            this.OfferingId.HeaderText = "Offering Id";
+            this.OfferingId.Name = "OfferingId";
+            this.OfferingId.ReadOnly = true;
+            // 
+            // OfferingLastName
+            // 
+            this.OfferingLastName.HeaderText = "Last Name";
+            this.OfferingLastName.Name = "OfferingLastName";
+            this.OfferingLastName.ReadOnly = true;
+            // 
+            // OfferingFirstName
+            // 
+            this.OfferingFirstName.HeaderText = "First Name";
+            this.OfferingFirstName.Name = "OfferingFirstName";
+            this.OfferingFirstName.ReadOnly = true;
+            // 
+            // OfferingPhone
+            // 
+            this.OfferingPhone.HeaderText = "Phone";
+            this.OfferingPhone.Name = "OfferingPhone";
+            this.OfferingPhone.ReadOnly = true;
+            // 
+            // OfferingOrganization
+            // 
+            this.OfferingOrganization.HeaderText = "Organization";
+            this.OfferingOrganization.Name = "OfferingOrganization";
+            this.OfferingOrganization.ReadOnly = true;
+            // 
+            // OfferingEmail
+            // 
+            this.OfferingEmail.HeaderText = "Email";
+            this.OfferingEmail.Name = "OfferingEmail";
+            this.OfferingEmail.ReadOnly = true;
+            // 
+            // OfferingPaymentMethod
+            // 
+            this.OfferingPaymentMethod.HeaderText = "Payment Method";
+            this.OfferingPaymentMethod.Name = "OfferingPaymentMethod";
+            this.OfferingPaymentMethod.ReadOnly = true;
+            // 
+            // OfferingReceiptType
+            // 
+            this.OfferingReceiptType.HeaderText = "Receipt Type";
+            this.OfferingReceiptType.Name = "OfferingReceiptType";
+            this.OfferingReceiptType.ReadOnly = true;
+            // 
+            // OfferingAccountId
+            // 
+            this.OfferingAccountId.HeaderText = "Account Id";
+            this.OfferingAccountId.Name = "OfferingAccountId";
+            this.OfferingAccountId.ReadOnly = true;
+            // 
+            // OfferingAccountType
+            // 
+            this.OfferingAccountType.HeaderText = "Account Type";
+            this.OfferingAccountType.Name = "OfferingAccountType";
+            this.OfferingAccountType.ReadOnly = true;
+            this.OfferingAccountType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OfferingAccountType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // frmMain
             // 
@@ -972,6 +1067,17 @@
         private System.Windows.Forms.Button btnOfferingClear;
         private System.Windows.Forms.Button btnNewOffering;
         private System.Windows.Forms.DataGridView dataGridViewOfferings;
+        private System.Windows.Forms.Label lblOfferDateHint;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingOrganization;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingPaymentMethod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingReceiptType;
+        private System.Windows.Forms.DataGridViewButtonColumn OfferingAccountId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingAccountType;
     }
 }
 

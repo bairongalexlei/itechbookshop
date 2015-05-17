@@ -66,7 +66,7 @@
           <Property Name="ReceiptId" Type="int" />
           <Property Name="YTDReceiptIssuedDate" Type="datetime" />
           <Property Name="YTDReceiptId" Type="int" />
-          <Property Name="TaxDeductable" Type="bit" />
+          <Property Name="ReceiptTypeId" Type="int" />
           <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="SignatureUserId" Type="int" Nullable="false" />
         </EntityType>
@@ -159,11 +159,11 @@
           <Property Name="ReceiptId" Type="Int32" />
           <Property Name="YTDReceiptIssuedDate" Type="DateTime" Precision="3" />
           <Property Name="YTDReceiptId" Type="Int32" />
-          <Property Name="TaxDeductable" Type="Boolean" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Account" Relationship="BookShopModel.AccountOffering" FromRole="Offering" ToRole="Account" />
           <Property Name="SignatureUserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="BookShopModel.UserOffering" FromRole="Offering" ToRole="User" />
+          <Property Name="ReceiptTypeId" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -287,6 +287,7 @@
           <EntitySetMapping Name="Offerings">
             <EntityTypeMapping TypeName="BookShopModel.Offering">
               <MappingFragment StoreEntitySet="Offerings">
+                <ScalarProperty Name="ReceiptTypeId" ColumnName="ReceiptTypeId" />
                 <ScalarProperty Name="SignatureUserId" ColumnName="SignatureUserId" />
                 <ScalarProperty Name="OfferingId" ColumnName="OfferingId" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -305,7 +306,6 @@
                 <ScalarProperty Name="ReceiptId" ColumnName="ReceiptId" />
                 <ScalarProperty Name="YTDReceiptIssuedDate" ColumnName="YTDReceiptIssuedDate" />
                 <ScalarProperty Name="YTDReceiptId" ColumnName="YTDReceiptId" />
-                <ScalarProperty Name="TaxDeductable" ColumnName="TaxDeductable" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
               </MappingFragment>
             </EntityTypeMapping>
