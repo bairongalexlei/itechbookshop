@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CommonEnum.cs" />
+    <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\StringEnum.cs" />
     <Compile Include="EFData\Account.cs">
       <DependentUpon>BookShopModel.tt</DependentUpon>
@@ -87,16 +88,34 @@
     <Compile Include="EFData\User.cs">
       <DependentUpon>BookShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddress.Designer.cs">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmNewAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmNewAccount.Designer.cs">
+      <DependentUpon>frmNewAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\frmAddress.resx">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmNewAccount.resx">
+      <DependentUpon>frmNewAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

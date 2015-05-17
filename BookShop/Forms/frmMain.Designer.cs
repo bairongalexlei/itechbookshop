@@ -30,36 +30,8 @@
         {
             this.tabBookShop = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnNewAccount = new System.Windows.Forms.Button();
-            this.txtPostalCode = new System.Windows.Forms.TextBox();
-            this.lblPostalCode = new System.Windows.Forms.Label();
-            this.cmbCountry = new System.Windows.Forms.ComboBox();
-            this.lblCountry = new System.Windows.Forms.Label();
-            this.cmbProvince = new System.Windows.Forms.ComboBox();
-            this.lblProvince = new System.Windows.Forms.Label();
-            this.txtCity = new System.Windows.Forms.TextBox();
-            this.lblCity = new System.Windows.Forms.Label();
-            this.txtStreet = new System.Windows.Forms.TextBox();
-            this.lblStreet = new System.Windows.Forms.Label();
-            this.txtUnit = new System.Windows.Forms.TextBox();
-            this.lblUnit = new System.Windows.Forms.Label();
-            this.cmbLanguage = new System.Windows.Forms.ComboBox();
-            this.lblLanguage = new System.Windows.Forms.Label();
-            this.cmbFirstName = new System.Windows.Forms.ComboBox();
-            this.lblFirstName = new System.Windows.Forms.Label();
-            this.cmbLastName = new System.Windows.Forms.ComboBox();
-            this.lblLastName = new System.Windows.Forms.Label();
-            this.cmbOrganization = new System.Windows.Forms.ComboBox();
-            this.lblOrganization = new System.Windows.Forms.Label();
-            this.cmbAccountType = new System.Windows.Forms.ComboBox();
-            this.lblAccountType = new System.Windows.Forms.Label();
-            this.cmbAccountId = new System.Windows.Forms.ComboBox();
-            this.lblAccountId = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.txtProvince = new System.Windows.Forms.TextBox();
             this.dataGridViewAccounts = new System.Windows.Forms.DataGridView();
             this.AccountId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +45,34 @@
             this.Fax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AddressId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnNewAccount = new System.Windows.Forms.Button();
+            this.txtPostalCode = new System.Windows.Forms.TextBox();
+            this.lblPostalCode = new System.Windows.Forms.Label();
+            this.lblCountry = new System.Windows.Forms.Label();
+            this.lblProvince = new System.Windows.Forms.Label();
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.lblCity = new System.Windows.Forms.Label();
+            this.txtStreet = new System.Windows.Forms.TextBox();
+            this.lblStreet = new System.Windows.Forms.Label();
+            this.txtUnit = new System.Windows.Forms.TextBox();
+            this.lblUnit = new System.Windows.Forms.Label();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.lblLanguage = new System.Windows.Forms.Label();
+            this.cmbFirstName = new System.Windows.Forms.ComboBox();
+            this.lblFirstName = new System.Windows.Forms.Label();
+            this.cmbLastName = new System.Windows.Forms.ComboBox();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.lblOrganization = new System.Windows.Forms.Label();
+            this.cmbAccountType = new System.Windows.Forms.ComboBox();
+            this.lblAccountType = new System.Windows.Forms.Label();
+            this.cmbAccountId = new System.Windows.Forms.ComboBox();
+            this.lblAccountId = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtOrganization = new System.Windows.Forms.TextBox();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
@@ -92,15 +92,16 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txtOrganization);
+            this.tabPage1.Controls.Add(this.txtCountry);
+            this.tabPage1.Controls.Add(this.txtProvince);
             this.tabPage1.Controls.Add(this.dataGridViewAccounts);
             this.tabPage1.Controls.Add(this.btnSearch);
             this.tabPage1.Controls.Add(this.btnClear);
             this.tabPage1.Controls.Add(this.btnNewAccount);
             this.tabPage1.Controls.Add(this.txtPostalCode);
             this.tabPage1.Controls.Add(this.lblPostalCode);
-            this.tabPage1.Controls.Add(this.cmbCountry);
             this.tabPage1.Controls.Add(this.lblCountry);
-            this.tabPage1.Controls.Add(this.cmbProvince);
             this.tabPage1.Controls.Add(this.lblProvince);
             this.tabPage1.Controls.Add(this.txtCity);
             this.tabPage1.Controls.Add(this.lblCity);
@@ -114,7 +115,6 @@
             this.tabPage1.Controls.Add(this.lblFirstName);
             this.tabPage1.Controls.Add(this.cmbLastName);
             this.tabPage1.Controls.Add(this.lblLastName);
-            this.tabPage1.Controls.Add(this.cmbOrganization);
             this.tabPage1.Controls.Add(this.lblOrganization);
             this.tabPage1.Controls.Add(this.cmbAccountType);
             this.tabPage1.Controls.Add(this.lblAccountType);
@@ -127,6 +127,117 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Accounts";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txtCountry
+            // 
+            this.txtCountry.Location = new System.Drawing.Point(371, 109);
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.Size = new System.Drawing.Size(120, 20);
+            this.txtCountry.TabIndex = 29;
+            // 
+            // txtProvince
+            // 
+            this.txtProvince.Location = new System.Drawing.Point(117, 109);
+            this.txtProvince.Name = "txtProvince";
+            this.txtProvince.Size = new System.Drawing.Size(120, 20);
+            this.txtProvince.TabIndex = 28;
+            // 
+            // dataGridViewAccounts
+            // 
+            this.dataGridViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAccounts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AccountId,
+            this.FirstName,
+            this.LastName,
+            this.ChineseName,
+            this.Title,
+            this.SpouseFirstName,
+            this.PostalCode,
+            this.OrganizationName,
+            this.Phone,
+            this.Fax,
+            this.Email,
+            this.AddressId});
+            this.dataGridViewAccounts.Location = new System.Drawing.Point(18, 220);
+            this.dataGridViewAccounts.Name = "dataGridViewAccounts";
+            this.dataGridViewAccounts.Size = new System.Drawing.Size(750, 274);
+            this.dataGridViewAccounts.TabIndex = 27;
+            this.dataGridViewAccounts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAccounts_CellContentClick_1);
+            // 
+            // AccountId
+            // 
+            this.AccountId.HeaderText = "Account Id";
+            this.AccountId.Name = "AccountId";
+            this.AccountId.ReadOnly = true;
+            // 
+            // FirstName
+            // 
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            // 
+            // LastName
+            // 
+            this.LastName.HeaderText = "Last Name";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            // 
+            // ChineseName
+            // 
+            this.ChineseName.HeaderText = "Chinese Name";
+            this.ChineseName.Name = "ChineseName";
+            this.ChineseName.ReadOnly = true;
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Title";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            // 
+            // SpouseFirstName
+            // 
+            this.SpouseFirstName.HeaderText = "Spouse First Name";
+            this.SpouseFirstName.Name = "SpouseFirstName";
+            this.SpouseFirstName.ReadOnly = true;
+            // 
+            // PostalCode
+            // 
+            this.PostalCode.HeaderText = "Postal Code";
+            this.PostalCode.Name = "PostalCode";
+            this.PostalCode.ReadOnly = true;
+            this.PostalCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.PostalCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // OrganizationName
+            // 
+            this.OrganizationName.HeaderText = "Organization Name";
+            this.OrganizationName.Name = "OrganizationName";
+            this.OrganizationName.ReadOnly = true;
+            // 
+            // Phone
+            // 
+            this.Phone.HeaderText = "Phone";
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            // 
+            // Fax
+            // 
+            this.Fax.HeaderText = "Fax";
+            this.Fax.Name = "Fax";
+            this.Fax.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // AddressId
+            // 
+            this.AddressId.HeaderText = "Address Id";
+            this.AddressId.Name = "AddressId";
+            this.AddressId.ReadOnly = true;
+            this.AddressId.Visible = false;
             // 
             // btnSearch
             // 
@@ -154,6 +265,7 @@
             this.btnNewAccount.TabIndex = 24;
             this.btnNewAccount.Text = "New Account";
             this.btnNewAccount.UseVisualStyleBackColor = true;
+            this.btnNewAccount.Click += new System.EventHandler(this.btnNewAccount_Click);
             // 
             // txtPostalCode
             // 
@@ -171,14 +283,6 @@
             this.lblPostalCode.TabIndex = 22;
             this.lblPostalCode.Text = "Postal Code:";
             // 
-            // cmbCountry
-            // 
-            this.cmbCountry.FormattingEnabled = true;
-            this.cmbCountry.Location = new System.Drawing.Point(371, 109);
-            this.cmbCountry.Name = "cmbCountry";
-            this.cmbCountry.Size = new System.Drawing.Size(121, 21);
-            this.cmbCountry.TabIndex = 21;
-            // 
             // lblCountry
             // 
             this.lblCountry.AutoSize = true;
@@ -187,14 +291,6 @@
             this.lblCountry.Size = new System.Drawing.Size(46, 13);
             this.lblCountry.TabIndex = 20;
             this.lblCountry.Text = "Country:";
-            // 
-            // cmbProvince
-            // 
-            this.cmbProvince.FormattingEnabled = true;
-            this.cmbProvince.Location = new System.Drawing.Point(117, 109);
-            this.cmbProvince.Name = "cmbProvince";
-            this.cmbProvince.Size = new System.Drawing.Size(121, 21);
-            this.cmbProvince.TabIndex = 19;
             // 
             // lblProvince
             // 
@@ -304,14 +400,6 @@
             this.lblLastName.TabIndex = 6;
             this.lblLastName.Text = "Last Name:";
             // 
-            // cmbOrganization
-            // 
-            this.cmbOrganization.FormattingEnabled = true;
-            this.cmbOrganization.Location = new System.Drawing.Point(646, 21);
-            this.cmbOrganization.Name = "cmbOrganization";
-            this.cmbOrganization.Size = new System.Drawing.Size(121, 21);
-            this.cmbOrganization.TabIndex = 5;
-            // 
             // lblOrganization
             // 
             this.lblOrganization.AutoSize = true;
@@ -324,6 +412,13 @@
             // cmbAccountType
             // 
             this.cmbAccountType.FormattingEnabled = true;
+            this.cmbAccountType.Items.AddRange(new object[] {
+            "Church",
+            "Individual",
+            "Organization",
+            "Y-Church",
+            "Y-Individual",
+            "Y-Organization"});
             this.cmbAccountType.Location = new System.Drawing.Point(369, 21);
             this.cmbAccountType.Name = "cmbAccountType";
             this.cmbAccountType.Size = new System.Drawing.Size(121, 21);
@@ -383,102 +478,12 @@
             this.tabPage4.Text = "Summary";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewAccounts
+            // txtOrganization
             // 
-            this.dataGridViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAccounts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.AccountId,
-            this.FirstName,
-            this.LastName,
-            this.ChineseName,
-            this.Title,
-            this.SpouseFirstName,
-            this.PostalCode,
-            this.OrganizationName,
-            this.Phone,
-            this.Fax,
-            this.Email,
-            this.AddressId});
-            this.dataGridViewAccounts.Location = new System.Drawing.Point(18, 220);
-            this.dataGridViewAccounts.Name = "dataGridViewAccounts";
-            this.dataGridViewAccounts.Size = new System.Drawing.Size(750, 274);
-            this.dataGridViewAccounts.TabIndex = 27;
-            this.dataGridViewAccounts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAccounts_CellContentClick_1);
-            // 
-            // AccountId
-            // 
-            this.AccountId.HeaderText = "Account Id";
-            this.AccountId.Name = "AccountId";
-            this.AccountId.ReadOnly = true;
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "Last Name";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            // 
-            // ChineseName
-            // 
-            this.ChineseName.HeaderText = "Chinese Name";
-            this.ChineseName.Name = "ChineseName";
-            this.ChineseName.ReadOnly = true;
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            // 
-            // SpouseFirstName
-            // 
-            this.SpouseFirstName.HeaderText = "Spouse First Name";
-            this.SpouseFirstName.Name = "SpouseFirstName";
-            this.SpouseFirstName.ReadOnly = true;
-            // 
-            // PostalCode
-            // 
-            this.PostalCode.HeaderText = "Postal Code";
-            this.PostalCode.Name = "PostalCode";
-            this.PostalCode.ReadOnly = true;
-            this.PostalCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.PostalCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // OrganizationName
-            // 
-            this.OrganizationName.HeaderText = "Organization Name";
-            this.OrganizationName.Name = "OrganizationName";
-            this.OrganizationName.ReadOnly = true;
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Phone";
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            // 
-            // Fax
-            // 
-            this.Fax.HeaderText = "Fax";
-            this.Fax.Name = "Fax";
-            this.Fax.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // AddressId
-            // 
-            this.AddressId.HeaderText = "Address Id";
-            this.AddressId.Name = "AddressId";
-            this.AddressId.ReadOnly = true;
-            this.AddressId.Visible = false;
+            this.txtOrganization.Location = new System.Drawing.Point(647, 21);
+            this.txtOrganization.Name = "txtOrganization";
+            this.txtOrganization.Size = new System.Drawing.Size(120, 20);
+            this.txtOrganization.TabIndex = 30;
             // 
             // frmMain
             // 
@@ -507,7 +512,6 @@
         private System.Windows.Forms.ComboBox cmbAccountId;
         private System.Windows.Forms.ComboBox cmbAccountType;
         private System.Windows.Forms.Label lblAccountType;
-        private System.Windows.Forms.ComboBox cmbOrganization;
         private System.Windows.Forms.Label lblOrganization;
         private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.Label lblLanguage;
@@ -521,9 +525,7 @@
         private System.Windows.Forms.Label lblStreet;
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.Label lblCity;
-        private System.Windows.Forms.ComboBox cmbProvince;
         private System.Windows.Forms.Label lblProvince;
-        private System.Windows.Forms.ComboBox cmbCountry;
         private System.Windows.Forms.Label lblCountry;
         private System.Windows.Forms.TextBox txtPostalCode;
         private System.Windows.Forms.Label lblPostalCode;
@@ -543,6 +545,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Fax;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn AddressId;
+        private System.Windows.Forms.TextBox txtProvince;
+        private System.Windows.Forms.TextBox txtCountry;
+        private System.Windows.Forms.TextBox txtOrganization;
     }
 }
 
