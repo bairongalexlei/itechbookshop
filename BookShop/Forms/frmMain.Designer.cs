@@ -30,6 +30,9 @@
         {
             this.tabBookShop = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtOrganization = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.txtProvince = new System.Windows.Forms.TextBox();
             this.dataGridViewAccounts = new System.Windows.Forms.DataGridView();
@@ -60,9 +63,7 @@
             this.lblUnit = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.lblLanguage = new System.Windows.Forms.Label();
-            this.cmbFirstName = new System.Windows.Forms.ComboBox();
             this.lblFirstName = new System.Windows.Forms.Label();
-            this.cmbLastName = new System.Windows.Forms.ComboBox();
             this.lblLastName = new System.Windows.Forms.Label();
             this.lblOrganization = new System.Windows.Forms.Label();
             this.cmbAccountType = new System.Windows.Forms.ComboBox();
@@ -72,7 +73,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.txtOrganization = new System.Windows.Forms.TextBox();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
@@ -92,6 +92,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txtFirstName);
+            this.tabPage1.Controls.Add(this.txtLastName);
             this.tabPage1.Controls.Add(this.txtOrganization);
             this.tabPage1.Controls.Add(this.txtCountry);
             this.tabPage1.Controls.Add(this.txtProvince);
@@ -111,9 +113,7 @@
             this.tabPage1.Controls.Add(this.lblUnit);
             this.tabPage1.Controls.Add(this.cmbLanguage);
             this.tabPage1.Controls.Add(this.lblLanguage);
-            this.tabPage1.Controls.Add(this.cmbFirstName);
             this.tabPage1.Controls.Add(this.lblFirstName);
-            this.tabPage1.Controls.Add(this.cmbLastName);
             this.tabPage1.Controls.Add(this.lblLastName);
             this.tabPage1.Controls.Add(this.lblOrganization);
             this.tabPage1.Controls.Add(this.cmbAccountType);
@@ -127,6 +127,27 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Accounts";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txtFirstName
+            // 
+            this.txtFirstName.Location = new System.Drawing.Point(369, 51);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(120, 20);
+            this.txtFirstName.TabIndex = 32;
+            // 
+            // txtLastName
+            // 
+            this.txtLastName.Location = new System.Drawing.Point(116, 51);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(120, 20);
+            this.txtLastName.TabIndex = 31;
+            // 
+            // txtOrganization
+            // 
+            this.txtOrganization.Location = new System.Drawing.Point(647, 21);
+            this.txtOrganization.Name = "txtOrganization";
+            this.txtOrganization.Size = new System.Drawing.Size(120, 20);
+            this.txtOrganization.TabIndex = 30;
             // 
             // txtCountry
             // 
@@ -247,6 +268,7 @@
             this.btnSearch.TabIndex = 26;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnClear
             // 
@@ -256,6 +278,7 @@
             this.btnClear.TabIndex = 25;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnNewAccount
             // 
@@ -352,6 +375,9 @@
             // cmbLanguage
             // 
             this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Items.AddRange(new object[] {
+            "Chinese",
+            "English"});
             this.cmbLanguage.Location = new System.Drawing.Point(647, 51);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(121, 21);
@@ -366,14 +392,6 @@
             this.lblLanguage.TabIndex = 10;
             this.lblLanguage.Text = "Language:";
             // 
-            // cmbFirstName
-            // 
-            this.cmbFirstName.FormattingEnabled = true;
-            this.cmbFirstName.Location = new System.Drawing.Point(370, 51);
-            this.cmbFirstName.Name = "cmbFirstName";
-            this.cmbFirstName.Size = new System.Drawing.Size(121, 21);
-            this.cmbFirstName.TabIndex = 9;
-            // 
             // lblFirstName
             // 
             this.lblFirstName.AutoSize = true;
@@ -382,14 +400,6 @@
             this.lblFirstName.Size = new System.Drawing.Size(60, 13);
             this.lblFirstName.TabIndex = 8;
             this.lblFirstName.Text = "First Name:";
-            // 
-            // cmbLastName
-            // 
-            this.cmbLastName.FormattingEnabled = true;
-            this.cmbLastName.Location = new System.Drawing.Point(117, 51);
-            this.cmbLastName.Name = "cmbLastName";
-            this.cmbLastName.Size = new System.Drawing.Size(121, 21);
-            this.cmbLastName.TabIndex = 7;
             // 
             // lblLastName
             // 
@@ -478,13 +488,6 @@
             this.tabPage4.Text = "Summary";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // txtOrganization
-            // 
-            this.txtOrganization.Location = new System.Drawing.Point(647, 21);
-            this.txtOrganization.Name = "txtOrganization";
-            this.txtOrganization.Size = new System.Drawing.Size(120, 20);
-            this.txtOrganization.TabIndex = 30;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -515,9 +518,7 @@
         private System.Windows.Forms.Label lblOrganization;
         private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.Label lblLanguage;
-        private System.Windows.Forms.ComboBox cmbFirstName;
         private System.Windows.Forms.Label lblFirstName;
-        private System.Windows.Forms.ComboBox cmbLastName;
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.TextBox txtUnit;
@@ -548,6 +549,8 @@
         private System.Windows.Forms.TextBox txtProvince;
         private System.Windows.Forms.TextBox txtCountry;
         private System.Windows.Forms.TextBox txtOrganization;
+        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtFirstName;
     }
 }
 
