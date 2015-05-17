@@ -26,8 +26,6 @@ namespace BookShop
             {
                 using (var dbContext = new BookShopEntities())
                 {
-
-
                     var accounts = dbContext.Accounts.Where(acct => acct.StatusId == 1)
                             .Select(ac =>
                                 new
@@ -62,6 +60,9 @@ namespace BookShop
                     dataGridViewAccounts.Columns[11].DataPropertyName = "AddressId";
 
                     dataGridViewAccounts.DataSource = accounts;
+
+                    var accountIds = accounts.Select(ac => ac.AccountId.ToString()).ToArray();
+                    cmbAccountId.DataSource = accountIds;
                 }
             }
             catch (Exception)
