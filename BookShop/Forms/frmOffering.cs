@@ -1,4 +1,5 @@
-﻿using BookShop.EFData;
+﻿using BookShop.Common;
+using BookShop.EFData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,6 @@ namespace BookShop.Forms
     {
         private int accountId;
         private int offeringId;
-        //private List<Tuple<int, decimal>> offerLineItems;
 
         public frmOffering()
         {
@@ -40,14 +40,11 @@ namespace BookShop.Forms
                 return;
             }
 
-            //dataGridViewOfferLines.Columns[0].DataPropertyName = "Item1";
-            //dataGridViewOfferLines.Columns[1].DataPropertyName = "Item2";
-            //offerLineItems = new List<Tuple<int, decimal>>();
-            //dataGridViewOfferLines.DataSource = offerLineItems;
+            DataGridViewComboBoxColumn departmentColumn = (DataGridViewComboBoxColumn)dataGridViewOfferLines.Columns[0];
+            departmentColumn.DataSource = GetDepartmentProjectNames();
+            departmentColumn.ValueMember = "Value";
+            departmentColumn.DisplayMember = "Text";
 
-            //dataGridViewOfferLines.Columns[0].DataGridView.DataSource = GetDepartmentProjectNames();
-            DataGridViewComboBoxColumn a = (DataGridViewComboBoxColumn)dataGridViewOfferLines.Columns[0];
-            a.DataSource = GetDepartmentProjectNames();
         }
 
         public frmOffering(int AccountId, int OfferingId)
@@ -87,10 +84,11 @@ namespace BookShop.Forms
                 }
             }
 
-            //dataGridViewOfferLines.Columns[0].DataPropertyName = "Item1";
-            //dataGridViewOfferLines.Columns[1].DataPropertyName = "Item2";
-            //offerLineItems = new List<Tuple<int, decimal>>();
-            //dataGridViewOfferLines.DataSource = offerLineItems;
+            DataGridViewComboBoxColumn departmentColumn = (DataGridViewComboBoxColumn)dataGridViewOfferLines.Columns[0];
+            departmentColumn.DataSource = GetDepartmentProjectNames();
+            departmentColumn.ValueMember = "Value";
+            departmentColumn.DisplayMember = "Text";
+
         }
 
         private void frmOffering_Load(object sender, EventArgs e)
@@ -183,43 +181,9 @@ namespace BookShop.Forms
             this.Close();
         }
 
-        //private void dataGridViewOfferLines_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        //{
-        //    //if (dataGridViewOfferLines.CurrentCell.ColumnIndex == 1 && e.Control is ComboBox)
-        //    //{
-        //    //    ComboBox comboBox = e.Control as ComboBox;
-        //    //    //comboBox.SelectedIndexChanged += LastColumnComboSelectionChanged;
-
-        //    //}
-
-        //    if (e.Control is ComboBox)
-        //    {
-        //        ComboBox comboBox = e.Control as ComboBox;
-        //        //comboBox.DataSource = GetDepartmentProjectNames();
-        //        //comboBox.DropDown += PopulateDepartments;
-        //    }
-        //}
-
-        //private void PopulateDepartments(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        //var sendingCB = sender as DataGridViewComboBoxEditingControl;
-        //        var sendingCB = sender as ComboBox;
-
-        //        var namesSource = GetDepartmentProjectNames();
-
-        //        sendingCB.DataSource = namesSource;
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show("Error on getting departments. Please contact iTech support for assistance.");
-        //    }
-        //}
-
-        private List<string> GetDepartmentProjectNames()
+        private List<ComboboxItem> GetDepartmentProjectNames()
         {
-            List<string> resultNames = null;
+            List<ComboboxItem> resultNames = null;
 
             try
             {
@@ -233,7 +197,8 @@ namespace BookShop.Forms
                                         new
                                         {
                                             ProjctName = proj.Description,
-                                            DepartmentName = proj.Department != null ? proj.Department.DepartmentName : ""
+                                            DepartmentName = proj.Department != null ? proj.Department.DepartmentName : "",
+                                            ProjectId = proj.ProjectId
                                         }).ToList();
 
                     var namesSource = projectDepartmentNames.Select(pdPair =>
@@ -247,7 +212,14 @@ namespace BookShop.Forms
                         {
                             result = pdPair.ProjctName;
                         }
-                        return result;
+
+                        ComboboxItem oneComboboxItem = new ComboboxItem
+                        {
+                            Text = result,
+                            Value = pdPair.ProjectId
+                        };
+
+                        return oneComboboxItem;
                     }).ToList();
 
                     resultNames = namesSource;
@@ -259,6 +231,94 @@ namespace BookShop.Forms
             }
 
             return resultNames;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var fieldsValidErrorMessages = GetFieldsValidErrorMessage();
+            if (fieldsValidErrorMessages != null && fieldsValidErrorMessages.Count > 0)
+            {
+                MessageBox.Show(string.Join("\n", fieldsValidErrorMessages));
+                return;
+            }
+
+            try
+            {
+                using (var dbContext = new BookShopEntities())
+                {
+                    var offering = dbContext.Offerings.FirstOrDefault(ofr => ofr.OfferingId == offeringId);
+                    if (offering == null)
+                    {
+                        //MessageBox.Show("add new offering");
+                    }
+                    else
+                    {
+                        //MessageBox.Show("save existing offering");
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error on saving offering. Please contact iTech support for assistance.");
+                return;
+            }
+        }
+
+        private List<string> GetFieldsValidErrorMessage()
+        {
+            List<string> errorMessages = new List<string>();
+
+            if (accountId <= 0)
+                errorMessages.Add("Account is not selected.");
+
+            if (cmbOfferingMethod.SelectedIndex < 0)
+                errorMessages.Add("Payment method is not selected.");
+
+            float amount = 0;
+            float.TryParse(txtAmount.Text, out amount);
+            if (amount <= 0)
+                errorMessages.Add("Amount is not valid.");
+
+            if (cmbOfferingReceiptType.SelectedIndex < 0)
+                errorMessages.Add("Receipt type is not selected.");
+
+            float rowsSubtotal = 0;
+            foreach(DataGridViewRow oneRow in dataGridViewOfferLines.Rows)
+            {
+                int? oneRowProjectId = (int?)oneRow.Cells[0].Value;
+
+                float oneOfferItemAmount = 0;
+                var txtOneRowAmount = oneRow.Cells[1];
+                float.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
+
+                if (!oneRowProjectId.HasValue && oneOfferItemAmount <= 0)
+                    break;
+
+                if (oneOfferItemAmount <= 0)
+                {
+                    errorMessages.Add("Offering line item value is not valid or can not be empty.");
+                    break;
+                }
+
+                if (!oneRowProjectId.HasValue)
+                {
+                    errorMessages.Add("Offering line item's project/department is not set.");
+                    break;
+                }
+
+                rowsSubtotal = rowsSubtotal + oneOfferItemAmount;
+            }
+
+            if (rowsSubtotal != amount)
+                errorMessages.Add("Offering line item's subtotal is not equal to user amount.");
+
+            //var oneRow = dataGridViewOfferLines.Rows[0];
+
+            //var oneColumn = oneRow.Cells[0];
+
+            //var value = oneColumn.Value;
+
+            return errorMessages;
         }
     }
 }

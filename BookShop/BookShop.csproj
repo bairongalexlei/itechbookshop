@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ComboboxItem.cs" />
     <Compile Include="Common\CommonEnum.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\StringEnum.cs" />

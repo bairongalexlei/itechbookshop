@@ -73,14 +73,14 @@
             this.txtOthers = new System.Windows.Forms.TextBox();
             this.lblOthers = new System.Windows.Forms.Label();
             this.dataGridViewOfferLines = new System.Windows.Forms.DataGridView();
+            this.ProjectDepartment = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.OfferSubAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnPrintReceipt = new System.Windows.Forms.Button();
-            this.ProjectDepartment = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.OfferSubAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtAccountType = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferLines)).BeginInit();
             this.SuspendLayout();
@@ -394,6 +394,7 @@
             // 
             // cmbOfferingMethod
             // 
+            this.cmbOfferingMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOfferingMethod.FormattingEnabled = true;
             this.cmbOfferingMethod.Items.AddRange(new object[] {
             "Cash",
@@ -433,6 +434,7 @@
             // 
             // cmbOfferingReceiptType
             // 
+            this.cmbOfferingReceiptType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOfferingReceiptType.FormattingEnabled = true;
             this.cmbOfferingReceiptType.Items.AddRange(new object[] {
             "Personal",
@@ -478,11 +480,23 @@
             this.dataGridViewOfferLines.Name = "dataGridViewOfferLines";
             this.dataGridViewOfferLines.Size = new System.Drawing.Size(698, 150);
             this.dataGridViewOfferLines.TabIndex = 108;
-            //this.dataGridViewOfferLines.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOfferLines_CellContentClick);
-            //this.dataGridViewOfferLines.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewOfferLines_EditingControlShowing);
+            // 
+            // ProjectDepartment
+            // 
+            this.ProjectDepartment.HeaderText = "Project/Department";
+            this.ProjectDepartment.Name = "ProjectDepartment";
+            this.ProjectDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProjectDepartment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProjectDepartment.Width = 550;
+            // 
+            // OfferSubAmount
+            // 
+            this.OfferSubAmount.HeaderText = "Amount";
+            this.OfferSubAmount.Name = "OfferSubAmount";
             // 
             // txtSubtotal
             // 
+            this.txtSubtotal.Enabled = false;
             this.txtSubtotal.Location = new System.Drawing.Point(639, 413);
             this.txtSubtotal.Name = "txtSubtotal";
             this.txtSubtotal.Size = new System.Drawing.Size(100, 20);
@@ -515,6 +529,7 @@
             this.btnSave.TabIndex = 111;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
@@ -533,19 +548,6 @@
             this.btnPrintReceipt.TabIndex = 113;
             this.btnPrintReceipt.Text = "Print Receipt";
             this.btnPrintReceipt.UseVisualStyleBackColor = true;
-            // 
-            // ProjectDepartment
-            // 
-            this.ProjectDepartment.HeaderText = "Project/Department";
-            this.ProjectDepartment.Name = "ProjectDepartment";
-            this.ProjectDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProjectDepartment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProjectDepartment.Width = 550;
-            // 
-            // OfferSubAmount
-            // 
-            this.OfferSubAmount.HeaderText = "Amount";
-            this.OfferSubAmount.Name = "OfferSubAmount";
             // 
             // txtAccountType
             // 
