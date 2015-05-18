@@ -73,8 +73,6 @@
             this.txtOthers = new System.Windows.Forms.TextBox();
             this.lblOthers = new System.Windows.Forms.Label();
             this.dataGridViewOfferLines = new System.Windows.Forms.DataGridView();
-            this.ProjectDepartment = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.OfferSubAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -82,6 +80,9 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnPrintReceipt = new System.Windows.Forms.Button();
             this.txtAccountType = new System.Windows.Forms.TextBox();
+            this.ProjectDepartment = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.OfferSubAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingLineItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferLines)).BeginInit();
             this.SuspendLayout();
             // 
@@ -475,24 +476,13 @@
             this.dataGridViewOfferLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOfferLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProjectDepartment,
-            this.OfferSubAmount});
+            this.OfferSubAmount,
+            this.OfferingLineItemId});
             this.dataGridViewOfferLines.Location = new System.Drawing.Point(40, 258);
             this.dataGridViewOfferLines.Name = "dataGridViewOfferLines";
             this.dataGridViewOfferLines.Size = new System.Drawing.Size(698, 150);
             this.dataGridViewOfferLines.TabIndex = 108;
-            // 
-            // ProjectDepartment
-            // 
-            this.ProjectDepartment.HeaderText = "Project/Department";
-            this.ProjectDepartment.Name = "ProjectDepartment";
-            this.ProjectDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProjectDepartment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProjectDepartment.Width = 550;
-            // 
-            // OfferSubAmount
-            // 
-            this.OfferSubAmount.HeaderText = "Amount";
-            this.OfferSubAmount.Name = "OfferSubAmount";
+            this.dataGridViewOfferLines.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewOfferLines_EditingControlShowing);
             // 
             // txtSubtotal
             // 
@@ -556,6 +546,26 @@
             this.txtAccountType.Name = "txtAccountType";
             this.txtAccountType.Size = new System.Drawing.Size(100, 20);
             this.txtAccountType.TabIndex = 115;
+            // 
+            // ProjectDepartment
+            // 
+            this.ProjectDepartment.HeaderText = "Project/Department";
+            this.ProjectDepartment.Name = "ProjectDepartment";
+            this.ProjectDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProjectDepartment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProjectDepartment.Width = 550;
+            // 
+            // OfferSubAmount
+            // 
+            this.OfferSubAmount.HeaderText = "Amount";
+            this.OfferSubAmount.Name = "OfferSubAmount";
+            // 
+            // OfferingLineItemId
+            // 
+            this.OfferingLineItemId.HeaderText = "Offering Line Item Id";
+            this.OfferingLineItemId.Name = "OfferingLineItemId";
+            this.OfferingLineItemId.ReadOnly = true;
+            this.OfferingLineItemId.Visible = false;
             // 
             // frmOffering
             // 
@@ -623,6 +633,11 @@
 
         }
 
+        private void dataGridViewOfferLines_EditingControlShowing(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
 
         private System.Windows.Forms.Label lblOffering;
@@ -676,8 +691,9 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnPrintReceipt;
+        private System.Windows.Forms.TextBox txtAccountType;
         private System.Windows.Forms.DataGridViewComboBoxColumn ProjectDepartment;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferSubAmount;
-        private System.Windows.Forms.TextBox txtAccountType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingLineItemId;
     }
 }

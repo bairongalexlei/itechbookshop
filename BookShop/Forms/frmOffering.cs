@@ -246,16 +246,91 @@ namespace BookShop.Forms
             {
                 using (var dbContext = new BookShopEntities())
                 {
+                    bool addNewOffering = false;
                     var offering = dbContext.Offerings.FirstOrDefault(ofr => ofr.OfferingId == offeringId);
                     if (offering == null)
                     {
-                        //MessageBox.Show("add new offering");
+                        offering = new Offering();
+                        offering.CreatedDate = DateTime.Now;
+                        addNewOffering = true;
+                    }
+
+                    offering.AccountId = accountId;
+                    offering.MethodId = (int)cmbOfferingMethod.SelectedIndex + 1;
+                    offering.ReceiptTypeId = (int)cmbOfferingReceiptType.SelectedIndex + 1;
+
+                    string strTotalAmount = txtAmount.Text;
+                    decimal totalAmount = 0;
+                    decimal.TryParse(strTotalAmount, out totalAmount);
+                    offering.Amount = totalAmount;
+                    offering.LastUpdatedDate = DateTime.Now;
+                    offering.SignatureUserId = 1;
+
+                    if (addNewOffering) {
+                        offering.StatusId = (int)CommonEnum.Status.Active;
+                        dbContext.Offerings.Add(offering);
+
+                        foreach (DataGridViewRow oneRow in dataGridViewOfferLines.Rows)
+                        {
+                            int? oneRowProjectId = (int?)oneRow.Cells[0].Value;
+
+                            decimal oneOfferItemAmount = 0;
+                            var txtOneRowAmount = oneRow.Cells[1];
+                            decimal.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
+
+                            if (!oneRowProjectId.HasValue || oneOfferItemAmount <= 0)
+                                break;
+
+                            var oneOfferLineItem = new OfferingLine();
+                            oneOfferLineItem.Amount = oneOfferItemAmount;
+                            oneOfferLineItem.CreatedDate = DateTime.Now;
+                            oneOfferLineItem.LastUpdatedDate = DateTime.Now;
+                            oneOfferLineItem.OfferingId = offering.OfferingId;
+                            oneOfferLineItem.ProjectId = oneRowProjectId.Value;
+                            oneOfferLineItem.StatusId = (int)CommonEnum.Status.Active;
+                            oneOfferLineItem.Percent = oneOfferItemAmount / totalAmount;
+
+                            dbContext.OfferingLines.Add(oneOfferLineItem);
+                        }
                     }
                     else
                     {
-                        //MessageBox.Show("save existing offering");
+                        //need test
+                        var offeringItemsToRemove = dbContext.OfferingLines.Where(offl => 
+                            offl.OfferingId == offering.OfferingId);
+
+                        if (offeringItemsToRemove != null && offeringItemsToRemove.Count() > 0)
+                            dbContext.OfferingLines.RemoveRange(offeringItemsToRemove);
+
+                        foreach (DataGridViewRow oneRow in dataGridViewOfferLines.Rows)
+                        {
+                            int? oneRowProjectId = (int?)oneRow.Cells[0].Value;
+
+                            decimal oneOfferItemAmount = 0;
+                            var txtOneRowAmount = oneRow.Cells[1];
+                            decimal.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
+
+                            if (!oneRowProjectId.HasValue || oneOfferItemAmount <= 0)
+                                break;
+
+                            var oneOfferLineItem = new OfferingLine();
+                            oneOfferLineItem.Amount = oneOfferItemAmount;
+                            oneOfferLineItem.CreatedDate = DateTime.Now;
+                            oneOfferLineItem.LastUpdatedDate = DateTime.Now;
+                            oneOfferLineItem.OfferingId = offering.OfferingId;
+                            oneOfferLineItem.ProjectId = oneRowProjectId.Value;
+                            oneOfferLineItem.StatusId = (int)CommonEnum.Status.Active;
+                            oneOfferLineItem.Percent = oneOfferItemAmount / totalAmount;
+
+                            dbContext.OfferingLines.Add(oneOfferLineItem);
+                        }
                     }
+
+                    dbContext.SaveChanges();
                 }
+
+                MessageBox.Show("Offering was saved successfully");
+                Close();
             }
             catch
             {
@@ -319,6 +394,43 @@ namespace BookShop.Forms
             //var value = oneColumn.Value;
 
             return errorMessages;
+        }
+
+        public void dataGridViewOfferLines_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            //var txtBox = e.Control as TextBox;
+            //if (txtBox != null)
+            //{
+            //    // Remove an existing event-handler, if present, to avoid 
+            //    // adding multiple handlers when the editing control is reused.
+            //    txtBox.KeyDown -= new KeyEventHandler(underlyingTextBox_KeyDown);
+
+            //    // Add the event handler. 
+            //    txtBox.KeyDown += new KeyEventHandler(underlyingTextBox_KeyDown);
+            //}
+
+            if (e.Control is TextBox)
+            {
+                var txtBox = e.Control as TextBox;
+                txtBox.TextChanged -= new EventHandler(offeringLineItemAmount_TextChanged);
+                txtBox.TextChanged += new EventHandler(offeringLineItemAmount_TextChanged);
+            }
+        }
+
+        private void offeringLineItemAmount_TextChanged(object sender, EventArgs e)
+        {
+            decimal subTotal = 0;
+            foreach (DataGridViewRow oneRow in dataGridViewOfferLines.Rows)
+            {
+                decimal oneOfferItemAmount = 0;
+                var txtOneRowAmount = oneRow.Cells[1];
+                //decimal.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
+                decimal.TryParse((string)txtOneRowAmount.EditedFormattedValue, out oneOfferItemAmount);
+
+                subTotal = subTotal + oneOfferItemAmount;
+            }
+
+            txtSubtotal.Text = subTotal.ToString();
         }
     }
 }
