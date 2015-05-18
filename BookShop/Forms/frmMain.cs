@@ -459,7 +459,9 @@ namespace BookShop
 
         private void btnNewOffering_Click(object sender, EventArgs e)
         {
-
+            var offeringForm = new frmOffering();
+            offeringForm.StartPosition = FormStartPosition.CenterParent;
+            offeringForm.ShowDialog();
         }
     }
 }

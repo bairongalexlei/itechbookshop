@@ -45,7 +45,6 @@
             this.txtReceivedDate = new System.Windows.Forms.TextBox();
             this.lblReceivedDate = new System.Windows.Forms.Label();
             this.lblAccountType = new System.Windows.Forms.Label();
-            this.txtAccountType = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.lblFullName = new System.Windows.Forms.Label();
@@ -76,12 +75,13 @@
             this.dataGridViewOfferLines = new System.Windows.Forms.DataGridView();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.lblSubtotal = new System.Windows.Forms.Label();
-            this.ProjectDepartment = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.OfferSubAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnPrintReceipt = new System.Windows.Forms.Button();
+            this.ProjectDepartment = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.OfferSubAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtAccountType = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferLines)).BeginInit();
             this.SuspendLayout();
             // 
@@ -186,6 +186,7 @@
             this.cmbAccountId.Name = "cmbAccountId";
             this.cmbAccountId.Size = new System.Drawing.Size(100, 21);
             this.cmbAccountId.TabIndex = 11;
+            this.cmbAccountId.SelectedIndexChanged += new System.EventHandler(this.cmbAccountId_SelectedIndexChanged);
             // 
             // txtOfferYear
             // 
@@ -230,16 +231,9 @@
             this.lblAccountType.TabIndex = 56;
             this.lblAccountType.Text = "Account Type:";
             // 
-            // txtAccountType
-            // 
-            this.txtAccountType.Enabled = false;
-            this.txtAccountType.Location = new System.Drawing.Point(120, 98);
-            this.txtAccountType.Name = "txtAccountType";
-            this.txtAccountType.Size = new System.Drawing.Size(100, 20);
-            this.txtAccountType.TabIndex = 57;
-            // 
             // txtFirstName
             // 
+            this.txtFirstName.Enabled = false;
             this.txtFirstName.Location = new System.Drawing.Point(226, 124);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(100, 20);
@@ -247,6 +241,7 @@
             // 
             // txtLastName
             // 
+            this.txtLastName.Enabled = false;
             this.txtLastName.Location = new System.Drawing.Point(120, 124);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(100, 20);
@@ -257,12 +252,13 @@
             this.lblFullName.AutoSize = true;
             this.lblFullName.Location = new System.Drawing.Point(53, 127);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(61, 13);
+            this.lblFullName.Size = new System.Drawing.Size(57, 13);
             this.lblFullName.TabIndex = 78;
-            this.lblFullName.Text = "Last Name:";
+            this.lblFullName.Text = "Full Name:";
             // 
             // txtOrganization
             // 
+            this.txtOrganization.Enabled = false;
             this.txtOrganization.Location = new System.Drawing.Point(120, 178);
             this.txtOrganization.Name = "txtOrganization";
             this.txtOrganization.Size = new System.Drawing.Size(206, 20);
@@ -270,6 +266,7 @@
             // 
             // txtTitle
             // 
+            this.txtTitle.Enabled = false;
             this.txtTitle.Location = new System.Drawing.Point(120, 150);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(100, 20);
@@ -295,6 +292,7 @@
             // 
             // txtCountry
             // 
+            this.txtCountry.Enabled = false;
             this.txtCountry.Location = new System.Drawing.Point(417, 175);
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(100, 20);
@@ -302,6 +300,7 @@
             // 
             // txtProvince
             // 
+            this.txtProvince.Enabled = false;
             this.txtProvince.Location = new System.Drawing.Point(639, 147);
             this.txtProvince.Name = "txtProvince";
             this.txtProvince.Size = new System.Drawing.Size(99, 20);
@@ -309,6 +308,7 @@
             // 
             // txtPostalCode
             // 
+            this.txtPostalCode.Enabled = false;
             this.txtPostalCode.Location = new System.Drawing.Point(639, 175);
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(99, 20);
@@ -343,6 +343,7 @@
             // 
             // txtCity
             // 
+            this.txtCity.Enabled = false;
             this.txtCity.Location = new System.Drawing.Point(417, 147);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(100, 20);
@@ -359,6 +360,7 @@
             // 
             // txtStreet
             // 
+            this.txtStreet.Enabled = false;
             this.txtStreet.Location = new System.Drawing.Point(640, 121);
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.Size = new System.Drawing.Size(99, 20);
@@ -375,6 +377,7 @@
             // 
             // txtUnit
             // 
+            this.txtUnit.Enabled = false;
             this.txtUnit.Location = new System.Drawing.Point(417, 121);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.Size = new System.Drawing.Size(100, 20);
@@ -475,6 +478,8 @@
             this.dataGridViewOfferLines.Name = "dataGridViewOfferLines";
             this.dataGridViewOfferLines.Size = new System.Drawing.Size(698, 150);
             this.dataGridViewOfferLines.TabIndex = 108;
+            //this.dataGridViewOfferLines.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOfferLines_CellContentClick);
+            this.dataGridViewOfferLines.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewOfferLines_EditingControlShowing);
             // 
             // txtSubtotal
             // 
@@ -492,21 +497,6 @@
             this.lblSubtotal.TabIndex = 109;
             this.lblSubtotal.Text = "Subtotal:";
             // 
-            // ProjectDepartment
-            // 
-            this.ProjectDepartment.HeaderText = "Project/Department";
-            this.ProjectDepartment.Name = "ProjectDepartment";
-            this.ProjectDepartment.ReadOnly = true;
-            this.ProjectDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProjectDepartment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProjectDepartment.Width = 550;
-            // 
-            // OfferSubAmount
-            // 
-            this.OfferSubAmount.HeaderText = "Amount";
-            this.OfferSubAmount.Name = "OfferSubAmount";
-            this.OfferSubAmount.ReadOnly = true;
-            // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(666, 464);
@@ -515,6 +505,7 @@
             this.btnCancel.TabIndex = 112;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -543,11 +534,33 @@
             this.btnPrintReceipt.Text = "Print Receipt";
             this.btnPrintReceipt.UseVisualStyleBackColor = true;
             // 
+            // ProjectDepartment
+            // 
+            this.ProjectDepartment.HeaderText = "Project/Department";
+            this.ProjectDepartment.Name = "ProjectDepartment";
+            this.ProjectDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProjectDepartment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProjectDepartment.Width = 550;
+            // 
+            // OfferSubAmount
+            // 
+            this.OfferSubAmount.HeaderText = "Amount";
+            this.OfferSubAmount.Name = "OfferSubAmount";
+            // 
+            // txtAccountType
+            // 
+            this.txtAccountType.Enabled = false;
+            this.txtAccountType.Location = new System.Drawing.Point(120, 98);
+            this.txtAccountType.Name = "txtAccountType";
+            this.txtAccountType.Size = new System.Drawing.Size(100, 20);
+            this.txtAccountType.TabIndex = 115;
+            // 
             // frmOffering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 498);
+            this.Controls.Add(this.txtAccountType);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPrintReceipt);
             this.Controls.Add(this.btnCancel);
@@ -582,7 +595,6 @@
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.lblFullName);
-            this.Controls.Add(this.txtAccountType);
             this.Controls.Add(this.lblAccountType);
             this.Controls.Add(this.txtOfferYear);
             this.Controls.Add(this.lblOfferYear);
@@ -602,6 +614,7 @@
             this.Controls.Add(this.lblOffering);
             this.Name = "frmOffering";
             this.Text = "Offering";
+            this.Load += new System.EventHandler(this.frmOffering_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferLines)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -627,7 +640,6 @@
         private System.Windows.Forms.TextBox txtReceivedDate;
         private System.Windows.Forms.Label lblReceivedDate;
         private System.Windows.Forms.Label lblAccountType;
-        private System.Windows.Forms.TextBox txtAccountType;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.Label lblFullName;
@@ -658,11 +670,12 @@
         private System.Windows.Forms.DataGridView dataGridViewOfferLines;
         private System.Windows.Forms.TextBox txtSubtotal;
         private System.Windows.Forms.Label lblSubtotal;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ProjectDepartment;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferSubAmount;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnPrintReceipt;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ProjectDepartment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferSubAmount;
+        private System.Windows.Forms.TextBox txtAccountType;
     }
 }

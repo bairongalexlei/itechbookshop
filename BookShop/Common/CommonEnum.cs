@@ -30,6 +30,24 @@ namespace BookShop.Common
         }
         #endregion
 
+        #region Account Type
+        public enum AccountType
+        {
+            [DisplayValue("Church")]
+            Church = 1,
+            [DisplayValue("Individual")]
+            Individual = 2,
+            [DisplayValue("Organization")]
+            Organization = 3,
+            [DisplayValue("Y-Church")]
+            YChurch = 4,
+            [DisplayValue("Y-Individual")]
+            YIndividual = 5,
+            [DisplayValue("Y-Organization")]
+            YOrganization = 6
+        }
+        #endregion
+
         #region Status
         public enum UserType
         {
