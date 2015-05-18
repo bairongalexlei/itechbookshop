@@ -479,7 +479,7 @@
             this.dataGridViewOfferLines.Size = new System.Drawing.Size(698, 150);
             this.dataGridViewOfferLines.TabIndex = 108;
             //this.dataGridViewOfferLines.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOfferLines_CellContentClick);
-            this.dataGridViewOfferLines.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewOfferLines_EditingControlShowing);
+            //this.dataGridViewOfferLines.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewOfferLines_EditingControlShowing);
             // 
             // txtSubtotal
             // 

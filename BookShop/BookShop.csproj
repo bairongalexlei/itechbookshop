@@ -88,6 +88,9 @@
     <Compile Include="EFData\OfferingLine.cs">
       <DependentUpon>BookShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EFData\Project.cs">
+      <DependentUpon>BookShopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EFData\User.cs">
       <DependentUpon>BookShopModel.tt</DependentUpon>
     </Compile>

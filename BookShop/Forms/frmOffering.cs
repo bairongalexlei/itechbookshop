@@ -44,6 +44,10 @@ namespace BookShop.Forms
             //dataGridViewOfferLines.Columns[1].DataPropertyName = "Item2";
             //offerLineItems = new List<Tuple<int, decimal>>();
             //dataGridViewOfferLines.DataSource = offerLineItems;
+
+            //dataGridViewOfferLines.Columns[0].DataGridView.DataSource = GetDepartmentProjectNames();
+            DataGridViewComboBoxColumn a = (DataGridViewComboBoxColumn)dataGridViewOfferLines.Columns[0];
+            a.DataSource = GetDepartmentProjectNames();
         }
 
         public frmOffering(int AccountId, int OfferingId)
@@ -179,44 +183,82 @@ namespace BookShop.Forms
             this.Close();
         }
 
-        private void dataGridViewOfferLines_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        //private void dataGridViewOfferLines_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        //{
+        //    //if (dataGridViewOfferLines.CurrentCell.ColumnIndex == 1 && e.Control is ComboBox)
+        //    //{
+        //    //    ComboBox comboBox = e.Control as ComboBox;
+        //    //    //comboBox.SelectedIndexChanged += LastColumnComboSelectionChanged;
+
+        //    //}
+
+        //    if (e.Control is ComboBox)
+        //    {
+        //        ComboBox comboBox = e.Control as ComboBox;
+        //        //comboBox.DataSource = GetDepartmentProjectNames();
+        //        //comboBox.DropDown += PopulateDepartments;
+        //    }
+        //}
+
+        //private void PopulateDepartments(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        //var sendingCB = sender as DataGridViewComboBoxEditingControl;
+        //        var sendingCB = sender as ComboBox;
+
+        //        var namesSource = GetDepartmentProjectNames();
+
+        //        sendingCB.DataSource = namesSource;
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Error on getting departments. Please contact iTech support for assistance.");
+        //    }
+        //}
+
+        private List<string> GetDepartmentProjectNames()
         {
-            //if (dataGridViewOfferLines.CurrentCell.ColumnIndex == 1 && e.Control is ComboBox)
-            //{
-            //    ComboBox comboBox = e.Control as ComboBox;
-            //    //comboBox.SelectedIndexChanged += LastColumnComboSelectionChanged;
+            List<string> resultNames = null;
 
-            //}
-
-            if (e.Control is ComboBox)
-            {
-                ComboBox comboBox = e.Control as ComboBox;
-                comboBox.DropDown += PopulateDepartments;
-            }
-        }
-
-        private void PopulateDepartments(object sender, EventArgs e)
-        {
             try
             {
-                //var sendingCB = sender as DataGridViewComboBoxEditingControl;
-                var sendingCB = sender as ComboBox;
-
                 using (var dbContext = new BookShopEntities())
                 {
-                    var departments = dbContext.Departments.Where(department =>
-                        department.StatusId == (int)Common.CommonEnum.Status.Active);
+                    var projects = dbContext.Projects.Where(proj =>
+                                    proj.StatusId == (int)Common.CommonEnum.Status.Active);
 
-                    var departmentNames = departments.OrderBy(d => d.DepartmentName)
-                                                    .Select(dp => dp.DepartmentName).ToList();
+                    var projectDepartmentNames =
+                        projects.Select(proj =>
+                                        new
+                                        {
+                                            ProjctName = proj.Description,
+                                            DepartmentName = proj.Department != null ? proj.Department.DepartmentName : ""
+                                        }).ToList();
 
-                    sendingCB.DataSource = departmentNames;
+                    var namesSource = projectDepartmentNames.Select(pdPair =>
+                    {
+                        string result;
+                        if (!string.IsNullOrEmpty(pdPair.DepartmentName))
+                        {
+                            result = string.Format("{0} - {1}", pdPair.ProjctName, pdPair.DepartmentName);
+                        }
+                        else
+                        {
+                            result = pdPair.ProjctName;
+                        }
+                        return result;
+                    }).ToList();
+
+                    resultNames = namesSource;
                 }
             }
             catch
             {
                 MessageBox.Show("Error on getting departments. Please contact iTech support for assistance.");
             }
+
+            return resultNames;
         }
     }
 }

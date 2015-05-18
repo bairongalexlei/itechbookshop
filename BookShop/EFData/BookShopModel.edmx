@@ -85,6 +85,15 @@
           <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="SignatureUserId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -105,6 +114,7 @@
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OfferingLines" EntityType="Self.OfferingLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offerings" EntityType="Self.Offerings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -153,6 +163,7 @@
           <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Projects" Relationship="BookShopModel.DepartmentProject" FromRole="Department" ToRole="Project" />
         </EntityType>
         <EntityType Name="Offering">
           <Key>
@@ -220,6 +231,11 @@
             <End Role="Offering" EntitySet="Offerings" />
             <End Role="OfferingLine" EntitySet="OfferingLines" />
           </AssociationSet>
+          <EntitySet Name="Projects" EntityType="BookShopModel.Project" />
+          <AssociationSet Name="DepartmentProject" Association="BookShopModel.DepartmentProject">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="AddressAccount">
           <End Type="BookShopModel.Address" Role="Address" Multiplicity="1" />
@@ -282,6 +298,28 @@
             </Principal>
             <Dependent Role="OfferingLine">
               <PropertyRef Name="OfferingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="BookShopModel.DepartmentProject" FromRole="Project" ToRole="Department" />
+        </EntityType>
+        <Association Name="DepartmentProject">
+          <End Type="BookShopModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="BookShopModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="DepartmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -388,6 +426,16 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="OfferingLineId" ColumnName="OfferingLineId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="BookShopModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

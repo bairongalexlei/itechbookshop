@@ -12,17 +12,13 @@ namespace BookShop.EFData
     using System;
     using System.Collections.Generic;
     
-    public partial class Department
+    public partial class Project
     {
-        public Department()
-        {
-            this.Projects = new HashSet<Project>();
-        }
-    
+        public int ProjectId { get; set; }
         public int DepartmentId { get; set; }
-        public string DepartmentName { get; set; }
+        public string Description { get; set; }
         public int StatusId { get; set; }
     
-        public virtual ICollection<Project> Projects { get; set; }
+        public virtual Department Department { get; set; }
     }
 }

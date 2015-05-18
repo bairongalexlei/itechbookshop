@@ -31,5 +31,6 @@ namespace BookShop.EFData
         public virtual DbSet<Offering> Offerings { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<OfferingLine> OfferingLines { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
     }
 }
