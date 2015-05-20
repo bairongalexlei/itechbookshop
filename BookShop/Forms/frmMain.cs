@@ -20,7 +20,38 @@ namespace BookShop
             InitializeComponent();
             BindAccounts();
             BindOfferings();
+            BindSignature();
             cmbDepartments.DropDown += new System.EventHandler(cmbDepartments_DropDown);
+        }
+
+        private void BindSignature()
+        {
+            try
+            {
+                using (var dbContext = new BookShopEntities())
+                {
+                    var adminUser = dbContext.Users.FirstOrDefault(user =>
+                        user.StatusId == (int)Common.CommonEnum.Status.Active &&
+                        user.UserTypeId == (int)Common.CommonEnum.UserType.CFO);
+
+                    if (adminUser != null)
+                    {
+                        txtSignatureFirstName.Text = adminUser.FirstName;
+                        txtSignatureLastName.Text = adminUser.LastName;
+                        
+                        if (adminUser.SignatureImageBytes != null &&
+                            adminUser.SignatureImageBytes.Count() > 0 &&
+                            !string.IsNullOrEmpty(adminUser.SignatureImageExtension))
+                        {
+                            var imageFile = Common.Helper.ByteArrayToImage(adminUser.SignatureImageBytes);
+                            imgPictureBox.Image = imageFile;
+                        }
+                    }
+                }
+            }
+            catch {
+                MessageBox.Show("Error on getting signature. Please contact iTech for assistance.");
+            }
         }
 
         private void cmbDepartments_DropDown(object sender, EventArgs e)

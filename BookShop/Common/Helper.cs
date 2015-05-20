@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,20 @@ namespace BookShop.Common
                 }
             }
             catch 
+            {
+                return null;
+            }
+        }
+
+        public static Image ByteArrayToImage(byte[] byteArrayIn)
+        {
+            try
+            {
+                MemoryStream ms = new MemoryStream(byteArrayIn);
+                Image returnImage = Image.FromStream(ms);
+                return returnImage;
+            }
+            catch
             {
                 return null;
             }
