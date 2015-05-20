@@ -55,8 +55,49 @@ namespace BookShop.Forms
             {
                 accountId = AccountId;
                 cmbAccountId.Text = accountId.ToString();
-                cmbAccountId.Enabled = false; 
+                cmbAccountId.Enabled = false;
+                try
+                {
+                    using (var dbContext = new BookShopEntities())
+                    {
+                        var account = dbContext.Accounts.FirstOrDefault(ac =>
+                            ac.AccountId == accountId &&
+                            ac.StatusId == (int)Common.CommonEnum.Status.Active);
+
+                        if (account == null)
+                        {
+                            MessageBox.Show("The account does not exist any more.");
+                            return;
+                        }
+
+                        txtAccountType.Text = ((Common.CommonEnum.AccountType)account.AccountTypeId).ToString();
+                        txtOrganization.Text = account.OrganizationName;
+                        txtLastName.Text = account.LastName;
+                        txtFirstName.Text = account.FirstName;
+                        txtTitle.Text = account.Title;
+
+                        var accountAddress = account.Address;
+                        if (accountAddress != null)
+                        {
+                            txtUnit.Text = accountAddress.UnitSuiteNumber.ToString();
+                            txtStreet.Text = accountAddress.StreetName;
+                            txtCity.Text = accountAddress.City;
+                            txtProvince.Text = accountAddress.Province;
+                            txtCountry.Text = accountAddress.Country;
+                            txtPostalCode.Text = accountAddress.PostalCode;
+                        }
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Error on populating account information. Please contact iTech support for assistance.");
+                }
             }
+
+            DataGridViewComboBoxColumn departmentColumn = (DataGridViewComboBoxColumn)dataGridViewOfferLines.Columns[0];
+            departmentColumn.DataSource = GetDepartmentProjectNames();
+            departmentColumn.ValueMember = "Value";
+            departmentColumn.DisplayMember = "Text";
 
             if (OfferingId > 0)
             {
@@ -65,7 +106,7 @@ namespace BookShop.Forms
                 {
                     using (var dbContext = new BookShopEntities())
                     {
-                        var oneOffering = dbContext.Offerings.FirstOrDefault(ofr => 
+                        var oneOffering = dbContext.Offerings.FirstOrDefault(ofr =>
                             ofr.OfferingId == offeringId &&
                             ofr.StatusId == (int)Common.CommonEnum.Status.Active);
 
@@ -74,6 +115,21 @@ namespace BookShop.Forms
                             txtOfferingId.Text = offeringId.ToString();
                             txtReceivedDate.Text = oneOffering.CreatedDate.ToShortDateString();
                             txtOfferYear.Text = oneOffering.CreatedDate.Year.ToString();
+
+                            BindOfferingLineItems(dbContext);
+
+                            //bind amount, payment method and receipt type
+                            decimal amount = oneOffering.Amount ?? 0;
+                            txtAmount.Text = amount.ToString();
+                            txtSubtotal.Text = amount.ToString();
+
+                            int paymentMethodId = oneOffering.MethodId ?? 0;
+                            if (paymentMethodId > 0)
+                                cmbOfferingMethod.SelectedIndex = paymentMethodId - 1;
+
+                            int receiptTypeId = oneOffering.ReceiptTypeId ?? 0;
+                            if (receiptTypeId > 0)
+                                cmbOfferingReceiptType.SelectedIndex = receiptTypeId - 1;
                         }
                     }
                 }
@@ -83,12 +139,51 @@ namespace BookShop.Forms
                     return;
                 }
             }
+        }
 
-            DataGridViewComboBoxColumn departmentColumn = (DataGridViewComboBoxColumn)dataGridViewOfferLines.Columns[0];
-            departmentColumn.DataSource = GetDepartmentProjectNames();
-            departmentColumn.ValueMember = "Value";
-            departmentColumn.DisplayMember = "Text";
+        private void BindOfferingLineItems(BookShopEntities dbContext)
+        {
+            if (offeringId <= 0)
+                return;
 
+            var offeringLineItems = dbContext.OfferingLines.Where(ofl => ofl.OfferingId == offeringId).ToList();
+            var offeringLineItemBEs = offeringLineItems.Select(offr =>
+                {
+                    //int? projectId = offr.ProjectId;
+                    //string projectName = string.Empty;
+                    //string departmentName = string.Empty;
+
+                    //if (projectId.HasValue && projectId.Value > 0)
+                    //{
+                    //    var project = dbContext.Projects.FirstOrDefault(proj =>
+                    //        proj.ProjectId == projectId.Value);
+
+                    //    if (project != null)
+                    //    {
+                    //        projectName = project.Description;
+                    //        departmentName = project.Department.DepartmentName;
+                    //    }
+                    //}
+
+                    //return new
+                    //{
+                    //    Amount = offr.Amount,
+                    //    ProjectDepartment =
+                    //        string.IsNullOrEmpty(departmentName) ?
+                    //        projectName : string.Format("{0} - {1}", projectName, departmentName)
+                    //};
+
+                    return new
+                    {
+                        Amount = offr.Amount,
+                        ProjectId = offr.ProjectId ?? 0
+                    };
+                }).ToList();
+
+            foreach (var oneOfferingLineItemBE in offeringLineItemBEs)
+            {
+                dataGridViewOfferLines.Rows.Add(oneOfferingLineItemBE.ProjectId, oneOfferingLineItemBE.Amount);
+            }
         }
 
         private void frmOffering_Load(object sender, EventArgs e)
@@ -398,17 +493,6 @@ namespace BookShop.Forms
 
         public void dataGridViewOfferLines_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            //var txtBox = e.Control as TextBox;
-            //if (txtBox != null)
-            //{
-            //    // Remove an existing event-handler, if present, to avoid 
-            //    // adding multiple handlers when the editing control is reused.
-            //    txtBox.KeyDown -= new KeyEventHandler(underlyingTextBox_KeyDown);
-
-            //    // Add the event handler. 
-            //    txtBox.KeyDown += new KeyEventHandler(underlyingTextBox_KeyDown);
-            //}
-
             if (e.Control is TextBox)
             {
                 var txtBox = e.Control as TextBox;
@@ -424,7 +508,6 @@ namespace BookShop.Forms
             {
                 decimal oneOfferItemAmount = 0;
                 var txtOneRowAmount = oneRow.Cells[1];
-                //decimal.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
                 decimal.TryParse((string)txtOneRowAmount.EditedFormattedValue, out oneOfferItemAmount);
 
                 subTotal = subTotal + oneOfferItemAmount;

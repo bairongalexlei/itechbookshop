@@ -104,8 +104,8 @@
           <Property Name="UserTypeId" Type="int" Nullable="false" />
           <Property Name="SignatureImageName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="TakenOnDateTime" Type="datetime" Nullable="false" />
-          <Property Name="SignatureImageExtension" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="SignatureImageBytes" Type="varbinary" MaxLength="1" Nullable="false" />
+          <Property Name="SignatureImageExtension" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SignatureImageBytes" Type="varbinary(max)" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="BookShopModelStoreContainer">
@@ -203,8 +203,8 @@
           <Property Name="UserTypeId" Type="Int32" Nullable="false" />
           <Property Name="SignatureImageName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TakenOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SignatureImageExtension" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SignatureImageBytes" Type="Binary" MaxLength="1" FixedLength="false" Nullable="false" />
+          <Property Name="SignatureImageExtension" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SignatureImageBytes" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Offerings" Relationship="BookShopModel.UserOffering" FromRole="User" ToRole="Offering" />
         </EntityType>

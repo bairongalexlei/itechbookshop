@@ -73,7 +73,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lblOfferDateHint = new System.Windows.Forms.Label();
             this.dataGridViewOfferings = new System.Windows.Forms.DataGridView();
-            this.OfferingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingId = new System.Windows.Forms.DataGridViewButtonColumn();
             this.OfferingLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OfferingFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OfferingPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,7 +81,7 @@
             this.OfferingEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OfferingPaymentMethod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OfferingReceiptType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingAccountId = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.OfferingAccountId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OfferingAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnOfferingSearch = new System.Windows.Forms.Button();
             this.btnOfferingClear = new System.Windows.Forms.Button();
@@ -120,11 +120,32 @@
             this.lblOfferingLastName = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtDepartmentName = new System.Windows.Forms.TextBox();
+            this.lblDepartmentName = new System.Windows.Forms.Label();
+            this.btnAddDepartment = new System.Windows.Forms.Button();
+            this.btnAddProject = new System.Windows.Forms.Button();
+            this.lblProjectName = new System.Windows.Forms.Label();
+            this.txtProjectName = new System.Windows.Forms.TextBox();
+            this.lblProjectBelongToDepartment = new System.Windows.Forms.Label();
+            this.cmbDepartments = new System.Windows.Forms.ComboBox();
+            this.btnUploadSignature = new System.Windows.Forms.Button();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.lblSignature = new System.Windows.Forms.Label();
+            this.imgPictureBox = new System.Windows.Forms.PictureBox();
+            this.lblImagePath = new System.Windows.Forms.Label();
+            this.txtImagePath = new System.Windows.Forms.TextBox();
+            this.lblImageSize = new System.Windows.Forms.Label();
+            this.lblSignatureFirstName = new System.Windows.Forms.Label();
+            this.txtSignatureFirstName = new System.Windows.Forms.TextBox();
+            this.txtSignatureLastName = new System.Windows.Forms.TextBox();
+            this.lblSignatureLastName = new System.Windows.Forms.Label();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferings)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabBookShop
@@ -583,12 +604,15 @@
             this.dataGridViewOfferings.Name = "dataGridViewOfferings";
             this.dataGridViewOfferings.Size = new System.Drawing.Size(777, 203);
             this.dataGridViewOfferings.TabIndex = 112;
+            this.dataGridViewOfferings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOfferings_CellContentClick);
             // 
             // OfferingId
             // 
             this.OfferingId.HeaderText = "Offering Id";
             this.OfferingId.Name = "OfferingId";
             this.OfferingId.ReadOnly = true;
+            this.OfferingId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OfferingId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // OfferingLastName
             // 
@@ -637,6 +661,8 @@
             this.OfferingAccountId.HeaderText = "Account Id";
             this.OfferingAccountId.Name = "OfferingAccountId";
             this.OfferingAccountId.ReadOnly = true;
+            this.OfferingAccountId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OfferingAccountId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // OfferingAccountType
             // 
@@ -957,11 +983,30 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.txtSignatureLastName);
+            this.tabPage3.Controls.Add(this.lblSignatureLastName);
+            this.tabPage3.Controls.Add(this.txtSignatureFirstName);
+            this.tabPage3.Controls.Add(this.lblSignatureFirstName);
+            this.tabPage3.Controls.Add(this.lblImageSize);
+            this.tabPage3.Controls.Add(this.txtImagePath);
+            this.tabPage3.Controls.Add(this.lblImagePath);
+            this.tabPage3.Controls.Add(this.imgPictureBox);
+            this.tabPage3.Controls.Add(this.lblSignature);
+            this.tabPage3.Controls.Add(this.btnUploadSignature);
+            this.tabPage3.Controls.Add(this.btnBrowse);
+            this.tabPage3.Controls.Add(this.cmbDepartments);
+            this.tabPage3.Controls.Add(this.lblProjectBelongToDepartment);
+            this.tabPage3.Controls.Add(this.btnAddProject);
+            this.tabPage3.Controls.Add(this.lblProjectName);
+            this.tabPage3.Controls.Add(this.txtProjectName);
+            this.tabPage3.Controls.Add(this.btnAddDepartment);
+            this.tabPage3.Controls.Add(this.lblDepartmentName);
+            this.tabPage3.Controls.Add(this.txtDepartmentName);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(816, 500);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "User";
+            this.tabPage3.Text = "Department/Project/Signature";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
@@ -972,6 +1017,177 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Summary";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // txtDepartmentName
+            // 
+            this.txtDepartmentName.Location = new System.Drawing.Point(211, 30);
+            this.txtDepartmentName.Name = "txtDepartmentName";
+            this.txtDepartmentName.Size = new System.Drawing.Size(401, 20);
+            this.txtDepartmentName.TabIndex = 36;
+            // 
+            // lblDepartmentName
+            // 
+            this.lblDepartmentName.AutoSize = true;
+            this.lblDepartmentName.Location = new System.Drawing.Point(95, 33);
+            this.lblDepartmentName.Name = "lblDepartmentName";
+            this.lblDepartmentName.Size = new System.Drawing.Size(96, 13);
+            this.lblDepartmentName.TabIndex = 37;
+            this.lblDepartmentName.Text = "Department Name:";
+            // 
+            // btnAddDepartment
+            // 
+            this.btnAddDepartment.Location = new System.Drawing.Point(645, 23);
+            this.btnAddDepartment.Name = "btnAddDepartment";
+            this.btnAddDepartment.Size = new System.Drawing.Size(120, 32);
+            this.btnAddDepartment.TabIndex = 112;
+            this.btnAddDepartment.Text = "Add Department";
+            this.btnAddDepartment.UseVisualStyleBackColor = true;
+            this.btnAddDepartment.Click += new System.EventHandler(this.btnAddDepartment_Click);
+            // 
+            // btnAddProject
+            // 
+            this.btnAddProject.Location = new System.Drawing.Point(645, 143);
+            this.btnAddProject.Name = "btnAddProject";
+            this.btnAddProject.Size = new System.Drawing.Size(120, 32);
+            this.btnAddProject.TabIndex = 115;
+            this.btnAddProject.Text = "Add Project";
+            this.btnAddProject.UseVisualStyleBackColor = true;
+            this.btnAddProject.Click += new System.EventHandler(this.btnAddProject_Click);
+            // 
+            // lblProjectName
+            // 
+            this.lblProjectName.AutoSize = true;
+            this.lblProjectName.Location = new System.Drawing.Point(117, 118);
+            this.lblProjectName.Name = "lblProjectName";
+            this.lblProjectName.Size = new System.Drawing.Size(74, 13);
+            this.lblProjectName.TabIndex = 114;
+            this.lblProjectName.Text = "Project Name:";
+            // 
+            // txtProjectName
+            // 
+            this.txtProjectName.Location = new System.Drawing.Point(211, 115);
+            this.txtProjectName.Name = "txtProjectName";
+            this.txtProjectName.Size = new System.Drawing.Size(401, 20);
+            this.txtProjectName.TabIndex = 113;
+            // 
+            // lblProjectBelongToDepartment
+            // 
+            this.lblProjectBelongToDepartment.AutoSize = true;
+            this.lblProjectBelongToDepartment.Location = new System.Drawing.Point(42, 153);
+            this.lblProjectBelongToDepartment.Name = "lblProjectBelongToDepartment";
+            this.lblProjectBelongToDepartment.Size = new System.Drawing.Size(149, 13);
+            this.lblProjectBelongToDepartment.TabIndex = 116;
+            this.lblProjectBelongToDepartment.Text = "Project Belong to Department:";
+            // 
+            // cmbDepartments
+            // 
+            this.cmbDepartments.FormattingEnabled = true;
+            this.cmbDepartments.Items.AddRange(new object[] {
+            "Cash",
+            "Cheque",
+            "Others",
+            "Master Card",
+            "Visa"});
+            this.cmbDepartments.Location = new System.Drawing.Point(211, 150);
+            this.cmbDepartments.Name = "cmbDepartments";
+            this.cmbDepartments.Size = new System.Drawing.Size(401, 21);
+            this.cmbDepartments.TabIndex = 117;
+            // 
+            // btnUploadSignature
+            // 
+            this.btnUploadSignature.Location = new System.Drawing.Point(645, 433);
+            this.btnUploadSignature.Name = "btnUploadSignature";
+            this.btnUploadSignature.Size = new System.Drawing.Size(120, 32);
+            this.btnUploadSignature.TabIndex = 119;
+            this.btnUploadSignature.Text = "Upload";
+            this.btnUploadSignature.UseVisualStyleBackColor = true;
+            this.btnUploadSignature.Click += new System.EventHandler(this.btnUploadSignature_Click);
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Location = new System.Drawing.Point(211, 433);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(120, 32);
+            this.btnBrowse.TabIndex = 118;
+            this.btnBrowse.Text = "Browse...";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // lblSignature
+            // 
+            this.lblSignature.AutoSize = true;
+            this.lblSignature.Location = new System.Drawing.Point(95, 282);
+            this.lblSignature.Name = "lblSignature";
+            this.lblSignature.Size = new System.Drawing.Size(96, 13);
+            this.lblSignature.TabIndex = 120;
+            this.lblSignature.Text = "Signature Preview:";
+            // 
+            // imgPictureBox
+            // 
+            this.imgPictureBox.Location = new System.Drawing.Point(211, 273);
+            this.imgPictureBox.Name = "imgPictureBox";
+            this.imgPictureBox.Size = new System.Drawing.Size(238, 122);
+            this.imgPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgPictureBox.TabIndex = 121;
+            this.imgPictureBox.TabStop = false;
+            // 
+            // lblImagePath
+            // 
+            this.lblImagePath.AutoSize = true;
+            this.lblImagePath.Location = new System.Drawing.Point(127, 409);
+            this.lblImagePath.Name = "lblImagePath";
+            this.lblImagePath.Size = new System.Drawing.Size(64, 13);
+            this.lblImagePath.TabIndex = 123;
+            this.lblImagePath.Text = "Image Path:";
+            // 
+            // txtImagePath
+            // 
+            this.txtImagePath.Enabled = false;
+            this.txtImagePath.Location = new System.Drawing.Point(211, 406);
+            this.txtImagePath.Name = "txtImagePath";
+            this.txtImagePath.Size = new System.Drawing.Size(401, 20);
+            this.txtImagePath.TabIndex = 124;
+            // 
+            // lblImageSize
+            // 
+            this.lblImageSize.AutoSize = true;
+            this.lblImageSize.Location = new System.Drawing.Point(101, 300);
+            this.lblImageSize.Name = "lblImageSize";
+            this.lblImageSize.Size = new System.Drawing.Size(77, 13);
+            this.lblImageSize.TabIndex = 125;
+            this.lblImageSize.Text = "(800 x 600 px):";
+            // 
+            // lblSignatureFirstName
+            // 
+            this.lblSignatureFirstName.AutoSize = true;
+            this.lblSignatureFirstName.Location = new System.Drawing.Point(131, 242);
+            this.lblSignatureFirstName.Name = "lblSignatureFirstName";
+            this.lblSignatureFirstName.Size = new System.Drawing.Size(60, 13);
+            this.lblSignatureFirstName.TabIndex = 126;
+            this.lblSignatureFirstName.Text = "First Name:";
+            // 
+            // txtSignatureFirstName
+            // 
+            this.txtSignatureFirstName.Location = new System.Drawing.Point(211, 239);
+            this.txtSignatureFirstName.Name = "txtSignatureFirstName";
+            this.txtSignatureFirstName.Size = new System.Drawing.Size(145, 20);
+            this.txtSignatureFirstName.TabIndex = 127;
+            // 
+            // txtSignatureLastName
+            // 
+            this.txtSignatureLastName.Location = new System.Drawing.Point(466, 239);
+            this.txtSignatureLastName.Name = "txtSignatureLastName";
+            this.txtSignatureLastName.Size = new System.Drawing.Size(146, 20);
+            this.txtSignatureLastName.TabIndex = 129;
+            // 
+            // lblSignatureLastName
+            // 
+            this.lblSignatureLastName.AutoSize = true;
+            this.lblSignatureLastName.Location = new System.Drawing.Point(399, 242);
+            this.lblSignatureLastName.Name = "lblSignatureLastName";
+            this.lblSignatureLastName.Size = new System.Drawing.Size(61, 13);
+            this.lblSignatureLastName.TabIndex = 128;
+            this.lblSignatureLastName.Text = "Last Name:";
             // 
             // frmMain
             // 
@@ -988,6 +1204,9 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferings)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1076,7 +1295,7 @@
         private System.Windows.Forms.Button btnNewOffering;
         private System.Windows.Forms.DataGridView dataGridViewOfferings;
         private System.Windows.Forms.Label lblOfferDateHint;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingId;
+        private System.Windows.Forms.DataGridViewButtonColumn OfferingId;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferingLastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferingFirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferingPhone;
@@ -1084,8 +1303,27 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferingEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferingPaymentMethod;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferingReceiptType;
-        private System.Windows.Forms.DataGridViewButtonColumn OfferingAccountId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingAccountId;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferingAccountType;
+        private System.Windows.Forms.Label lblDepartmentName;
+        private System.Windows.Forms.TextBox txtDepartmentName;
+        private System.Windows.Forms.Button btnAddDepartment;
+        private System.Windows.Forms.Button btnAddProject;
+        private System.Windows.Forms.Label lblProjectName;
+        private System.Windows.Forms.TextBox txtProjectName;
+        private System.Windows.Forms.Label lblProjectBelongToDepartment;
+        private System.Windows.Forms.ComboBox cmbDepartments;
+        private System.Windows.Forms.Label lblSignature;
+        private System.Windows.Forms.Button btnUploadSignature;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.PictureBox imgPictureBox;
+        private System.Windows.Forms.Label lblImagePath;
+        private System.Windows.Forms.TextBox txtImagePath;
+        private System.Windows.Forms.Label lblImageSize;
+        private System.Windows.Forms.Label lblSignatureFirstName;
+        private System.Windows.Forms.TextBox txtSignatureFirstName;
+        private System.Windows.Forms.TextBox txtSignatureLastName;
+        private System.Windows.Forms.Label lblSignatureLastName;
     }
 }
 

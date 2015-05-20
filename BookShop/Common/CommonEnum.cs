@@ -48,6 +48,22 @@ namespace BookShop.Common
         }
         #endregion
 
+        #region Payment Method
+        public enum PaymentMethod
+        {
+            [DisplayValue("Cash")]
+            Cash = 1,
+            [DisplayValue("Cheque")]
+            Cheque = 2,
+            [DisplayValue("Others")]
+            Others = 3,
+            [DisplayValue("Master Card")]
+            MasterCard = 4,
+            [DisplayValue("Visa")]
+            Visa = 5
+        }
+        #endregion
+
         #region Status
         public enum UserType
         {

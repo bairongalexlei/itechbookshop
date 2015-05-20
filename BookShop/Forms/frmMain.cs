@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BookShop.EFData;
 using BookShop.Forms;
+using BookShop.Common;
 
 namespace BookShop
 {
@@ -18,6 +19,51 @@ namespace BookShop
         {
             InitializeComponent();
             BindAccounts();
+            BindOfferings();
+            cmbDepartments.DropDown += new System.EventHandler(cmbDepartments_DropDown);
+        }
+
+        private void cmbDepartments_DropDown(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var dbContext = new BookShopEntities())
+                {
+                    cmbDepartments.Items.Clear();
+                    cmbDepartments.DataSource = null;
+
+                    var departments = dbContext.Departments.Where(d => d.StatusId == (int)Common.CommonEnum.Status.Active);
+
+                    var departmentComboItems = departments.Select(department =>
+                        new ComboboxItem { 
+                            Text = department.DepartmentName,
+                            Value = department.DepartmentId
+                        }).ToArray();
+
+                    cmbDepartments.Items.AddRange(departmentComboItems);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error on getting departments. Please contact iTech for assistance.");
+            }
+        }
+
+        private void BindOfferings()
+        {
+            dataGridViewOfferings.Columns[0].DataPropertyName = "OfferingId";
+            dataGridViewOfferings.Columns[1].DataPropertyName = "LastName";
+            dataGridViewOfferings.Columns[2].DataPropertyName = "FirstName";
+            dataGridViewOfferings.Columns[3].DataPropertyName = "Phone";
+            dataGridViewOfferings.Columns[4].DataPropertyName = "Organization";
+            dataGridViewOfferings.Columns[5].DataPropertyName = "Email";
+            dataGridViewOfferings.Columns[6].DataPropertyName = "PaymentMethod";
+            dataGridViewOfferings.Columns[7].DataPropertyName = "ReceiptType";
+            dataGridViewOfferings.Columns[8].DataPropertyName = "AccountId";
+            dataGridViewOfferings.Columns[9].DataPropertyName = "AccountType";
+
+            dataGridViewOfferings.DataSource = null;
+            dataGridViewOfferings.Rows.Clear();
         }
 
         private void BindAccounts()
@@ -369,16 +415,131 @@ namespace BookShop
                     return;
                 }
 
-                MessageBox.Show("Not empty search parameters!");
+                using (var dbContext = new BookShopEntities())
+                {
+                    var offerings = dbContext.Offerings.Where(offr =>
+                        offr.StatusId == (int)Common.CommonEnum.Status.Active);
 
-                //using (var dbContext = new BookShopEntities())
-                //{
+                    string searchedLastName = Common.Helper.TrimString(txtLastName.Text);
+                    if (!string.IsNullOrEmpty(searchedLastName))
+                        offerings = offerings.Where(offr => offr.Account.LastName.Contains(searchedLastName));
 
-                //}
+                    string searchedFirstName = Common.Helper.TrimString(txtFirstName.Text);
+                    if (!string.IsNullOrEmpty(searchedFirstName))
+                        offerings = offerings.Where(offr => offr.Account.FirstName.Contains(searchedFirstName));
+
+                    string searchedOrganization = Common.Helper.TrimString(txtOrganization.Text);
+                    if (!string.IsNullOrEmpty(searchedOrganization))
+                        offerings = offerings.Where(offr => offr.Account.OrganizationName.Contains(searchedOrganization));
+
+                    if (maskedTxtOfferingPhone.MaskCompleted) {
+                        string searchedPhone = maskedTxtOfferingPhone.Text;
+                        offerings = offerings.Where(offr => offr.Account.Phone == searchedPhone);
+                    }
+
+                    string searchedEmail = Common.Helper.TrimString(txtOfferingEmail.Text);
+                    if (!string.IsNullOrEmpty(searchedEmail))
+                        offerings = offerings.Where(offr => offr.Account.Email == searchedEmail);
+
+                    int unitNumber = 0;
+                    int.TryParse(Common.Helper.TrimString(txtUnit.Text), out unitNumber);
+                    if (unitNumber > 0)
+                        offerings = offerings.Where(offr => offr.Account.Address != null &&
+                                                            offr.Account.Address.UnitSuiteNumber == unitNumber);
+
+                    string searchedStreet = Common.Helper.TrimString(txtStreet.Text);
+                    if (!string.IsNullOrEmpty(searchedStreet))
+                        offerings = offerings.Where(offr => offr.Account.Address != null &&
+                                                            offr.Account.Address.StreetName == searchedStreet);
+
+                    string searchedCity = Common.Helper.TrimString(txtCity.Text);
+                    if (!string.IsNullOrEmpty(searchedCity))
+                        offerings = offerings.Where(offr => offr.Account.Address != null &&
+                                                            offr.Account.Address.City == searchedCity);
+
+                    string searchedProvince = Common.Helper.TrimString(txtProvince.Text);
+                    if (!string.IsNullOrEmpty(searchedProvince))
+                        offerings = offerings.Where(offr => offr.Account.Address != null &&
+                                                            offr.Account.Address.Province == searchedProvince);
+
+                    string searchedPostalCode = Common.Helper.TrimString(txtPostalCode.Text);
+                    if (!string.IsNullOrEmpty(searchedPostalCode))
+                        offerings = offerings.Where(offr => offr.Account.Address != null &&
+                                                            offr.Account.Address.PostalCode == searchedPostalCode);
+
+                    int selectedMethod = cmbOfferingMethod.SelectedIndex;
+                    if (selectedMethod > -1)
+                        offerings = offerings.Where(offr => offr.MethodId == (selectedMethod + 1));
+
+                    int selectedReceiptType = cmbOfferingReceiptType.SelectedIndex;
+                    if (selectedReceiptType > -1)
+                        offerings = offerings.Where(offr => offr.ReceiptTypeId == (selectedReceiptType + 1));
+
+                    if (maskedTxtOfferingDateReceiptIssued.MaskCompleted)
+                    {
+                        try
+                        {
+                            var strSearchedDate = maskedTxtOfferingDateReceiptIssued.Text;
+                            DateTime searchedDate;
+                            DateTime.TryParse(strSearchedDate, out searchedDate);
+
+                            if (searchedDate != null && searchedDate > DateTime.MinValue)
+                                offerings = offerings.Where(offr =>
+                                    offr.ReceiptIssuedDate <= searchedDate);
+                        }
+                        catch { } 
+                    }
+
+                    string searchedAccountId = Common.Helper.TrimString(txtOfferingAccountId.Text);
+                    if (!string.IsNullOrEmpty(searchedAccountId))
+                    {
+                        int accountId = 0;
+                        int.TryParse(searchedAccountId, out accountId);
+
+                        if (accountId > 0)
+                            offerings = offerings.Where(offr => offr.AccountId == accountId);
+
+                    }
+
+                    int selectedAccountType = cmbAccountType.SelectedIndex;
+                    if (selectedAccountType > -1)
+                        offerings = offerings.Where(offr => offr.Account.AccountTypeId == (selectedAccountType + 1));
+
+                    var offeringBEs = offerings.Select(offr =>
+                                new
+                                {
+                                    OfferingId = offr.OfferingId,
+                                    LastName = offr.Account.LastName,
+                                    FirstName = offr.Account.FirstName,
+                                    Phone = offr.Account.Phone,
+                                    Organization = offr.Account.OrganizationName,
+                                    Email = offr.Account.Email,
+                                    PaymentMethod = ((Common.CommonEnum.PaymentMethod)offr.MethodId).ToString(),
+                                    ReceiptType = ((Common.CommonEnum.ReceiptType)offr.ReceiptTypeId).ToString(),
+                                    AccountId = offr.AccountId,
+                                    AccountType = ((Common.CommonEnum.AccountType)offr.Account.AccountTypeId).ToString(),
+                                }).ToList();
+
+                    if (dataGridViewOfferings.DataSource != null)
+                    {
+                        dataGridViewOfferings.Columns[0].DataPropertyName = "OfferingId";
+                        dataGridViewOfferings.Columns[1].DataPropertyName = "LastName";
+                        dataGridViewOfferings.Columns[2].DataPropertyName = "FirstName";
+                        dataGridViewOfferings.Columns[3].DataPropertyName = "Phone";
+                        dataGridViewOfferings.Columns[4].DataPropertyName = "Organization";
+                        dataGridViewOfferings.Columns[5].DataPropertyName = "Email";
+                        dataGridViewOfferings.Columns[6].DataPropertyName = "PaymentMethod";
+                        dataGridViewOfferings.Columns[7].DataPropertyName = "ReceiptType";
+                        dataGridViewOfferings.Columns[8].DataPropertyName = "AccountId";
+                        dataGridViewOfferings.Columns[9].DataPropertyName = "AccountType";
+                    }
+
+                    dataGridViewOfferings.DataSource = offeringBEs;
+                }
             }
             catch
             {
-
+                MessageBox.Show("Errors on quering offerings. Please contact iTech support for assistance.");
             }
         }
 
@@ -462,6 +623,196 @@ namespace BookShop
             var offeringForm = new frmOffering();
             offeringForm.StartPosition = FormStartPosition.CenterParent;
             offeringForm.ShowDialog();
+        }
+
+        private void dataGridViewOfferings_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                var offeringIdCell = senderGrid.Rows[e.RowIndex].Cells[0];
+                int offeringId = offeringIdCell.Value != null ? (int)offeringIdCell.Value : 0;
+
+                var accountIdCell = senderGrid.Rows[e.RowIndex].Cells[8];
+                int accountId = accountIdCell.Value != null ? (int)accountIdCell.Value : 0;
+
+                if (offeringId > 0 && accountId > 0)
+                {
+                    var offeringForm = new frmOffering(accountId, offeringId);
+                    offeringForm.StartPosition = FormStartPosition.CenterParent;
+                    offeringForm.ShowDialog();
+
+
+                }
+            }
+        }
+
+        private void btnAddDepartment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string departmentToAdd = Common.Helper.TrimString(txtDepartmentName.Text);
+                if (string.IsNullOrEmpty(departmentToAdd))
+                {
+                    MessageBox.Show("Invalid department name!");
+                    return;
+                }
+
+                using (var dbContext = new BookShopEntities())
+                {
+                    var foundDepartment = dbContext.Departments.FirstOrDefault(d =>
+                        d.DepartmentName.ToLower() == departmentToAdd.ToLower());
+
+                    if (foundDepartment != null)
+                    {
+                        MessageBox.Show("Department already exists!");
+                        return;
+                    }
+
+                    var newDepartment = new Department();
+                    newDepartment.DepartmentName = departmentToAdd;
+                    newDepartment.StatusId = (int)Common.CommonEnum.Status.Active;
+                    
+                    dbContext.Departments.Add(newDepartment);
+                    dbContext.SaveChanges();
+                }
+
+                MessageBox.Show("Department was added successfully");
+            }
+            catch
+            {
+                MessageBox.Show("Please contact iTech support for assitance");
+            }
+        }
+
+        private void btnAddProject_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string projectToAdd = Common.Helper.TrimString(txtProjectName.Text);
+                if (string.IsNullOrEmpty(projectToAdd))
+                {
+                    MessageBox.Show("Invalid project name!");
+                    return;
+                }
+
+                int selectedDepartment = cmbDepartments.SelectedIndex;
+                if (selectedDepartment < 0)
+                {
+                    MessageBox.Show("Department should not be empty!");
+                    return;
+                }
+
+                using (var dbContext = new BookShopEntities())
+                {
+                    var foundProject = dbContext.Projects.FirstOrDefault(proj =>
+                        proj.Description.ToLower() == projectToAdd.ToLower());
+
+                    if (foundProject != null)
+                    {
+                        MessageBox.Show("Project already exists!");
+                        return;
+                    }
+
+                    var newProject = new Project();
+                    newProject.Description = projectToAdd;
+                    newProject.StatusId = (int)Common.CommonEnum.Status.Active;
+                    newProject.DepartmentId = ((ComboboxItem)cmbDepartments.SelectedItem).Value;
+
+                    dbContext.Projects.Add(newProject);
+                    dbContext.SaveChanges();
+                }
+
+                MessageBox.Show("Project was added successfully");
+            }
+            catch
+            {
+                MessageBox.Show("Please contact iTech support for assitance");
+            }
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog OpenFd = new OpenFileDialog();
+            OpenFd.Filter = "Images only. |*.jpg; *.jpeg; *.png; *.gif;";
+
+            DialogResult dr = OpenFd.ShowDialog();
+
+            if (dr == System.Windows.Forms.DialogResult.OK)
+            {
+                imgPictureBox.Image = Image.FromFile(OpenFd.FileName);
+                txtImagePath.Text = OpenFd.FileName;
+            }
+        }
+
+        private void btnUploadSignature_Click(object sender, EventArgs e)
+        {
+            string signatureFirstName = Common.Helper.TrimString(txtSignatureFirstName.Text);
+            string signatureLastName = Common.Helper.TrimString(txtSignatureLastName.Text);
+            string imagePath = txtImagePath.Text;
+
+            if (string.IsNullOrEmpty(signatureFirstName) ||
+                string.IsNullOrEmpty(signatureLastName) ||
+                string.IsNullOrEmpty(imagePath))
+            {
+                MessageBox.Show("First name, last name and image path can not be empty.");
+                return;
+            }
+
+            try
+            {
+                string signatureImageName;
+                string signatureImageExtension;
+
+                var imagePathParts = imagePath.Split('\\');
+                var imageNameWithExtension = imagePathParts.LastOrDefault();
+                signatureImageName = imageNameWithExtension.Split('.')[0];
+                signatureImageExtension = imageNameWithExtension.Split('.')[1];
+
+                var imageFile = Image.FromFile(imagePath);
+                var imageFileBytes = Common.Helper.ImageToByteArray(imageFile, signatureImageExtension);
+
+                using (var dbContext = new BookShopEntities())
+                {
+                    var adminUser = dbContext.Users
+                                    .OrderBy(u => u.UserId)
+                                    .FirstOrDefault(user => 
+                                        user.StatusId == (int)Common.CommonEnum.Status.Active &&
+                                        user.UserTypeId == (int)Common.CommonEnum.UserType.CFO);
+
+                    if (adminUser == null) { 
+                        adminUser = new User();
+                        adminUser.UserTypeId = (int)Common.CommonEnum.UserType.CFO;
+                        adminUser.StatusId = (int)Common.CommonEnum.Status.Active;
+                        adminUser.FirstName = signatureFirstName;
+                        adminUser.LastName = signatureLastName;
+                        adminUser.TakenOnDateTime = DateTime.Now;
+                        adminUser.SignatureImageName = signatureImageName;
+                        adminUser.SignatureImageExtension = signatureImageExtension;
+                        adminUser.SignatureImageBytes = imageFileBytes;
+                        
+                        dbContext.Users.Add(adminUser);
+                    }
+                    else {
+                        adminUser.FirstName = signatureFirstName;
+                        adminUser.LastName = signatureLastName;
+                        adminUser.TakenOnDateTime = DateTime.Now;
+                        adminUser.SignatureImageName = signatureImageName;
+                        adminUser.SignatureImageExtension = signatureImageExtension;
+                        adminUser.SignatureImageBytes = imageFileBytes;
+                    }
+
+                    dbContext.SaveChanges();
+                }
+
+                MessageBox.Show("Uploaded image successfully");
+            }
+            catch
+            {
+                MessageBox.Show("Uploaded image unsuccessfully. Please contact iTech support for assistance.");
+            }
         }
     }
 }
