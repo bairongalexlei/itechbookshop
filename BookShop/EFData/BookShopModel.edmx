@@ -94,6 +94,14 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ReceiptCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReceiptYear" Type="int" Nullable="false" />
+          <Property Name="ReceiptCount" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -115,6 +123,7 @@
           <EntitySet Name="OfferingLines" EntityType="Self.OfferingLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offerings" EntityType="Self.Offerings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReceiptCounter" EntityType="Self.ReceiptCounter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -236,6 +245,7 @@
             <End Role="Department" EntitySet="Departments" />
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
+          <EntitySet Name="ReceiptCounters" EntityType="BookShopModel.ReceiptCounter" />
         </EntityContainer>
         <Association Name="AddressAccount">
           <End Type="BookShopModel.Address" Role="Address" Multiplicity="1" />
@@ -323,6 +333,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ReceiptCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReceiptYear" Type="Int32" Nullable="false" />
+          <Property Name="ReceiptCount" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -436,6 +454,15 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiptCounters">
+            <EntityTypeMapping TypeName="BookShopModel.ReceiptCounter">
+              <MappingFragment StoreEntitySet="ReceiptCounter">
+                <ScalarProperty Name="ReceiptCount" ColumnName="ReceiptCount" />
+                <ScalarProperty Name="ReceiptYear" ColumnName="ReceiptYear" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
