@@ -515,5 +515,91 @@ namespace BookShop.Forms
 
             txtSubtotal.Text = subTotal.ToString();
         }
+
+        private void btnPrintReceipt_Click(object sender, EventArgs e)
+        {
+            var receiptForm = new frmReceipt();
+            receiptForm.StartPosition = FormStartPosition.CenterParent;
+            receiptForm.ShowDialog();
+            return;
+
+            try
+            {
+                int currentReceiptCount = 1;
+                int offeringYear;
+
+                if (offeringId > 0)
+                {
+                    using (var dbContext = new BookShopEntities())
+                    {
+                        var currentOffering = dbContext.Offerings.FirstOrDefault(offr =>
+                            offr.OfferingId == offeringId &&
+                            offr.StatusId == (int)Common.CommonEnum.Status.Active);
+
+                        if (currentOffering == null)
+                        {
+                            MessageBox.Show("Empty offering!");
+                            return;
+                        }
+
+    //                    If IsNull(Me![ReceiptNumber]) Then
+    //    'print new receipt
+    //    OfferingYear = Me![OfferingYear]
+    //    ReceiptNumber = fGetNewReceiptNumber(OfferingYear)
+    //    If IsNull(ReceiptNumber) Or Len(ReceiptNumber) <= 0 Then
+    //        Exit Sub
+    //    End If
+    //    Me![ReceiptNumber] = ReceiptNumber
+    //    Me![ReceiptDate] = Me![ReceivedDate]
+    //    Me![DateReceiptIssued] = date
+    //    DoCmd.DoMenuItem acFormBar, acRecordsMenu, acSaveRecord, , acMenuVer70
+    //    MsgBox "Print receipt: " & ReceiptNumber
+    //Else
+    //    'Re-print receipt
+    //    MsgBox "Re-print receipt"
+    //End If
+
+                        if (!currentOffering.ReceiptId.HasValue)
+                        {
+                            currentOffering.ReceiptDate = currentOffering.CreatedDate;
+                            currentOffering.ReceiptIssuedDate = DateTime.Now;
+
+                            offeringYear = currentOffering.CreatedDate.Year;
+                            var currentYearReceiptCounter = dbContext.ReceiptCounters.FirstOrDefault(c =>
+                                c.ReceiptYear == offeringYear);
+
+                            if (currentYearReceiptCounter == null)
+                            {
+                                currentYearReceiptCounter = new ReceiptCounter
+                                {
+                                    ReceiptYear = offeringYear,
+                                    ReceiptCount = currentReceiptCount
+                                };
+
+                                dbContext.ReceiptCounters.Add(currentYearReceiptCounter);
+                            }
+                            else
+                            {
+                                currentReceiptCount = currentReceiptCount + currentYearReceiptCounter.ReceiptCount;
+                                currentYearReceiptCounter.ReceiptCount = currentReceiptCount;
+                            }
+                        }
+
+                        dbContext.SaveChanges();
+                    }
+
+                    //Generate report
+
+                }
+                else
+                {
+                    MessageBox.Show("Empty offering!");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error on saving receipt information. Please contact iTech support for assistance.");
+            }
+        }
     }
 }

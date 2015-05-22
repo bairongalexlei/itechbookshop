@@ -73,6 +73,9 @@
             this.txtOthers = new System.Windows.Forms.TextBox();
             this.lblOthers = new System.Windows.Forms.Label();
             this.dataGridViewOfferLines = new System.Windows.Forms.DataGridView();
+            this.ProjectDepartment = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.OfferSubAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingLineItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -80,9 +83,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnPrintReceipt = new System.Windows.Forms.Button();
             this.txtAccountType = new System.Windows.Forms.TextBox();
-            this.ProjectDepartment = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.OfferSubAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingLineItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferLines)).BeginInit();
             this.SuspendLayout();
             // 
@@ -484,6 +484,26 @@
             this.dataGridViewOfferLines.TabIndex = 108;
             this.dataGridViewOfferLines.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewOfferLines_EditingControlShowing);
             // 
+            // ProjectDepartment
+            // 
+            this.ProjectDepartment.HeaderText = "Project/Department";
+            this.ProjectDepartment.Name = "ProjectDepartment";
+            this.ProjectDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProjectDepartment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProjectDepartment.Width = 550;
+            // 
+            // OfferSubAmount
+            // 
+            this.OfferSubAmount.HeaderText = "Amount";
+            this.OfferSubAmount.Name = "OfferSubAmount";
+            // 
+            // OfferingLineItemId
+            // 
+            this.OfferingLineItemId.HeaderText = "Offering Line Item Id";
+            this.OfferingLineItemId.Name = "OfferingLineItemId";
+            this.OfferingLineItemId.ReadOnly = true;
+            this.OfferingLineItemId.Visible = false;
+            // 
             // txtSubtotal
             // 
             this.txtSubtotal.Enabled = false;
@@ -536,8 +556,9 @@
             this.btnPrintReceipt.Name = "btnPrintReceipt";
             this.btnPrintReceipt.Size = new System.Drawing.Size(99, 29);
             this.btnPrintReceipt.TabIndex = 113;
-            this.btnPrintReceipt.Text = "Print Receipt";
+            this.btnPrintReceipt.Text = "Generate Receipt";
             this.btnPrintReceipt.UseVisualStyleBackColor = true;
+            this.btnPrintReceipt.Click += new System.EventHandler(this.btnPrintReceipt_Click);
             // 
             // txtAccountType
             // 
@@ -546,26 +567,6 @@
             this.txtAccountType.Name = "txtAccountType";
             this.txtAccountType.Size = new System.Drawing.Size(100, 20);
             this.txtAccountType.TabIndex = 115;
-            // 
-            // ProjectDepartment
-            // 
-            this.ProjectDepartment.HeaderText = "Project/Department";
-            this.ProjectDepartment.Name = "ProjectDepartment";
-            this.ProjectDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProjectDepartment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProjectDepartment.Width = 550;
-            // 
-            // OfferSubAmount
-            // 
-            this.OfferSubAmount.HeaderText = "Amount";
-            this.OfferSubAmount.Name = "OfferSubAmount";
-            // 
-            // OfferingLineItemId
-            // 
-            this.OfferingLineItemId.HeaderText = "Offering Line Item Id";
-            this.OfferingLineItemId.Name = "OfferingLineItemId";
-            this.OfferingLineItemId.ReadOnly = true;
-            this.OfferingLineItemId.Visible = false;
             // 
             // frmOffering
             // 
