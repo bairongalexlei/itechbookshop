@@ -854,6 +854,19 @@ namespace BookShop
                 MessageBox.Show("Date is not input yet!");
                 return;
             }
+
+            string strDateLessThan = string.Empty;
+            string strDateGreaterThan = string.Empty;
+
+            if (maskedTxtReceivedDateGreaterThan.MaskCompleted)
+                strDateGreaterThan = maskedTxtReceivedDateGreaterThan.Text;
+
+            if (maskedTxtReceivedDateLessThan.MaskCompleted)
+                strDateLessThan = maskedTxtReceivedDateLessThan.Text;
+
+            var receiptForm = new frmReceipt(strDateGreaterThan, strDateLessThan);
+            receiptForm.StartPosition = FormStartPosition.CenterParent;
+            receiptForm.ShowDialog();
         }
 
         private void btnBundleSummary_Click(object sender, EventArgs e)

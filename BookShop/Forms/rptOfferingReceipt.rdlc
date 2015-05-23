@@ -822,21 +822,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox75">
+                    <Textbox Name="Textbox1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=IIF(Fields!ReceiptTypeId.Value = 1, "THIS IS AN OFFICIAL RECEIPT FOR INCOME TAX PURPOSES.", "")</Value>
+                              <Value>=IIF(Fields!ReceiptTypeId.Value = 1, "THIS IS AN OFFICIAL RECEIPT FOR INCOME", "")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox75</rd:DefaultName>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>White</Color>
@@ -957,7 +957,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=IIF(Fields!ReceiptTypeId.Value = 1, "TAX PURPOSES.", "")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -976,6 +976,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
