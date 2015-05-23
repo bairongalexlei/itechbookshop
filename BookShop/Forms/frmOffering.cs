@@ -403,7 +403,10 @@ namespace BookShop.Forms
 
                             decimal oneOfferItemAmount = 0;
                             var txtOneRowAmount = oneRow.Cells[1];
-                            decimal.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
+                            //decimal.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
+                            decimal.TryParse(txtOneRowAmount.Value != null ? 
+                                txtOneRowAmount.Value.ToString() :
+                                "0", out oneOfferItemAmount);
 
                             if (!oneRowProjectId.HasValue || oneOfferItemAmount <= 0)
                                 break;
@@ -444,22 +447,26 @@ namespace BookShop.Forms
             if (cmbOfferingMethod.SelectedIndex < 0)
                 errorMessages.Add("Payment method is not selected.");
 
-            float amount = 0;
-            float.TryParse(txtAmount.Text, out amount);
+            decimal amount = 0;
+            decimal.TryParse(txtAmount.Text, out amount);
             if (amount <= 0)
                 errorMessages.Add("Amount is not valid.");
 
             if (cmbOfferingReceiptType.SelectedIndex < 0)
                 errorMessages.Add("Receipt type is not selected.");
 
-            float rowsSubtotal = 0;
+            decimal rowsSubtotal = 0;
             foreach(DataGridViewRow oneRow in dataGridViewOfferLines.Rows)
             {
                 int? oneRowProjectId = (int?)oneRow.Cells[0].Value;
 
-                float oneOfferItemAmount = 0;
+                decimal oneOfferItemAmount = 0;
                 var txtOneRowAmount = oneRow.Cells[1];
-                float.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
+                //float.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
+                if (txtOneRowAmount.Value != null)
+                {
+                    oneOfferItemAmount = (decimal)txtOneRowAmount.Value; 
+                }
 
                 if (!oneRowProjectId.HasValue && oneOfferItemAmount <= 0)
                     break;

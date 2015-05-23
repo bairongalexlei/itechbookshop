@@ -54,7 +54,8 @@ namespace BookShop.Forms
                 //Get data source here
                 using (var dbContext = new BookShopEntities())
                 {
-                    var offeringReceipts = dbContext.Offerings.Where(offering => offering.AccountId == 3)
+                    //var offeringReceipts = dbContext.Offerings.Where(offering => offering.AccountId == 3)
+                    var offeringReceipts = dbContext.Offerings.Where(offering => offering.OfferingId == OfferingId)
                             .Select(offr => new {
                                 Amount = offr.Amount ?? 0,
                                 OfferingYear = offr.OfferingYear ?? 0,
