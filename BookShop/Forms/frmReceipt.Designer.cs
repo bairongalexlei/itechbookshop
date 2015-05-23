@@ -39,7 +39,7 @@
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "BookShop.Forms.rptOfferingReceipt.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(12, 12);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(831, 367);
+            this.reportViewer1.Size = new System.Drawing.Size(831, 685);
             this.reportViewer1.TabIndex = 0;
             // 
             // OfferingBindingSource
@@ -50,7 +50,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 391);
+            this.ClientSize = new System.Drawing.Size(855, 709);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmReceipt";
             this.Text = "frmReceipt";

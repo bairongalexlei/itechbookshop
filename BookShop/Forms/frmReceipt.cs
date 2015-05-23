@@ -14,13 +14,35 @@ namespace BookShop.Forms
 {
     public partial class frmReceipt : Form
     {
+        public int OfferingId { get; set; }
+        public string ReceiptNumber { get; set; }
+
         public frmReceipt()
         {
             InitializeComponent();
         }
 
+        public frmReceipt(int offeringId, string receiptNumber)
+        {
+            InitializeComponent();
+            OfferingId = offeringId;
+            ReceiptNumber = receiptNumber;
+        }
+
         private void frmReceipt_Load(object sender, EventArgs e)
         {
+            if (OfferingId <= 0)
+            {
+                MessageBox.Show("Offering Id is not assinged yet.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(ReceiptNumber))
+            {
+                MessageBox.Show("Receipt number is empty.");
+                return;
+            }
+
             try
             {
                 reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
@@ -38,31 +60,44 @@ namespace BookShop.Forms
                                 OfferingYear = offr.OfferingYear ?? 0,
                                 ReceiptDate = offr.ReceiptDate ?? DateTime.MinValue,
                                 ReceiptId = offr.ReceiptId ?? 0,
-                                ReceiptIssuedDate = offr.ReceiptIssuedDate ?? DateTime.MinValue,
+                                ReceiptIssuedDate = offr.ReceiptIssuedDate.HasValue ? 
+                                    offr.ReceiptIssuedDate.Value : DateTime.MinValue,
                                 ReceiptTypeId = offr.ReceiptTypeId ?? 0,
                                 ReceivedDate = offr.ReceivedDate ?? DateTime.MinValue,
                                 SignatureUserId = offr.SignatureUserId,
+
+                                OfferingId = offr.OfferingId,
+                                FirstName = offr.Account.FirstName,
+                                LastName = offr.Account.LastName,
+                                UnitNumber = (offr.Account.Address != null ? 
+                                    (offr.Account.Address.UnitSuiteNumber ?? 0) : 0),
+                                StreetName  = offr.Account.Address != null ?
+                                    offr.Account.Address.StreetName : "",
+                                City = offr.Account.Address != null ?
+                                    offr.Account.Address.City : "",
+                                Province = offr.Account.Address!= null ?
+                                    offr.Account.Address.Province : "",
+                                Country = offr.Account.Address != null ?
+                                    offr.Account.Address.Country : "",
+                                PostalCode = offr.Account.Address != null ?
+                                    offr.Account.Address.PostalCode : "",
+                                SingatureImage = offr.User.SignatureImageBytes,
+                                ReceiptNumber = ReceiptNumber,
+                                //FormattedAddress = ""
                             }).ToList();
 
                     var dsOfferingReceipt = new ReportDataSource();
                     dsOfferingReceipt.Name = "ReceiptOfferingDataSet";
-                    dsOfferingReceipt.Value = offeringReceipts;//null;
+                    dsOfferingReceipt.Value = offeringReceipts;
 
                     localReport.DataSources.Add(dsOfferingReceipt);
                 }
 
-                //var dsOfferingReceipt = new ReportDataSource();
-                //dsOfferingReceipt.Name = "ReceiptOfferingDataSet";
-                //dsOfferingReceipt.Value = null;
-
-                //localReport.DataSources.Add(dsOfferingReceipt);
-
                 this.reportViewer1.RefreshReport();
             }
-            catch (Exception ex)
+            catch
             {
-                
-                throw;
+                MessageBox.Show("Error on generating receipt. Please contact iTech support for assistance.");
             }
         }
     }

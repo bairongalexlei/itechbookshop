@@ -518,11 +518,6 @@ namespace BookShop.Forms
 
         private void btnPrintReceipt_Click(object sender, EventArgs e)
         {
-            var receiptForm = new frmReceipt();
-            receiptForm.StartPosition = FormStartPosition.CenterParent;
-            receiptForm.ShowDialog();
-            return;
-
             try
             {
                 int currentReceiptCount = 1;
@@ -584,12 +579,23 @@ namespace BookShop.Forms
                                 currentYearReceiptCounter.ReceiptCount = currentReceiptCount;
                             }
                         }
+                        else
+                        {
+                            MessageBox.Show(string.Format("Receipt has been generated before: {0}", 
+                                currentOffering.ReceiptIssuedDate.Value.ToShortDateString()));
+                            return;
+                        }
 
                         dbContext.SaveChanges();
                     }
 
                     //Generate report
-
+                    string receiptNumber = string.Format("{0}-{1}", offeringYear.ToString(),
+                        currentReceiptCount.ToString().PadLeft(6, '0'));
+                    var receiptForm = new frmReceipt(offeringId, receiptNumber);
+                    receiptForm.StartPosition = FormStartPosition.CenterParent;
+                    receiptForm.ShowDialog();
+                    return;
                 }
                 else
                 {
