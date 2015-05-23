@@ -845,5 +845,53 @@ namespace BookShop
                 MessageBox.Show("Uploaded image unsuccessfully. Please contact iTech support for assistance.");
             }
         }
+
+        private void btnBundleReceipt_Click(object sender, EventArgs e)
+        {
+            if (!maskedTxtReceivedDateGreaterThan.MaskCompleted &&
+                !maskedTxtReceivedDateLessThan.MaskCompleted)
+            {
+                MessageBox.Show("Date is not input yet!");
+                return;
+            }
+        }
+
+        private void btnBundleSummary_Click(object sender, EventArgs e)
+        {
+            if (!maskedTxtReceivedDateGreaterThan.MaskCompleted &&
+                !maskedTxtReceivedDateLessThan.MaskCompleted)
+            {
+                MessageBox.Show("Date is not input yet!");
+                return;
+            }
+        }
+
+        private void btnYearReceipt_Click(object sender, EventArgs e)
+        {
+            string inputAccountId = txtSummaryAccount.Text;
+            int selectedSummaryYear = cmbOfferingYear.SelectedIndex;
+
+            int accountId = 0;
+            if (string.IsNullOrEmpty(inputAccountId))
+            {
+                MessageBox.Show("Missing account id!");
+                return;
+            }
+
+            int.TryParse(inputAccountId, out accountId);
+            if (accountId <= 0)
+            {
+                MessageBox.Show("Invalid account id!");
+                return;
+            }
+
+            if (selectedSummaryYear < 0)
+            {
+                MessageBox.Show("Summary year is not selected yet!");
+                return;
+            }
+
+
+        }
     }
 }

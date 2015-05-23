@@ -32,6 +32,35 @@ namespace BookShop.Forms
                         currentMaxOfferingId = lastOffering.OfferingId;
                     }
                     txtOfferingId.Text = (++currentMaxOfferingId).ToString();
+
+                    //populate receipt information
+                    int currentYear = DateTime.Now.Year;
+                    int currentReceiptCount = 1;
+                    var currentYearReceiptCounter = dbContext.ReceiptCounters.FirstOrDefault(rc => rc.ReceiptYear == currentYear);
+                    if (currentYearReceiptCounter == null)
+                    {
+                        currentYearReceiptCounter = new ReceiptCounter
+                        {
+                            ReceiptYear = currentYear,
+                            ReceiptCount = currentReceiptCount
+                        };
+
+                        dbContext.ReceiptCounters.Add(currentYearReceiptCounter);
+                        dbContext.SaveChanges();
+                    }
+                    else
+                    {
+                        currentReceiptCount = currentYearReceiptCounter.ReceiptCount;
+                        ++currentReceiptCount;
+                    }
+
+                    string receiptNumber = string.Format("{0}-{1}", currentYear.ToString(),
+                                            currentReceiptCount.ToString().PadLeft(6, '0'));
+
+                    txtReceiptNumber.Text = receiptNumber;
+
+                    txtOfferYear.Text = DateTime.Now.Year.ToString();
+                    txtReceivedDate.Text = DateTime.Now.ToShortDateString();
                 }
             }
             catch
@@ -115,6 +144,20 @@ namespace BookShop.Forms
                             txtOfferingId.Text = offeringId.ToString();
                             txtReceivedDate.Text = oneOffering.CreatedDate.ToShortDateString();
                             txtOfferYear.Text = oneOffering.CreatedDate.Year.ToString();
+
+                            if (oneOffering.ReceiptId.HasValue)
+                            {
+                                string receiptNumber = string.Format("{0}-{1}", oneOffering.CreatedDate.Year.ToString(),
+                                                        oneOffering.ReceiptId.Value.ToString().PadLeft(6, '0'));
+
+                                txtReceiptNumber.Text = receiptNumber;
+                            }
+                            
+                            if (oneOffering.ReceiptIssuedDate.HasValue)
+                            {
+                                if (oneOffering.ReceiptIssuedDate.Value > DateTime.MinValue)
+                                    txtDateReceiptIssued.Text = oneOffering.ReceiptIssuedDate.Value.ToShortDateString();
+                            }
 
                             BindOfferingLineItems(dbContext);
 
@@ -413,7 +456,7 @@ namespace BookShop.Forms
 
                             var oneOfferLineItem = new OfferingLine();
                             oneOfferLineItem.Amount = oneOfferItemAmount;
-                            oneOfferLineItem.CreatedDate = DateTime.Now;
+                            //oneOfferLineItem.CreatedDate = DateTime.Now;
                             oneOfferLineItem.LastUpdatedDate = DateTime.Now;
                             oneOfferLineItem.OfferingId = offering.OfferingId;
                             oneOfferLineItem.ProjectId = oneRowProjectId.Value;
@@ -585,10 +628,13 @@ namespace BookShop.Forms
                                 currentReceiptCount = currentReceiptCount + currentYearReceiptCounter.ReceiptCount;
                                 currentYearReceiptCounter.ReceiptCount = currentReceiptCount;
                             }
+
+                            //update offering receipt id
+                            currentOffering.ReceiptId = currentReceiptCount;
                         }
                         else
                         {
-                            MessageBox.Show(string.Format("Receipt has been generated before: {0}", 
+                            MessageBox.Show(string.Format("Receipt has been generated on: {0}", 
                                 currentOffering.ReceiptIssuedDate.Value.ToShortDateString()));
                             return;
                         }

@@ -119,26 +119,38 @@
             this.lblOfferingFirstName = new System.Windows.Forms.Label();
             this.lblOfferingLastName = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.txtDepartmentName = new System.Windows.Forms.TextBox();
-            this.lblDepartmentName = new System.Windows.Forms.Label();
-            this.btnAddDepartment = new System.Windows.Forms.Button();
+            this.txtSignatureLastName = new System.Windows.Forms.TextBox();
+            this.lblSignatureLastName = new System.Windows.Forms.Label();
+            this.txtSignatureFirstName = new System.Windows.Forms.TextBox();
+            this.lblSignatureFirstName = new System.Windows.Forms.Label();
+            this.lblImageSize = new System.Windows.Forms.Label();
+            this.txtImagePath = new System.Windows.Forms.TextBox();
+            this.lblImagePath = new System.Windows.Forms.Label();
+            this.imgPictureBox = new System.Windows.Forms.PictureBox();
+            this.lblSignature = new System.Windows.Forms.Label();
+            this.btnUploadSignature = new System.Windows.Forms.Button();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.cmbDepartments = new System.Windows.Forms.ComboBox();
+            this.lblProjectBelongToDepartment = new System.Windows.Forms.Label();
             this.btnAddProject = new System.Windows.Forms.Button();
             this.lblProjectName = new System.Windows.Forms.Label();
             this.txtProjectName = new System.Windows.Forms.TextBox();
-            this.lblProjectBelongToDepartment = new System.Windows.Forms.Label();
-            this.cmbDepartments = new System.Windows.Forms.ComboBox();
-            this.btnUploadSignature = new System.Windows.Forms.Button();
-            this.btnBrowse = new System.Windows.Forms.Button();
-            this.lblSignature = new System.Windows.Forms.Label();
-            this.imgPictureBox = new System.Windows.Forms.PictureBox();
-            this.lblImagePath = new System.Windows.Forms.Label();
-            this.txtImagePath = new System.Windows.Forms.TextBox();
-            this.lblImageSize = new System.Windows.Forms.Label();
-            this.lblSignatureFirstName = new System.Windows.Forms.Label();
-            this.txtSignatureFirstName = new System.Windows.Forms.TextBox();
-            this.txtSignatureLastName = new System.Windows.Forms.TextBox();
-            this.lblSignatureLastName = new System.Windows.Forms.Label();
+            this.btnAddDepartment = new System.Windows.Forms.Button();
+            this.lblDepartmentName = new System.Windows.Forms.Label();
+            this.txtDepartmentName = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnBundleSummary = new System.Windows.Forms.Button();
+            this.btnBundleReceipt = new System.Windows.Forms.Button();
+            this.lblReceivedDateLessThan = new System.Windows.Forms.Label();
+            this.lblReceivedDateGreaterThan = new System.Windows.Forms.Label();
+            this.maskedTxtReceivedDateLessThan = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTxtReceivedDateGreaterThan = new System.Windows.Forms.MaskedTextBox();
+            this.lblReceivedDateForSummary = new System.Windows.Forms.Label();
+            this.lblSummaryAccountId = new System.Windows.Forms.Label();
+            this.txtSummaryAccount = new System.Windows.Forms.TextBox();
+            this.lblOfferingYear = new System.Windows.Forms.Label();
+            this.cmbOfferingYear = new System.Windows.Forms.ComboBox();
+            this.btnYearReceipt = new System.Windows.Forms.Button();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
@@ -146,6 +158,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferings)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgPictureBox)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabBookShop
@@ -582,9 +595,9 @@
             this.lblOfferDateHint.AutoSize = true;
             this.lblOfferDateHint.Location = new System.Drawing.Point(644, 218);
             this.lblOfferDateHint.Name = "lblOfferDateHint";
-            this.lblOfferDateHint.Size = new System.Drawing.Size(71, 13);
+            this.lblOfferDateHint.Size = new System.Drawing.Size(85, 13);
             this.lblOfferDateHint.TabIndex = 113;
-            this.lblOfferDateHint.Text = "(MM/DD/YY)";
+            this.lblOfferDateHint.Text = "(MM/DD/YYYY)";
             // 
             // dataGridViewOfferings
             // 
@@ -1009,40 +1022,124 @@
             this.tabPage3.Text = "Department/Project/Signature";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // txtSignatureLastName
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(816, 500);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Summary";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.txtSignatureLastName.Location = new System.Drawing.Point(466, 239);
+            this.txtSignatureLastName.Name = "txtSignatureLastName";
+            this.txtSignatureLastName.Size = new System.Drawing.Size(146, 20);
+            this.txtSignatureLastName.TabIndex = 129;
             // 
-            // txtDepartmentName
+            // lblSignatureLastName
             // 
-            this.txtDepartmentName.Location = new System.Drawing.Point(211, 30);
-            this.txtDepartmentName.Name = "txtDepartmentName";
-            this.txtDepartmentName.Size = new System.Drawing.Size(401, 20);
-            this.txtDepartmentName.TabIndex = 36;
+            this.lblSignatureLastName.AutoSize = true;
+            this.lblSignatureLastName.Location = new System.Drawing.Point(399, 242);
+            this.lblSignatureLastName.Name = "lblSignatureLastName";
+            this.lblSignatureLastName.Size = new System.Drawing.Size(61, 13);
+            this.lblSignatureLastName.TabIndex = 128;
+            this.lblSignatureLastName.Text = "Last Name:";
             // 
-            // lblDepartmentName
+            // txtSignatureFirstName
             // 
-            this.lblDepartmentName.AutoSize = true;
-            this.lblDepartmentName.Location = new System.Drawing.Point(95, 33);
-            this.lblDepartmentName.Name = "lblDepartmentName";
-            this.lblDepartmentName.Size = new System.Drawing.Size(96, 13);
-            this.lblDepartmentName.TabIndex = 37;
-            this.lblDepartmentName.Text = "Department Name:";
+            this.txtSignatureFirstName.Location = new System.Drawing.Point(211, 239);
+            this.txtSignatureFirstName.Name = "txtSignatureFirstName";
+            this.txtSignatureFirstName.Size = new System.Drawing.Size(145, 20);
+            this.txtSignatureFirstName.TabIndex = 127;
             // 
-            // btnAddDepartment
+            // lblSignatureFirstName
             // 
-            this.btnAddDepartment.Location = new System.Drawing.Point(645, 23);
-            this.btnAddDepartment.Name = "btnAddDepartment";
-            this.btnAddDepartment.Size = new System.Drawing.Size(120, 32);
-            this.btnAddDepartment.TabIndex = 112;
-            this.btnAddDepartment.Text = "Add Department";
-            this.btnAddDepartment.UseVisualStyleBackColor = true;
-            this.btnAddDepartment.Click += new System.EventHandler(this.btnAddDepartment_Click);
+            this.lblSignatureFirstName.AutoSize = true;
+            this.lblSignatureFirstName.Location = new System.Drawing.Point(131, 242);
+            this.lblSignatureFirstName.Name = "lblSignatureFirstName";
+            this.lblSignatureFirstName.Size = new System.Drawing.Size(60, 13);
+            this.lblSignatureFirstName.TabIndex = 126;
+            this.lblSignatureFirstName.Text = "First Name:";
+            // 
+            // lblImageSize
+            // 
+            this.lblImageSize.AutoSize = true;
+            this.lblImageSize.Location = new System.Drawing.Point(101, 300);
+            this.lblImageSize.Name = "lblImageSize";
+            this.lblImageSize.Size = new System.Drawing.Size(77, 13);
+            this.lblImageSize.TabIndex = 125;
+            this.lblImageSize.Text = "(800 x 600 px):";
+            // 
+            // txtImagePath
+            // 
+            this.txtImagePath.Enabled = false;
+            this.txtImagePath.Location = new System.Drawing.Point(211, 406);
+            this.txtImagePath.Name = "txtImagePath";
+            this.txtImagePath.Size = new System.Drawing.Size(401, 20);
+            this.txtImagePath.TabIndex = 124;
+            // 
+            // lblImagePath
+            // 
+            this.lblImagePath.AutoSize = true;
+            this.lblImagePath.Location = new System.Drawing.Point(127, 409);
+            this.lblImagePath.Name = "lblImagePath";
+            this.lblImagePath.Size = new System.Drawing.Size(64, 13);
+            this.lblImagePath.TabIndex = 123;
+            this.lblImagePath.Text = "Image Path:";
+            // 
+            // imgPictureBox
+            // 
+            this.imgPictureBox.Location = new System.Drawing.Point(211, 273);
+            this.imgPictureBox.Name = "imgPictureBox";
+            this.imgPictureBox.Size = new System.Drawing.Size(238, 122);
+            this.imgPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgPictureBox.TabIndex = 121;
+            this.imgPictureBox.TabStop = false;
+            // 
+            // lblSignature
+            // 
+            this.lblSignature.AutoSize = true;
+            this.lblSignature.Location = new System.Drawing.Point(95, 282);
+            this.lblSignature.Name = "lblSignature";
+            this.lblSignature.Size = new System.Drawing.Size(96, 13);
+            this.lblSignature.TabIndex = 120;
+            this.lblSignature.Text = "Signature Preview:";
+            // 
+            // btnUploadSignature
+            // 
+            this.btnUploadSignature.Location = new System.Drawing.Point(645, 433);
+            this.btnUploadSignature.Name = "btnUploadSignature";
+            this.btnUploadSignature.Size = new System.Drawing.Size(120, 32);
+            this.btnUploadSignature.TabIndex = 119;
+            this.btnUploadSignature.Text = "Upload";
+            this.btnUploadSignature.UseVisualStyleBackColor = true;
+            this.btnUploadSignature.Click += new System.EventHandler(this.btnUploadSignature_Click);
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Location = new System.Drawing.Point(211, 433);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(120, 32);
+            this.btnBrowse.TabIndex = 118;
+            this.btnBrowse.Text = "Browse...";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // cmbDepartments
+            // 
+            this.cmbDepartments.FormattingEnabled = true;
+            this.cmbDepartments.Items.AddRange(new object[] {
+            "Cash",
+            "Cheque",
+            "Others",
+            "Master Card",
+            "Visa"});
+            this.cmbDepartments.Location = new System.Drawing.Point(211, 150);
+            this.cmbDepartments.Name = "cmbDepartments";
+            this.cmbDepartments.Size = new System.Drawing.Size(401, 21);
+            this.cmbDepartments.TabIndex = 117;
+            // 
+            // lblProjectBelongToDepartment
+            // 
+            this.lblProjectBelongToDepartment.AutoSize = true;
+            this.lblProjectBelongToDepartment.Location = new System.Drawing.Point(42, 153);
+            this.lblProjectBelongToDepartment.Name = "lblProjectBelongToDepartment";
+            this.lblProjectBelongToDepartment.Size = new System.Drawing.Size(149, 13);
+            this.lblProjectBelongToDepartment.TabIndex = 116;
+            this.lblProjectBelongToDepartment.Text = "Project Belong to Department:";
             // 
             // btnAddProject
             // 
@@ -1070,124 +1167,160 @@
             this.txtProjectName.Size = new System.Drawing.Size(401, 20);
             this.txtProjectName.TabIndex = 113;
             // 
-            // lblProjectBelongToDepartment
+            // btnAddDepartment
             // 
-            this.lblProjectBelongToDepartment.AutoSize = true;
-            this.lblProjectBelongToDepartment.Location = new System.Drawing.Point(42, 153);
-            this.lblProjectBelongToDepartment.Name = "lblProjectBelongToDepartment";
-            this.lblProjectBelongToDepartment.Size = new System.Drawing.Size(149, 13);
-            this.lblProjectBelongToDepartment.TabIndex = 116;
-            this.lblProjectBelongToDepartment.Text = "Project Belong to Department:";
+            this.btnAddDepartment.Location = new System.Drawing.Point(645, 23);
+            this.btnAddDepartment.Name = "btnAddDepartment";
+            this.btnAddDepartment.Size = new System.Drawing.Size(120, 32);
+            this.btnAddDepartment.TabIndex = 112;
+            this.btnAddDepartment.Text = "Add Department";
+            this.btnAddDepartment.UseVisualStyleBackColor = true;
+            this.btnAddDepartment.Click += new System.EventHandler(this.btnAddDepartment_Click);
             // 
-            // cmbDepartments
+            // lblDepartmentName
             // 
-            this.cmbDepartments.FormattingEnabled = true;
-            this.cmbDepartments.Items.AddRange(new object[] {
-            "Cash",
-            "Cheque",
-            "Others",
-            "Master Card",
-            "Visa"});
-            this.cmbDepartments.Location = new System.Drawing.Point(211, 150);
-            this.cmbDepartments.Name = "cmbDepartments";
-            this.cmbDepartments.Size = new System.Drawing.Size(401, 21);
-            this.cmbDepartments.TabIndex = 117;
+            this.lblDepartmentName.AutoSize = true;
+            this.lblDepartmentName.Location = new System.Drawing.Point(95, 33);
+            this.lblDepartmentName.Name = "lblDepartmentName";
+            this.lblDepartmentName.Size = new System.Drawing.Size(96, 13);
+            this.lblDepartmentName.TabIndex = 37;
+            this.lblDepartmentName.Text = "Department Name:";
             // 
-            // btnUploadSignature
+            // txtDepartmentName
             // 
-            this.btnUploadSignature.Location = new System.Drawing.Point(645, 433);
-            this.btnUploadSignature.Name = "btnUploadSignature";
-            this.btnUploadSignature.Size = new System.Drawing.Size(120, 32);
-            this.btnUploadSignature.TabIndex = 119;
-            this.btnUploadSignature.Text = "Upload";
-            this.btnUploadSignature.UseVisualStyleBackColor = true;
-            this.btnUploadSignature.Click += new System.EventHandler(this.btnUploadSignature_Click);
+            this.txtDepartmentName.Location = new System.Drawing.Point(211, 30);
+            this.txtDepartmentName.Name = "txtDepartmentName";
+            this.txtDepartmentName.Size = new System.Drawing.Size(401, 20);
+            this.txtDepartmentName.TabIndex = 36;
             // 
-            // btnBrowse
+            // tabPage4
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(211, 433);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(120, 32);
-            this.btnBrowse.TabIndex = 118;
-            this.btnBrowse.Text = "Browse...";
-            this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            this.tabPage4.Controls.Add(this.btnYearReceipt);
+            this.tabPage4.Controls.Add(this.cmbOfferingYear);
+            this.tabPage4.Controls.Add(this.lblOfferingYear);
+            this.tabPage4.Controls.Add(this.txtSummaryAccount);
+            this.tabPage4.Controls.Add(this.lblSummaryAccountId);
+            this.tabPage4.Controls.Add(this.btnBundleSummary);
+            this.tabPage4.Controls.Add(this.btnBundleReceipt);
+            this.tabPage4.Controls.Add(this.lblReceivedDateLessThan);
+            this.tabPage4.Controls.Add(this.lblReceivedDateGreaterThan);
+            this.tabPage4.Controls.Add(this.maskedTxtReceivedDateLessThan);
+            this.tabPage4.Controls.Add(this.maskedTxtReceivedDateGreaterThan);
+            this.tabPage4.Controls.Add(this.lblReceivedDateForSummary);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(816, 500);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Receipt/Summary";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // lblSignature
+            // btnBundleSummary
             // 
-            this.lblSignature.AutoSize = true;
-            this.lblSignature.Location = new System.Drawing.Point(95, 282);
-            this.lblSignature.Name = "lblSignature";
-            this.lblSignature.Size = new System.Drawing.Size(96, 13);
-            this.lblSignature.TabIndex = 120;
-            this.lblSignature.Text = "Signature Preview:";
+            this.btnBundleSummary.Location = new System.Drawing.Point(210, 128);
+            this.btnBundleSummary.Name = "btnBundleSummary";
+            this.btnBundleSummary.Size = new System.Drawing.Size(120, 32);
+            this.btnBundleSummary.TabIndex = 117;
+            this.btnBundleSummary.Text = "Summary";
+            this.btnBundleSummary.UseVisualStyleBackColor = true;
+            this.btnBundleSummary.Click += new System.EventHandler(this.btnBundleSummary_Click);
             // 
-            // imgPictureBox
+            // btnBundleReceipt
             // 
-            this.imgPictureBox.Location = new System.Drawing.Point(211, 273);
-            this.imgPictureBox.Name = "imgPictureBox";
-            this.imgPictureBox.Size = new System.Drawing.Size(238, 122);
-            this.imgPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgPictureBox.TabIndex = 121;
-            this.imgPictureBox.TabStop = false;
+            this.btnBundleReceipt.Location = new System.Drawing.Point(30, 128);
+            this.btnBundleReceipt.Name = "btnBundleReceipt";
+            this.btnBundleReceipt.Size = new System.Drawing.Size(110, 32);
+            this.btnBundleReceipt.TabIndex = 116;
+            this.btnBundleReceipt.Text = "Receipt";
+            this.btnBundleReceipt.UseVisualStyleBackColor = true;
+            this.btnBundleReceipt.Click += new System.EventHandler(this.btnBundleReceipt_Click);
             // 
-            // lblImagePath
+            // lblReceivedDateLessThan
             // 
-            this.lblImagePath.AutoSize = true;
-            this.lblImagePath.Location = new System.Drawing.Point(127, 409);
-            this.lblImagePath.Name = "lblImagePath";
-            this.lblImagePath.Size = new System.Drawing.Size(64, 13);
-            this.lblImagePath.TabIndex = 123;
-            this.lblImagePath.Text = "Image Path:";
+            this.lblReceivedDateLessThan.AutoSize = true;
+            this.lblReceivedDateLessThan.Location = new System.Drawing.Point(245, 93);
+            this.lblReceivedDateLessThan.Name = "lblReceivedDateLessThan";
+            this.lblReceivedDateLessThan.Size = new System.Drawing.Size(85, 13);
+            this.lblReceivedDateLessThan.TabIndex = 115;
+            this.lblReceivedDateLessThan.Text = "(MM/DD/YYYY)";
             // 
-            // txtImagePath
+            // lblReceivedDateGreaterThan
             // 
-            this.txtImagePath.Enabled = false;
-            this.txtImagePath.Location = new System.Drawing.Point(211, 406);
-            this.txtImagePath.Name = "txtImagePath";
-            this.txtImagePath.Size = new System.Drawing.Size(401, 20);
-            this.txtImagePath.TabIndex = 124;
+            this.lblReceivedDateGreaterThan.AutoSize = true;
+            this.lblReceivedDateGreaterThan.Location = new System.Drawing.Point(27, 93);
+            this.lblReceivedDateGreaterThan.Name = "lblReceivedDateGreaterThan";
+            this.lblReceivedDateGreaterThan.Size = new System.Drawing.Size(85, 13);
+            this.lblReceivedDateGreaterThan.TabIndex = 114;
+            this.lblReceivedDateGreaterThan.Text = "(MM/DD/YYYY)";
             // 
-            // lblImageSize
+            // maskedTxtReceivedDateLessThan
             // 
-            this.lblImageSize.AutoSize = true;
-            this.lblImageSize.Location = new System.Drawing.Point(101, 300);
-            this.lblImageSize.Name = "lblImageSize";
-            this.lblImageSize.Size = new System.Drawing.Size(77, 13);
-            this.lblImageSize.TabIndex = 125;
-            this.lblImageSize.Text = "(800 x 600 px):";
+            this.maskedTxtReceivedDateLessThan.Location = new System.Drawing.Point(248, 70);
+            this.maskedTxtReceivedDateLessThan.Mask = "00/00/0000";
+            this.maskedTxtReceivedDateLessThan.Name = "maskedTxtReceivedDateLessThan";
+            this.maskedTxtReceivedDateLessThan.Size = new System.Drawing.Size(84, 20);
+            this.maskedTxtReceivedDateLessThan.TabIndex = 105;
+            this.maskedTxtReceivedDateLessThan.ValidatingType = typeof(System.DateTime);
             // 
-            // lblSignatureFirstName
+            // maskedTxtReceivedDateGreaterThan
             // 
-            this.lblSignatureFirstName.AutoSize = true;
-            this.lblSignatureFirstName.Location = new System.Drawing.Point(131, 242);
-            this.lblSignatureFirstName.Name = "lblSignatureFirstName";
-            this.lblSignatureFirstName.Size = new System.Drawing.Size(60, 13);
-            this.lblSignatureFirstName.TabIndex = 126;
-            this.lblSignatureFirstName.Text = "First Name:";
+            this.maskedTxtReceivedDateGreaterThan.Location = new System.Drawing.Point(30, 70);
+            this.maskedTxtReceivedDateGreaterThan.Mask = "00/00/0000";
+            this.maskedTxtReceivedDateGreaterThan.Name = "maskedTxtReceivedDateGreaterThan";
+            this.maskedTxtReceivedDateGreaterThan.Size = new System.Drawing.Size(85, 20);
+            this.maskedTxtReceivedDateGreaterThan.TabIndex = 104;
+            this.maskedTxtReceivedDateGreaterThan.ValidatingType = typeof(System.DateTime);
             // 
-            // txtSignatureFirstName
+            // lblReceivedDateForSummary
             // 
-            this.txtSignatureFirstName.Location = new System.Drawing.Point(211, 239);
-            this.txtSignatureFirstName.Name = "txtSignatureFirstName";
-            this.txtSignatureFirstName.Size = new System.Drawing.Size(145, 20);
-            this.txtSignatureFirstName.TabIndex = 127;
+            this.lblReceivedDateForSummary.AutoSize = true;
+            this.lblReceivedDateForSummary.Location = new System.Drawing.Point(121, 73);
+            this.lblReceivedDateForSummary.Name = "lblReceivedDateForSummary";
+            this.lblReceivedDateForSummary.Size = new System.Drawing.Size(121, 13);
+            this.lblReceivedDateForSummary.TabIndex = 0;
+            this.lblReceivedDateForSummary.Text = "<=   Received Date   <=";
             // 
-            // txtSignatureLastName
+            // lblSummaryAccountId
             // 
-            this.txtSignatureLastName.Location = new System.Drawing.Point(466, 239);
-            this.txtSignatureLastName.Name = "txtSignatureLastName";
-            this.txtSignatureLastName.Size = new System.Drawing.Size(146, 20);
-            this.txtSignatureLastName.TabIndex = 129;
+            this.lblSummaryAccountId.AutoSize = true;
+            this.lblSummaryAccountId.Location = new System.Drawing.Point(581, 73);
+            this.lblSummaryAccountId.Name = "lblSummaryAccountId";
+            this.lblSummaryAccountId.Size = new System.Drawing.Size(64, 13);
+            this.lblSummaryAccountId.TabIndex = 118;
+            this.lblSummaryAccountId.Text = "Account ID:";
             // 
-            // lblSignatureLastName
+            // txtSummaryAccount
             // 
-            this.lblSignatureLastName.AutoSize = true;
-            this.lblSignatureLastName.Location = new System.Drawing.Point(399, 242);
-            this.lblSignatureLastName.Name = "lblSignatureLastName";
-            this.lblSignatureLastName.Size = new System.Drawing.Size(61, 13);
-            this.lblSignatureLastName.TabIndex = 128;
-            this.lblSignatureLastName.Text = "Last Name:";
+            this.txtSummaryAccount.Location = new System.Drawing.Point(651, 70);
+            this.txtSummaryAccount.Name = "txtSummaryAccount";
+            this.txtSummaryAccount.Size = new System.Drawing.Size(84, 20);
+            this.txtSummaryAccount.TabIndex = 119;
+            // 
+            // lblOfferingYear
+            // 
+            this.lblOfferingYear.AutoSize = true;
+            this.lblOfferingYear.Location = new System.Drawing.Point(573, 102);
+            this.lblOfferingYear.Name = "lblOfferingYear";
+            this.lblOfferingYear.Size = new System.Drawing.Size(72, 13);
+            this.lblOfferingYear.TabIndex = 120;
+            this.lblOfferingYear.Text = "Offering Year:";
+            // 
+            // cmbOfferingYear
+            // 
+            this.cmbOfferingYear.FormattingEnabled = true;
+            this.cmbOfferingYear.Location = new System.Drawing.Point(651, 99);
+            this.cmbOfferingYear.Name = "cmbOfferingYear";
+            this.cmbOfferingYear.Size = new System.Drawing.Size(84, 21);
+            this.cmbOfferingYear.TabIndex = 121;
+            // 
+            // btnYearReceipt
+            // 
+            this.btnYearReceipt.Location = new System.Drawing.Point(615, 128);
+            this.btnYearReceipt.Name = "btnYearReceipt";
+            this.btnYearReceipt.Size = new System.Drawing.Size(120, 32);
+            this.btnYearReceipt.TabIndex = 122;
+            this.btnYearReceipt.Text = "Year End Receipt";
+            this.btnYearReceipt.UseVisualStyleBackColor = true;
+            this.btnYearReceipt.Click += new System.EventHandler(this.btnYearReceipt_Click);
             // 
             // frmMain
             // 
@@ -1207,6 +1340,8 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgPictureBox)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1324,6 +1459,18 @@
         private System.Windows.Forms.TextBox txtSignatureFirstName;
         private System.Windows.Forms.TextBox txtSignatureLastName;
         private System.Windows.Forms.Label lblSignatureLastName;
+        private System.Windows.Forms.Label lblReceivedDateForSummary;
+        private System.Windows.Forms.MaskedTextBox maskedTxtReceivedDateGreaterThan;
+        private System.Windows.Forms.Label lblReceivedDateLessThan;
+        private System.Windows.Forms.Label lblReceivedDateGreaterThan;
+        private System.Windows.Forms.MaskedTextBox maskedTxtReceivedDateLessThan;
+        private System.Windows.Forms.Button btnBundleSummary;
+        private System.Windows.Forms.Button btnBundleReceipt;
+        private System.Windows.Forms.Label lblSummaryAccountId;
+        private System.Windows.Forms.TextBox txtSummaryAccount;
+        private System.Windows.Forms.Label lblOfferingYear;
+        private System.Windows.Forms.ComboBox cmbOfferingYear;
+        private System.Windows.Forms.Button btnYearReceipt;
     }
 }
 
