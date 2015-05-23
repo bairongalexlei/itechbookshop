@@ -597,7 +597,7 @@
             this.lblOfferDateHint.Name = "lblOfferDateHint";
             this.lblOfferDateHint.Size = new System.Drawing.Size(85, 13);
             this.lblOfferDateHint.TabIndex = 113;
-            this.lblOfferDateHint.Text = "(MM/DD/YYYY)";
+            this.lblOfferDateHint.Text = "(DD/MM/YYYY)";
             // 
             // dataGridViewOfferings
             // 
@@ -1241,7 +1241,7 @@
             this.lblReceivedDateLessThan.Name = "lblReceivedDateLessThan";
             this.lblReceivedDateLessThan.Size = new System.Drawing.Size(85, 13);
             this.lblReceivedDateLessThan.TabIndex = 115;
-            this.lblReceivedDateLessThan.Text = "(MM/DD/YYYY)";
+            this.lblReceivedDateLessThan.Text = "(DD/MM/YYYY)";
             // 
             // lblReceivedDateGreaterThan
             // 
@@ -1250,7 +1250,7 @@
             this.lblReceivedDateGreaterThan.Name = "lblReceivedDateGreaterThan";
             this.lblReceivedDateGreaterThan.Size = new System.Drawing.Size(85, 13);
             this.lblReceivedDateGreaterThan.TabIndex = 114;
-            this.lblReceivedDateGreaterThan.Text = "(MM/DD/YYYY)";
+            this.lblReceivedDateGreaterThan.Text = "(DD/MM/YYYY)";
             // 
             // maskedTxtReceivedDateLessThan
             // 
