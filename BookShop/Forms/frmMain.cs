@@ -172,36 +172,48 @@ namespace BookShop
             var senderGrid = (DataGridView)sender;
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0 && e.ColumnIndex == 6)
+                e.RowIndex >= 0)
             {
-                var accountIdCell = senderGrid.Rows[e.RowIndex].Cells[0];
-                int accountId = accountIdCell.Value != null ? (int)accountIdCell.Value : 0;
-
-                var addressIdCell = senderGrid.Rows[e.RowIndex].Cells[11];
-                int addressId = addressIdCell.Value != null ? (int)addressIdCell.Value : 0;
-
-                var addressForm = new frmAddress(addressId);
-                addressForm.StartPosition = FormStartPosition.CenterParent;
-                addressForm.ShowDialog();
-
-                if (addressForm.Addressid > 0)
+                if (e.ColumnIndex == 0)
                 {
-                    try
-                    {
-                        using (var dbContext = new BookShopEntities())
-                        {
-                            var currentEditAccount =
-                                dbContext.Accounts.FirstOrDefault(ac => ac.AccountId == accountId);
+                    var accountIdCell = senderGrid.Rows[e.RowIndex].Cells[0];
+                    int accountId = accountIdCell.Value != null ? (int)accountIdCell.Value : 0;
 
-                            if (currentEditAccount != null && currentEditAccount.AddressId <= 0)
+                    var editAccountForm = new frmEditAccount(accountId);
+                    editAccountForm.StartPosition = FormStartPosition.CenterParent;
+                    editAccountForm.ShowDialog();
+                }
+                else if (e.ColumnIndex == 6)
+                {
+                    var accountIdCell = senderGrid.Rows[e.RowIndex].Cells[0];
+                    int accountId = accountIdCell.Value != null ? (int)accountIdCell.Value : 0;
+
+                    var addressIdCell = senderGrid.Rows[e.RowIndex].Cells[11];
+                    int addressId = addressIdCell.Value != null ? (int)addressIdCell.Value : 0;
+
+                    var addressForm = new frmAddress(addressId);
+                    addressForm.StartPosition = FormStartPosition.CenterParent;
+                    addressForm.ShowDialog();
+
+                    if (addressForm.Addressid > 0)
+                    {
+                        try
+                        {
+                            using (var dbContext = new BookShopEntities())
                             {
-                                currentEditAccount.AddressId = addressForm.Addressid;
-                                dbContext.SaveChanges();
-                                MessageBox.Show("Address was added to account successfully");
+                                var currentEditAccount =
+                                    dbContext.Accounts.FirstOrDefault(ac => ac.AccountId == accountId);
+
+                                if (currentEditAccount != null && currentEditAccount.AddressId <= 0)
+                                {
+                                    currentEditAccount.AddressId = addressForm.Addressid;
+                                    dbContext.SaveChanges();
+                                    MessageBox.Show("Address was added to account successfully");
+                                }
                             }
                         }
-                    }
-                    catch { } 
+                        catch { }
+                    } 
                 }
             }
         }
@@ -876,6 +888,32 @@ namespace BookShop
             {
                 MessageBox.Show("Date is not input yet!");
                 return;
+            }
+
+            if (cmbSummaryType.SelectedIndex < 0)
+            {
+                MessageBox.Show("Summary type is not selected yet.");
+                return;
+            }
+
+            var summarySearchParms = new SummarySearchParams();
+            if (cmbSummaryType.SelectedIndex == 0)
+            {
+                var receiptForm = new frmReceiptSummary(summarySearchParms);
+                receiptForm.StartPosition = FormStartPosition.CenterParent;
+                receiptForm.ShowDialog();
+            }
+            else if (cmbSummaryType.SelectedIndex == 1)
+            {
+
+            }
+            else if (cmbSummaryType.SelectedIndex == 2)
+            {
+
+            }
+            else if (cmbSummaryType.SelectedIndex == 3)
+            {
+
             }
         }
 
