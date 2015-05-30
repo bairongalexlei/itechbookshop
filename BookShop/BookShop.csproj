@@ -235,6 +235,9 @@
       <LastGenOutput>BookShopModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="BookShop_TemporaryKey.pfx" />
+    <None Include="connections.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="EFData\BookShopModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BookShopModel.edmx</DependentUpon>
