@@ -80,7 +80,6 @@
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.btnPrintReceipt = new System.Windows.Forms.Button();
             this.txtAccountType = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferLines)).BeginInit();
@@ -541,15 +540,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(150, 464);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 29);
-            this.btnDelete.TabIndex = 114;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
             // btnPrintReceipt
             // 
             this.btnPrintReceipt.Location = new System.Drawing.Point(39, 464);
@@ -574,7 +564,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 498);
             this.Controls.Add(this.txtAccountType);
-            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPrintReceipt);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -690,7 +679,6 @@
         private System.Windows.Forms.Label lblSubtotal;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnPrintReceipt;
         private System.Windows.Forms.TextBox txtAccountType;
         private System.Windows.Forms.DataGridViewComboBoxColumn ProjectDepartment;
