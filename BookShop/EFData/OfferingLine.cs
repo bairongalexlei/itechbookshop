@@ -26,5 +26,6 @@ namespace BookShop.EFData
         public int StatusId { get; set; }
     
         public virtual Offering Offering { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

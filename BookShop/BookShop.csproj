@@ -193,6 +193,9 @@
     <EmbeddedResource Include="Forms\frmAddress.resx">
       <DependentUpon>frmAddress.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDepartmentProjectSummary.resx">
+      <DependentUpon>frmDepartmentProjectSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmEditAccount.resx">
       <DependentUpon>frmEditAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +216,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmReceiptSummary.resx">
       <DependentUpon>frmReceiptSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\rptDepartmentProjectSummary.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\rptPaymentMethodSummary.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -930,7 +930,7 @@ namespace BookShop
             }
             else if (cmbSummaryType.SelectedIndex == 2)
             {
-                var departmentForm = new frmDepartmentProjectSummary();
+                var departmentForm = new frmDepartmentProjectSummary(summarySearchParms);
                 departmentForm.StartPosition = FormStartPosition.CenterParent;
                 departmentForm.ShowDialog();
             }

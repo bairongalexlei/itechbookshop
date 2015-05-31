@@ -14,11 +14,17 @@ namespace BookShop.EFData
     
     public partial class Project
     {
+        public Project()
+        {
+            this.OfferingLines = new HashSet<OfferingLine>();
+        }
+    
         public int ProjectId { get; set; }
         public int DepartmentId { get; set; }
         public string Description { get; set; }
         public int StatusId { get; set; }
     
         public virtual Department Department { get; set; }
+        public virtual ICollection<OfferingLine> OfferingLines { get; set; }
     }
 }

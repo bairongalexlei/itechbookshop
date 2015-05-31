@@ -246,6 +246,10 @@
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
           <EntitySet Name="ReceiptCounters" EntityType="BookShopModel.ReceiptCounter" />
+          <AssociationSet Name="ProjectOfferingLine" Association="BookShopModel.ProjectOfferingLine">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="OfferingLine" EntitySet="OfferingLines" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="AddressAccount">
           <End Type="BookShopModel.Address" Role="Address" Multiplicity="1" />
@@ -298,6 +302,7 @@
           <Property Name="Percent" Type="Decimal" Precision="16" Scale="2" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Offering" Relationship="BookShopModel.OfferingOfferingLine" FromRole="OfferingLine" ToRole="Offering" />
+          <NavigationProperty Name="Project" Relationship="BookShopModel.ProjectOfferingLine" FromRole="OfferingLine" ToRole="Project" />
         </EntityType>
         <Association Name="OfferingOfferingLine">
           <End Type="BookShopModel.Offering" Role="Offering" Multiplicity="1" />
@@ -320,6 +325,7 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="BookShopModel.DepartmentProject" FromRole="Project" ToRole="Department" />
+          <NavigationProperty Name="OfferingLines" Relationship="BookShopModel.ProjectOfferingLine" FromRole="Project" ToRole="OfferingLine" />
         </EntityType>
         <Association Name="DepartmentProject">
           <End Type="BookShopModel.Department" Role="Department" Multiplicity="1" />
@@ -341,6 +347,18 @@
           <Property Name="ReceiptYear" Type="Int32" Nullable="false" />
           <Property Name="ReceiptCount" Type="Int32" Nullable="false" />
         </EntityType>
+        <Association Name="ProjectOfferingLine">
+          <End Type="BookShopModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="BookShopModel.OfferingLine" Role="OfferingLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="OfferingLine">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
