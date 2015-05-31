@@ -41,6 +41,8 @@ namespace BookShop.Forms
                 {
                     var fromDate = searchParms.FromDate;
                     var toDate = searchParms.ToDate;
+                    string fromDateParameter = string.Empty;
+                    string toDateParameter = string.Empty;
 
                     var offerings = dbContext.Offerings.Where(oneOffering =>
                         oneOffering.StatusId == (int)Common.CommonEnum.Status.Active);
@@ -48,11 +50,13 @@ namespace BookShop.Forms
                     if (fromDate != null && fromDate > DateTime.MinValue)
                     {
                         offerings = offerings.Where(oneOffering => oneOffering.CreatedDate >= fromDate);
+                        fromDateParameter = fromDate.ToShortDateString();
                     }
 
                     if (toDate != null && toDate > DateTime.MinValue)
                     {
                         offerings = offerings.Where(oneOffering => oneOffering.CreatedDate <= toDate);
+                        toDateParameter = toDate.ToShortDateString();
                     }
 
                     var offeringReceiptSummaries = offerings.GroupBy(oneOffering => (oneOffering.ReceiptTypeId ?? 0))
@@ -69,6 +73,11 @@ namespace BookShop.Forms
                     dsOfferingReceipt.Value = offeringReceiptSummaries;
 
                     localReport.DataSources.Add(dsOfferingReceipt);
+
+                    ReportParameter[] rptPerameters = new ReportParameter[2];
+                    rptPerameters[0] = new ReportParameter("FromDate", fromDateParameter);
+                    rptPerameters[1] = new ReportParameter("ToDate", toDateParameter);
+                    localReport.SetParameters(rptPerameters);
                 }
             }
             catch
