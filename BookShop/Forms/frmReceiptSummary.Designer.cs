@@ -40,6 +40,7 @@
             this.rptReceiptSummaryViewer.Location = new System.Drawing.Point(12, 12);
             this.rptReceiptSummaryViewer.Name = "rptReceiptSummaryViewer";
             this.rptReceiptSummaryViewer.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
+            this.rptReceiptSummaryViewer.ShowExportButton = false;
             this.rptReceiptSummaryViewer.Size = new System.Drawing.Size(756, 474);
             this.rptReceiptSummaryViewer.TabIndex = 0;
             // 
