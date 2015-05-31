@@ -36,6 +36,18 @@
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.txtProvince = new System.Windows.Forms.TextBox();
             this.dataGridViewAccounts = new System.Windows.Forms.DataGridView();
+            this.AccountId = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChineseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SpouseFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PostalCode = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.OrganizationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnNewAccount = new System.Windows.Forms.Button();
@@ -141,18 +153,6 @@
             this.maskedTxtReceivedDateLessThan = new System.Windows.Forms.MaskedTextBox();
             this.maskedTxtReceivedDateGreaterThan = new System.Windows.Forms.MaskedTextBox();
             this.lblReceivedDateForSummary = new System.Windows.Forms.Label();
-            this.AccountId = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChineseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SpouseFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PostalCode = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.OrganizationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddressId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
@@ -269,6 +269,83 @@
             this.dataGridViewAccounts.Size = new System.Drawing.Size(750, 274);
             this.dataGridViewAccounts.TabIndex = 27;
             this.dataGridViewAccounts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAccounts_CellContentClick_1);
+            // 
+            // AccountId
+            // 
+            this.AccountId.HeaderText = "Account Id";
+            this.AccountId.Name = "AccountId";
+            this.AccountId.ReadOnly = true;
+            this.AccountId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AccountId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // FirstName
+            // 
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            // 
+            // LastName
+            // 
+            this.LastName.HeaderText = "Last Name";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            // 
+            // ChineseName
+            // 
+            this.ChineseName.HeaderText = "Chinese Name";
+            this.ChineseName.Name = "ChineseName";
+            this.ChineseName.ReadOnly = true;
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Title";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            // 
+            // SpouseFirstName
+            // 
+            this.SpouseFirstName.HeaderText = "Spouse First Name";
+            this.SpouseFirstName.Name = "SpouseFirstName";
+            this.SpouseFirstName.ReadOnly = true;
+            // 
+            // PostalCode
+            // 
+            this.PostalCode.HeaderText = "Postal Code";
+            this.PostalCode.Name = "PostalCode";
+            this.PostalCode.ReadOnly = true;
+            this.PostalCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.PostalCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // OrganizationName
+            // 
+            this.OrganizationName.HeaderText = "Organization Name";
+            this.OrganizationName.Name = "OrganizationName";
+            this.OrganizationName.ReadOnly = true;
+            // 
+            // Phone
+            // 
+            this.Phone.HeaderText = "Phone";
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            // 
+            // Fax
+            // 
+            this.Fax.HeaderText = "Fax";
+            this.Fax.Name = "Fax";
+            this.Fax.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // AddressId
+            // 
+            this.AddressId.HeaderText = "Address Id";
+            this.AddressId.Name = "AddressId";
+            this.AddressId.ReadOnly = true;
+            this.AddressId.Visible = false;
             // 
             // btnSearch
             // 
@@ -1145,13 +1222,13 @@
             // 
             // cmbSummaryType
             // 
+            this.cmbSummaryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSummaryType.FormattingEnabled = true;
             this.cmbSummaryType.Items.AddRange(new object[] {
             "Receipt",
             "Payment",
-            "Department/Project",
-            "Account"});
-            this.cmbSummaryType.Location = new System.Drawing.Point(550, 70);
+            "Department/Project"});
+            this.cmbSummaryType.Location = new System.Drawing.Point(479, 70);
             this.cmbSummaryType.Name = "cmbSummaryType";
             this.cmbSummaryType.Size = new System.Drawing.Size(120, 21);
             this.cmbSummaryType.TabIndex = 124;
@@ -1159,7 +1236,7 @@
             // lblSummaryType
             // 
             this.lblSummaryType.AutoSize = true;
-            this.lblSummaryType.Location = new System.Drawing.Point(454, 73);
+            this.lblSummaryType.Location = new System.Drawing.Point(383, 73);
             this.lblSummaryType.Name = "lblSummaryType";
             this.lblSummaryType.Size = new System.Drawing.Size(80, 13);
             this.lblSummaryType.TabIndex = 123;
@@ -1210,7 +1287,7 @@
             // 
             // btnBundleSummary
             // 
-            this.btnBundleSummary.Location = new System.Drawing.Point(550, 128);
+            this.btnBundleSummary.Location = new System.Drawing.Point(479, 128);
             this.btnBundleSummary.Name = "btnBundleSummary";
             this.btnBundleSummary.Size = new System.Drawing.Size(120, 32);
             this.btnBundleSummary.TabIndex = 117;
@@ -1220,7 +1297,7 @@
             // 
             // btnBundleReceipt
             // 
-            this.btnBundleReceipt.Location = new System.Drawing.Point(30, 128);
+            this.btnBundleReceipt.Location = new System.Drawing.Point(220, 128);
             this.btnBundleReceipt.Name = "btnBundleReceipt";
             this.btnBundleReceipt.Size = new System.Drawing.Size(110, 32);
             this.btnBundleReceipt.TabIndex = 116;
@@ -1272,83 +1349,6 @@
             this.lblReceivedDateForSummary.Size = new System.Drawing.Size(121, 13);
             this.lblReceivedDateForSummary.TabIndex = 0;
             this.lblReceivedDateForSummary.Text = "<=   Received Date   <=";
-            // 
-            // AccountId
-            // 
-            this.AccountId.HeaderText = "Account Id";
-            this.AccountId.Name = "AccountId";
-            this.AccountId.ReadOnly = true;
-            this.AccountId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.AccountId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "Last Name";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            // 
-            // ChineseName
-            // 
-            this.ChineseName.HeaderText = "Chinese Name";
-            this.ChineseName.Name = "ChineseName";
-            this.ChineseName.ReadOnly = true;
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            // 
-            // SpouseFirstName
-            // 
-            this.SpouseFirstName.HeaderText = "Spouse First Name";
-            this.SpouseFirstName.Name = "SpouseFirstName";
-            this.SpouseFirstName.ReadOnly = true;
-            // 
-            // PostalCode
-            // 
-            this.PostalCode.HeaderText = "Postal Code";
-            this.PostalCode.Name = "PostalCode";
-            this.PostalCode.ReadOnly = true;
-            this.PostalCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.PostalCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // OrganizationName
-            // 
-            this.OrganizationName.HeaderText = "Organization Name";
-            this.OrganizationName.Name = "OrganizationName";
-            this.OrganizationName.ReadOnly = true;
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Phone";
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            // 
-            // Fax
-            // 
-            this.Fax.HeaderText = "Fax";
-            this.Fax.Name = "Fax";
-            this.Fax.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // AddressId
-            // 
-            this.AddressId.HeaderText = "Address Id";
-            this.AddressId.Name = "AddressId";
-            this.AddressId.ReadOnly = true;
-            this.AddressId.Visible = false;
             // 
             // frmMain
             // 

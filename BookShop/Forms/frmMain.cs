@@ -896,7 +896,26 @@ namespace BookShop
                 return;
             }
 
+            string strDateGreaterThan = maskedTxtReceivedDateGreaterThan.Text;
+            string strDateLessThan = maskedTxtReceivedDateLessThan.Text;
+            DateTime dateGreaterThan;
+            DateTime dateLessThan;
             var summarySearchParms = new SummarySearchParams();
+
+            if (!string.IsNullOrEmpty(strDateGreaterThan))
+            {
+                DateTime.TryParse(strDateGreaterThan, out dateGreaterThan);
+                if (dateGreaterThan != null && dateGreaterThan > DateTime.MinValue)
+                    summarySearchParms.FromDate = dateGreaterThan;
+            }
+
+            if (!string.IsNullOrEmpty(strDateLessThan))
+            {
+                DateTime.TryParse(strDateLessThan, out dateLessThan);
+                if (dateLessThan != null && dateLessThan > DateTime.MinValue)
+                    summarySearchParms.ToDate = dateLessThan;
+            }
+
             if (cmbSummaryType.SelectedIndex == 0)
             {
                 var receiptForm = new frmReceiptSummary(summarySearchParms);
@@ -905,15 +924,15 @@ namespace BookShop
             }
             else if (cmbSummaryType.SelectedIndex == 1)
             {
-
+                var paymentForm = new frmPaymentMethodSummary();
+                paymentForm.StartPosition = FormStartPosition.CenterParent;
+                paymentForm.ShowDialog();
             }
             else if (cmbSummaryType.SelectedIndex == 2)
             {
-
-            }
-            else if (cmbSummaryType.SelectedIndex == 3)
-            {
-
+                var departmentForm = new frmDepartmentProjectSummary();
+                departmentForm.StartPosition = FormStartPosition.CenterParent;
+                departmentForm.ShowDialog();
             }
         }
 

@@ -28,31 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.components = new System.ComponentModel.Container();
+            this.rptReceiptSummaryViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.OfferingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.OfferingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // reportViewer1
+            // rptReceiptSummaryViewer
             // 
-            this.reportViewer1.Location = new System.Drawing.Point(12, 12);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(756, 474);
-            this.reportViewer1.TabIndex = 0;
+            this.rptReceiptSummaryViewer.LocalReport.ReportEmbeddedResource = "BookShop.Forms.rptReceiptSummary.rdlc";
+            this.rptReceiptSummaryViewer.Location = new System.Drawing.Point(12, 12);
+            this.rptReceiptSummaryViewer.Name = "rptReceiptSummaryViewer";
+            this.rptReceiptSummaryViewer.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
+            this.rptReceiptSummaryViewer.Size = new System.Drawing.Size(756, 474);
+            this.rptReceiptSummaryViewer.TabIndex = 0;
             // 
-            // fromReceiptSummary
+            // OfferingBindingSource
+            // 
+            this.OfferingBindingSource.DataSource = typeof(BookShop.EFData.Offering);
+            // 
+            // frmReceiptSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 498);
-            this.Controls.Add(this.reportViewer1);
-            this.Name = "fromReceiptSummary";
-            this.Text = "fromReceiptSummary";
+            this.Controls.Add(this.rptReceiptSummaryViewer);
+            this.Name = "frmReceiptSummary";
+            this.Text = "Receipt Summary";
             this.Load += new System.EventHandler(this.fromReceiptSummary_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.OfferingBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private Microsoft.Reporting.WinForms.ReportViewer rptReceiptSummaryViewer;
+        private System.Windows.Forms.BindingSource OfferingBindingSource;
     }
 }

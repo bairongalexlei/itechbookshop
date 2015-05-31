@@ -8,6 +8,7 @@ namespace BookShop.Common
 {
     public class SummarySearchParams
     {
-
+        public DateTime FromDate { get; set; }
+        public DateTime ToDate { get; set; }
     }
 }
