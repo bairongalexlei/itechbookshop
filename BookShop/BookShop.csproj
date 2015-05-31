@@ -170,11 +170,11 @@
     <Compile Include="Forms\frmOffering.Designer.cs">
       <DependentUpon>frmOffering.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmPaymentMethodSummary.cs">
+    <Compile Include="Forms\frmPaymentSummary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmPaymentMethodSummary.Designer.cs">
-      <DependentUpon>frmPaymentMethodSummary.cs</DependentUpon>
+    <Compile Include="Forms\frmPaymentSummary.Designer.cs">
+      <DependentUpon>frmPaymentSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmReceipt.cs">
       <SubType>Form</SubType>
@@ -205,11 +205,17 @@
     <EmbeddedResource Include="Forms\frmOffering.resx">
       <DependentUpon>frmOffering.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPaymentSummary.resx">
+      <DependentUpon>frmPaymentSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmReceipt.resx">
       <DependentUpon>frmReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmReceiptSummary.resx">
       <DependentUpon>frmReceiptSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\rptPaymentMethodSummary.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\rptReceiptSummary.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -248,6 +254,7 @@
       <LastGenOutput>BookShopModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BookShop.EFData.Offering.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

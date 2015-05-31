@@ -924,7 +924,7 @@ namespace BookShop
             }
             else if (cmbSummaryType.SelectedIndex == 1)
             {
-                var paymentForm = new frmPaymentMethodSummary();
+                var paymentForm = new frmPaymentSummary(summarySearchParms);
                 paymentForm.StartPosition = FormStartPosition.CenterParent;
                 paymentForm.ShowDialog();
             }
