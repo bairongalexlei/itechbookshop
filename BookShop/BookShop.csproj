@@ -164,6 +164,12 @@
     <Compile Include="Forms\frmNewAccount.Designer.cs">
       <DependentUpon>frmNewAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmNontaxableReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmNontaxableReceipt.Designer.cs">
+      <DependentUpon>frmNontaxableReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmOffering.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     <EmbeddedResource Include="Forms\frmNewAccount.resx">
       <DependentUpon>frmNewAccount.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmNontaxableReceipt.resx">
+      <DependentUpon>frmNontaxableReceipt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmOffering.resx">
       <DependentUpon>frmOffering.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmReceiptSummary.resx">
       <DependentUpon>frmReceiptSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\rptNontaxableReceipt.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\rptDepartmentProjectSummary.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -229,6 +241,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\rptOfferingReceipt.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

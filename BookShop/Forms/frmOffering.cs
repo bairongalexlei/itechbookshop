@@ -572,6 +572,7 @@ namespace BookShop.Forms
             {
                 int currentReceiptCount = 1;
                 int offeringYear;
+                int receiptTypeId = 0;
 
                 if (offeringId > 0)
                 {
@@ -587,22 +588,42 @@ namespace BookShop.Forms
                             return;
                         }
 
-    //                    If IsNull(Me![ReceiptNumber]) Then
-    //    'print new receipt
-    //    OfferingYear = Me![OfferingYear]
-    //    ReceiptNumber = fGetNewReceiptNumber(OfferingYear)
-    //    If IsNull(ReceiptNumber) Or Len(ReceiptNumber) <= 0 Then
-    //        Exit Sub
-    //    End If
-    //    Me![ReceiptNumber] = ReceiptNumber
-    //    Me![ReceiptDate] = Me![ReceivedDate]
-    //    Me![DateReceiptIssued] = date
-    //    DoCmd.DoMenuItem acFormBar, acRecordsMenu, acSaveRecord, , acMenuVer70
-    //    MsgBox "Print receipt: " & ReceiptNumber
-    //Else
-    //    'Re-print receipt
-    //    MsgBox "Re-print receipt"
-    //End If
+                        receiptTypeId = currentOffering.ReceiptTypeId ?? 0;
+
+                        //if (!currentOffering.ReceiptId.HasValue)
+                        //{
+                        //    currentOffering.ReceiptDate = currentOffering.CreatedDate;
+                        //    currentOffering.ReceiptIssuedDate = DateTime.Now;
+
+                        //    offeringYear = currentOffering.CreatedDate.Year;
+                        //    var currentYearReceiptCounter = dbContext.ReceiptCounters.FirstOrDefault(c =>
+                        //        c.ReceiptYear == offeringYear);
+
+                        //    if (currentYearReceiptCounter == null)
+                        //    {
+                        //        currentYearReceiptCounter = new ReceiptCounter
+                        //        {
+                        //            ReceiptYear = offeringYear,
+                        //            ReceiptCount = currentReceiptCount
+                        //        };
+
+                        //        dbContext.ReceiptCounters.Add(currentYearReceiptCounter);
+                        //    }
+                        //    else
+                        //    {
+                        //        currentReceiptCount = currentReceiptCount + currentYearReceiptCounter.ReceiptCount;
+                        //        currentYearReceiptCounter.ReceiptCount = currentReceiptCount;
+                        //    }
+
+                        //    //update offering receipt id
+                        //    currentOffering.ReceiptId = currentReceiptCount;
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show(string.Format("Receipt has been generated on: {0}", 
+                        //        currentOffering.ReceiptIssuedDate.Value.ToShortDateString()));
+                        //    return;
+                        //}
 
                         if (!currentOffering.ReceiptId.HasValue)
                         {
@@ -634,9 +655,11 @@ namespace BookShop.Forms
                         }
                         else
                         {
-                            MessageBox.Show(string.Format("Receipt has been generated on: {0}", 
+                            MessageBox.Show(string.Format("Receipt has been generated on: {0}",
                                 currentOffering.ReceiptIssuedDate.Value.ToShortDateString()));
-                            return;
+
+                            offeringYear = currentOffering.CreatedDate.Year;
+                            currentReceiptCount = currentOffering.ReceiptId ?? 0;
                         }
 
                         dbContext.SaveChanges();
@@ -645,9 +668,19 @@ namespace BookShop.Forms
                     //Generate report
                     string receiptNumber = string.Format("{0}-{1}", offeringYear.ToString(),
                         currentReceiptCount.ToString().PadLeft(6, '0'));
-                    var receiptForm = new frmReceipt(offeringId, receiptNumber);
-                    receiptForm.StartPosition = FormStartPosition.CenterParent;
-                    receiptForm.ShowDialog();
+                    //var receiptForm = new frmReceipt(offeringId, receiptNumber);
+                    if (receiptTypeId == 1)
+                    {
+                        var receiptForm = new frmReceipt(offeringId, receiptNumber);
+                        receiptForm.StartPosition = FormStartPosition.CenterParent;
+                        receiptForm.ShowDialog();
+                    }
+                    else
+                    {
+                        var receiptForm = new frmNontaxableReceipt(offeringId, receiptNumber);
+                        receiptForm.StartPosition = FormStartPosition.CenterParent;
+                        receiptForm.ShowDialog();
+                    }
                     return;
                 }
                 else

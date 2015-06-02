@@ -867,6 +867,12 @@ namespace BookShop
                 return;
             }
 
+            if (cmbReceiptType.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select receipt type first!");
+                return;
+            }
+
             string strDateLessThan = string.Empty;
             string strDateGreaterThan = string.Empty;
 
@@ -876,9 +882,22 @@ namespace BookShop
             if (maskedTxtReceivedDateLessThan.MaskCompleted)
                 strDateLessThan = maskedTxtReceivedDateLessThan.Text;
 
-            var receiptForm = new frmReceipt(strDateGreaterThan, strDateLessThan);
-            receiptForm.StartPosition = FormStartPosition.CenterParent;
-            receiptForm.ShowDialog();
+            //var receiptForm = new frmReceipt(strDateGreaterThan, strDateLessThan);
+            //receiptForm.StartPosition = FormStartPosition.CenterParent;
+            //receiptForm.ShowDialog();
+
+            if (cmbReceiptType.SelectedIndex == 0)
+            {
+                var receiptForm = new frmReceipt(strDateGreaterThan, strDateLessThan);
+                receiptForm.StartPosition = FormStartPosition.CenterParent;
+                receiptForm.ShowDialog(); 
+            }
+            else
+            {
+                var receiptForm = new frmNontaxableReceipt(strDateGreaterThan, strDateLessThan);
+                receiptForm.StartPosition = FormStartPosition.CenterParent;
+                receiptForm.ShowDialog(); 
+            }
         }
 
         private void btnBundleSummary_Click(object sender, EventArgs e)
