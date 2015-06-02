@@ -456,7 +456,7 @@ namespace BookShop.Forms
 
                             var oneOfferLineItem = new OfferingLine();
                             oneOfferLineItem.Amount = oneOfferItemAmount;
-                            //oneOfferLineItem.CreatedDate = DateTime.Now;
+                            oneOfferLineItem.CreatedDate = DateTime.Now;
                             oneOfferLineItem.LastUpdatedDate = DateTime.Now;
                             oneOfferLineItem.OfferingId = offering.OfferingId;
                             oneOfferLineItem.ProjectId = oneRowProjectId.Value;

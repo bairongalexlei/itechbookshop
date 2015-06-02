@@ -146,7 +146,10 @@ namespace BookShop.Forms
                 //Get data source here
                 using (var dbContext = new BookShopEntities())
                 {
-                    var query = dbContext.Offerings.Where(offr => offr.StatusId == (int)Common.CommonEnum.Status.Active);
+                    //var query = dbContext.Offerings.Where(offr => offr.StatusId == (int)Common.CommonEnum.Status.Active);
+                    var query = dbContext.Offerings.Where(offr => 
+                        offr.StatusId == (int)Common.CommonEnum.Status.Active &&
+                        offr.ReceiptTypeId == (int)Common.CommonEnum.ReceiptType.Individual);
                     if (dateGreaterThan != null && dateGreaterThan > DateTime.MinValue)
                         query = query.Where(offr => offr.CreatedDate >= dateGreaterThan);
 
