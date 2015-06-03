@@ -168,6 +168,7 @@ namespace BookShop.Forms
                                 ReceiptTypeId = offr.ReceiptTypeId ?? 0,
                                 ReceivedDate = offr.ReceivedDate ?? DateTime.MinValue,
                                 SignatureUserId = offr.SignatureUserId,
+                                CreatedDate = offr.CreatedDate,
 
                                 OfferingId = offr.OfferingId,
                                 FirstName = offr.Account.FirstName,
@@ -185,12 +186,45 @@ namespace BookShop.Forms
                                 PostalCode = offr.Account.Address != null ?
                                     offr.Account.Address.PostalCode : "",
                                 SingatureImage = offr.User.SignatureImageBytes,
-                                ReceiptNumber = ReceiptNumber,
+                                //ReceiptNumber = ReceiptNumber,
+                                //ReceiptNumber = (offr.ReceiptId ?? 0) > 0 ?
+                                //    string.Format("{0}-{1}", offr.CreatedDate.Year.ToString(), offr.ReceiptId.Value.ToString().PadLeft(6, '0'))
+                                //    : "",
+                                ReceiptYear = offr.CreatedDate.Year.ToString(),
                             }).ToList();
+
+                    var offeringReceiptBEs = offeringReceipts.Select(offr => new
+                    {
+                        Amount = offr.Amount,
+                        OfferingYear = offr.OfferingYear,
+                        ReceiptDate = offr.ReceiptDate,
+                        ReceiptId = offr.ReceiptId,
+                        ReceiptIssuedDate = offr.ReceiptIssuedDate,
+                        ReceiptTypeId = offr.ReceiptTypeId,
+                        ReceivedDate = offr.ReceivedDate,
+                        SignatureUserId = offr.SignatureUserId,
+
+                        OfferingId = offr.OfferingId,
+                        FirstName = offr.FirstName,
+                        LastName = offr.LastName,
+                        UnitNumber = offr.UnitNumber,
+                        StreetName = offr.StreetName,
+                        City = offr.City,
+                        Province = offr.Province,
+                        Country = offr.Country,
+                        PostalCode = offr.PostalCode,
+                        SingatureImage = offr.SingatureImage,
+                        //ReceiptNumber = ReceiptNumber,
+                        ReceiptNumber = offr.ReceiptId > 0 ?
+                            string.Format("{0}-{1}", offr.CreatedDate.Year.ToString(), offr.ReceiptId.ToString().PadLeft(6, '0'))
+                            : "",
+                        //ReceiptYear = offr.CreatedDate.Year.ToString(),
+                    }).ToList();
 
                     var dsOfferingReceipt = new ReportDataSource();
                     dsOfferingReceipt.Name = "ReceiptOfferingDataSet";
-                    dsOfferingReceipt.Value = offeringReceipts;
+                    //dsOfferingReceipt.Value = offeringReceipts;
+                    dsOfferingReceipt.Value = offeringReceiptBEs;
 
                     localReport.DataSources.Add(dsOfferingReceipt);
                 }

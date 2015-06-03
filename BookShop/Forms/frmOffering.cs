@@ -508,7 +508,9 @@ namespace BookShop.Forms
                 //float.TryParse((string)txtOneRowAmount.Value, out oneOfferItemAmount);
                 if (txtOneRowAmount.Value != null)
                 {
-                    oneOfferItemAmount = (decimal)txtOneRowAmount.Value; 
+                    //oneOfferItemAmount = (decimal)txtOneRowAmount.Value; 
+                    var strOneOfferItemAmount = (string)txtOneRowAmount.Value;
+                    decimal.TryParse(strOneOfferItemAmount, out oneOfferItemAmount);
                 }
 
                 if (!oneRowProjectId.HasValue && oneOfferItemAmount <= 0)

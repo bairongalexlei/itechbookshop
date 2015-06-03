@@ -55,7 +55,7 @@
             this.ClientSize = new System.Drawing.Size(855, 709);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmReceipt";
-            this.Text = "frmReceipt";
+            this.Text = "Taxable Receipt";
             this.Load += new System.EventHandler(this.frmReceipt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.OfferingBindingSource)).EndInit();
             this.ResumeLayout(false);
