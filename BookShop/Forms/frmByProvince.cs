@@ -50,14 +50,23 @@ namespace BookShop.Forms
                 //Get data source here
                 using (var dbContext = new BookShopEntities())
                 {
+                    string fromDateParameter = string.Empty;
+                    string toDateParameter = string.Empty;
+
                     var query = dbContext.Offerings.Where(offr =>
                         offr.StatusId == (int)Common.CommonEnum.Status.Active);
 
                     if (dateGreaterThan != null && dateGreaterThan > DateTime.MinValue)
+                    {
                         query = query.Where(offr => offr.CreatedDate >= dateGreaterThan);
+                        fromDateParameter = dateGreaterThan.ToShortDateString();
+                    }
 
                     if (dateLessThan != null && dateLessThan > DateTime.MinValue)
+                    {
                         query = query.Where(offr => offr.CreatedDate <= dateLessThan);
+                        toDateParameter = dateLessThan.ToShortDateString();
+                    }
 
 
                     var offerings = query.Select(offr => new
@@ -69,7 +78,9 @@ namespace BookShop.Forms
                         OfferingId = offr.OfferingId,
                         FirstName = offr.Account.FirstName,
                         LastName = offr.Account.LastName,
-                        Province = offr.Account.Address != null ?
+                        Province = (offr.Account.Address != null &&
+                            offr.Account.Address.Province != null &&
+                            offr.Account.Address.Province != "") ?
                             offr.Account.Address.Province : "No Province Name",
                     });
 
@@ -89,6 +100,11 @@ namespace BookShop.Forms
                     dsByProvince.Value = accountOfferingGroups;
 
                     localReport.DataSources.Add(dsByProvince);
+
+                    ReportParameter[] rptPerameters = new ReportParameter[2];
+                    rptPerameters[0] = new ReportParameter("FromDate", fromDateParameter);
+                    rptPerameters[1] = new ReportParameter("ToDate", toDateParameter);
+                    localReport.SetParameters(rptPerameters);
                 }
 
                 this.rptByProvinceViewer.RefreshReport();
