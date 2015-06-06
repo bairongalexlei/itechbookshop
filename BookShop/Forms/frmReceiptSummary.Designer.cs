@@ -54,6 +54,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 498);
             this.Controls.Add(this.rptReceiptSummaryViewer);
+            this.MaximizeBox = false;
             this.Name = "frmReceiptSummary";
             this.Text = "Receipt Summary";
             this.Load += new System.EventHandler(this.fromReceiptSummary_Load);

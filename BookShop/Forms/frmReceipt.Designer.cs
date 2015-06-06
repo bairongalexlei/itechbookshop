@@ -54,6 +54,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 709);
             this.Controls.Add(this.reportViewer1);
+            this.MaximizeBox = false;
             this.Name = "frmReceipt";
             this.Text = "Taxable Receipt";
             this.Load += new System.EventHandler(this.frmReceipt_Load);

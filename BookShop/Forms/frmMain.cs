@@ -955,32 +955,53 @@ namespace BookShop
             }
         }
 
-        private void btnYearReceipt_Click(object sender, EventArgs e)
+        private void btnByReport_Click(object sender, EventArgs e)
         {
-            string inputAccountId = txtSummaryAccount.Text;
-            int selectedSummaryYear = cmbOfferingYear.SelectedIndex;
-
-            int accountId = 0;
-            if (string.IsNullOrEmpty(inputAccountId))
+            if (!maskedTxtReceivedDateGreaterThan.MaskCompleted &&
+                !maskedTxtReceivedDateLessThan.MaskCompleted)
             {
-                MessageBox.Show("Missing account id!");
+                MessageBox.Show("Date is not input yet!");
                 return;
             }
 
-            int.TryParse(inputAccountId, out accountId);
-            if (accountId <= 0)
+            string strDateLessThan = string.Empty;
+            string strDateGreaterThan = string.Empty;
+
+            if (maskedTxtReceivedDateGreaterThan.MaskCompleted)
+                strDateGreaterThan = maskedTxtReceivedDateGreaterThan.Text;
+
+            if (maskedTxtReceivedDateLessThan.MaskCompleted)
+                strDateLessThan = maskedTxtReceivedDateLessThan.Text;
+
+            int selectedByType = cmbByCategory.SelectedIndex;
+            if (selectedByType < 0)
             {
-                MessageBox.Show("Invalid account id!");
+                MessageBox.Show("Please select a by type first!");
                 return;
             }
 
-            if (selectedSummaryYear < 0)
+            if (cmbByCategory.SelectedIndex == 0)
             {
-                MessageBox.Show("Summary year is not selected yet!");
-                return;
+                //var receiptForm = new frmReceipt(strDateGreaterThan, strDateLessThan);
+                //receiptForm.StartPosition = FormStartPosition.CenterParent;
+                //receiptForm.ShowDialog();
+
+                try
+                {
+                    var byProvinceForm = new frmByProvince(strDateGreaterThan, strDateLessThan);
+                    byProvinceForm.StartPosition = FormStartPosition.CenterParent;
+                    byProvinceForm.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                }
             }
-
-
+            else
+            {
+                //var receiptForm = new frmNontaxableReceipt(strDateGreaterThan, strDateLessThan);
+                //receiptForm.StartPosition = FormStartPosition.CenterParent;
+                //receiptForm.ShowDialog();
+            }
         }
     }
 }

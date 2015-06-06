@@ -140,6 +140,24 @@
     <Compile Include="Forms\frmAddress.Designer.cs">
       <DependentUpon>frmAddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmByIndividual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmByIndividual.Designer.cs">
+      <DependentUpon>frmByIndividual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmByOrganization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmByOrganization.Designer.cs">
+      <DependentUpon>frmByOrganization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmByProvince.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmByProvince.Designer.cs">
+      <DependentUpon>frmByProvince.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmDepartmentProjectSummary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +217,15 @@
     <EmbeddedResource Include="Forms\frmAddress.resx">
       <DependentUpon>frmAddress.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmByIndividual.resx">
+      <DependentUpon>frmByIndividual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmByOrganization.resx">
+      <DependentUpon>frmByOrganization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmByProvince.resx">
+      <DependentUpon>frmByProvince.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmDepartmentProjectSummary.resx">
       <DependentUpon>frmDepartmentProjectSummary.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,6 +252,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmReceiptSummary.resx">
       <DependentUpon>frmReceiptSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\rptByIndividualReport.rdlc" />
+    <EmbeddedResource Include="Forms\rptByOrganizationReport.rdlc" />
+    <EmbeddedResource Include="Forms\rptByProvinceReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\rptNontaxableReceipt.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -614,6 +614,7 @@
             this.Controls.Add(this.lblDateReceiptIssued);
             this.Controls.Add(this.txtOfferingId);
             this.Controls.Add(this.lblOffering);
+            this.MaximizeBox = false;
             this.Name = "frmOffering";
             this.Text = "Offering";
             this.Load += new System.EventHandler(this.frmOffering_Load);

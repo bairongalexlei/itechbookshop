@@ -139,13 +139,13 @@
             this.lblDepartmentName = new System.Windows.Forms.Label();
             this.txtDepartmentName = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lblReceiptType = new System.Windows.Forms.Label();
+            this.cmbReceiptType = new System.Windows.Forms.ComboBox();
             this.cmbSummaryType = new System.Windows.Forms.ComboBox();
             this.lblSummaryType = new System.Windows.Forms.Label();
-            this.btnYearReceipt = new System.Windows.Forms.Button();
-            this.cmbOfferingYear = new System.Windows.Forms.ComboBox();
-            this.lblOfferingYear = new System.Windows.Forms.Label();
-            this.txtSummaryAccount = new System.Windows.Forms.TextBox();
-            this.lblSummaryAccountId = new System.Windows.Forms.Label();
+            this.btnGenerateReport = new System.Windows.Forms.Button();
+            this.cmbByCategory = new System.Windows.Forms.ComboBox();
+            this.lblBy = new System.Windows.Forms.Label();
             this.btnBundleSummary = new System.Windows.Forms.Button();
             this.btnBundleReceipt = new System.Windows.Forms.Button();
             this.lblReceivedDateLessThan = new System.Windows.Forms.Label();
@@ -153,8 +153,6 @@
             this.maskedTxtReceivedDateLessThan = new System.Windows.Forms.MaskedTextBox();
             this.maskedTxtReceivedDateGreaterThan = new System.Windows.Forms.MaskedTextBox();
             this.lblReceivedDateForSummary = new System.Windows.Forms.Label();
-            this.cmbReceiptType = new System.Windows.Forms.ComboBox();
-            this.lblReceiptType = new System.Windows.Forms.Label();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
@@ -1205,11 +1203,9 @@
             this.tabPage4.Controls.Add(this.cmbReceiptType);
             this.tabPage4.Controls.Add(this.cmbSummaryType);
             this.tabPage4.Controls.Add(this.lblSummaryType);
-            this.tabPage4.Controls.Add(this.btnYearReceipt);
-            this.tabPage4.Controls.Add(this.cmbOfferingYear);
-            this.tabPage4.Controls.Add(this.lblOfferingYear);
-            this.tabPage4.Controls.Add(this.txtSummaryAccount);
-            this.tabPage4.Controls.Add(this.lblSummaryAccountId);
+            this.tabPage4.Controls.Add(this.btnGenerateReport);
+            this.tabPage4.Controls.Add(this.cmbByCategory);
+            this.tabPage4.Controls.Add(this.lblBy);
             this.tabPage4.Controls.Add(this.btnBundleSummary);
             this.tabPage4.Controls.Add(this.btnBundleReceipt);
             this.tabPage4.Controls.Add(this.lblReceivedDateLessThan);
@@ -1223,6 +1219,27 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Receipt/Summary";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // lblReceiptType
+            // 
+            this.lblReceiptType.AutoSize = true;
+            this.lblReceiptType.Location = new System.Drawing.Point(141, 89);
+            this.lblReceiptType.Name = "lblReceiptType";
+            this.lblReceiptType.Size = new System.Drawing.Size(68, 13);
+            this.lblReceiptType.TabIndex = 126;
+            this.lblReceiptType.Text = "Recipt Type:";
+            // 
+            // cmbReceiptType
+            // 
+            this.cmbReceiptType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReceiptType.FormattingEnabled = true;
+            this.cmbReceiptType.Items.AddRange(new object[] {
+            "Taxable",
+            "Non-Taxable"});
+            this.cmbReceiptType.Location = new System.Drawing.Point(232, 86);
+            this.cmbReceiptType.Name = "cmbReceiptType";
+            this.cmbReceiptType.Size = new System.Drawing.Size(120, 21);
+            this.cmbReceiptType.TabIndex = 125;
             // 
             // cmbSummaryType
             // 
@@ -1246,52 +1263,41 @@
             this.lblSummaryType.TabIndex = 123;
             this.lblSummaryType.Text = "Summary Type:";
             // 
-            // btnYearReceipt
+            // btnGenerateReport
             // 
-            this.btnYearReceipt.Location = new System.Drawing.Point(550, 303);
-            this.btnYearReceipt.Name = "btnYearReceipt";
-            this.btnYearReceipt.Size = new System.Drawing.Size(120, 32);
-            this.btnYearReceipt.TabIndex = 122;
-            this.btnYearReceipt.Text = "Year End Receipt";
-            this.btnYearReceipt.UseVisualStyleBackColor = true;
-            this.btnYearReceipt.Click += new System.EventHandler(this.btnYearReceipt_Click);
+            this.btnGenerateReport.Location = new System.Drawing.Point(583, 251);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(120, 32);
+            this.btnGenerateReport.TabIndex = 122;
+            this.btnGenerateReport.Text = "Generate Report";
+            this.btnGenerateReport.UseVisualStyleBackColor = true;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnByReport_Click);
             // 
-            // cmbOfferingYear
+            // cmbByCategory
             // 
-            this.cmbOfferingYear.FormattingEnabled = true;
-            this.cmbOfferingYear.Location = new System.Drawing.Point(586, 274);
-            this.cmbOfferingYear.Name = "cmbOfferingYear";
-            this.cmbOfferingYear.Size = new System.Drawing.Size(84, 21);
-            this.cmbOfferingYear.TabIndex = 121;
+            this.cmbByCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbByCategory.FormattingEnabled = true;
+            this.cmbByCategory.Items.AddRange(new object[] {
+            "Province",
+            "Individual",
+            "Organization"});
+            this.cmbByCategory.Location = new System.Drawing.Point(583, 213);
+            this.cmbByCategory.Name = "cmbByCategory";
+            this.cmbByCategory.Size = new System.Drawing.Size(120, 21);
+            this.cmbByCategory.TabIndex = 121;
             // 
-            // lblOfferingYear
+            // lblBy
             // 
-            this.lblOfferingYear.AutoSize = true;
-            this.lblOfferingYear.Location = new System.Drawing.Point(508, 277);
-            this.lblOfferingYear.Name = "lblOfferingYear";
-            this.lblOfferingYear.Size = new System.Drawing.Size(72, 13);
-            this.lblOfferingYear.TabIndex = 120;
-            this.lblOfferingYear.Text = "Offering Year:";
-            // 
-            // txtSummaryAccount
-            // 
-            this.txtSummaryAccount.Location = new System.Drawing.Point(586, 245);
-            this.txtSummaryAccount.Name = "txtSummaryAccount";
-            this.txtSummaryAccount.Size = new System.Drawing.Size(84, 20);
-            this.txtSummaryAccount.TabIndex = 119;
-            // 
-            // lblSummaryAccountId
-            // 
-            this.lblSummaryAccountId.AutoSize = true;
-            this.lblSummaryAccountId.Location = new System.Drawing.Point(516, 248);
-            this.lblSummaryAccountId.Name = "lblSummaryAccountId";
-            this.lblSummaryAccountId.Size = new System.Drawing.Size(64, 13);
-            this.lblSummaryAccountId.TabIndex = 118;
-            this.lblSummaryAccountId.Text = "Account ID:";
+            this.lblBy.AutoSize = true;
+            this.lblBy.Location = new System.Drawing.Point(545, 216);
+            this.lblBy.Name = "lblBy";
+            this.lblBy.Size = new System.Drawing.Size(22, 13);
+            this.lblBy.TabIndex = 120;
+            this.lblBy.Text = "By:";
             // 
             // btnBundleSummary
             // 
-            this.btnBundleSummary.Location = new System.Drawing.Point(583, 144);
+            this.btnBundleSummary.Location = new System.Drawing.Point(583, 123);
             this.btnBundleSummary.Name = "btnBundleSummary";
             this.btnBundleSummary.Size = new System.Drawing.Size(120, 32);
             this.btnBundleSummary.TabIndex = 117;
@@ -1301,7 +1307,7 @@
             // 
             // btnBundleReceipt
             // 
-            this.btnBundleReceipt.Location = new System.Drawing.Point(232, 144);
+            this.btnBundleReceipt.Location = new System.Drawing.Point(232, 123);
             this.btnBundleReceipt.Name = "btnBundleReceipt";
             this.btnBundleReceipt.Size = new System.Drawing.Size(120, 32);
             this.btnBundleReceipt.TabIndex = 116;
@@ -1354,33 +1360,13 @@
             this.lblReceivedDateForSummary.TabIndex = 0;
             this.lblReceivedDateForSummary.Text = "<=   Received Date   <=";
             // 
-            // cmbReceiptType
-            // 
-            this.cmbReceiptType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbReceiptType.FormattingEnabled = true;
-            this.cmbReceiptType.Items.AddRange(new object[] {
-            "Taxable",
-            "Non-Taxable"});
-            this.cmbReceiptType.Location = new System.Drawing.Point(232, 86);
-            this.cmbReceiptType.Name = "cmbReceiptType";
-            this.cmbReceiptType.Size = new System.Drawing.Size(120, 21);
-            this.cmbReceiptType.TabIndex = 125;
-            // 
-            // lblReceiptType
-            // 
-            this.lblReceiptType.AutoSize = true;
-            this.lblReceiptType.Location = new System.Drawing.Point(141, 89);
-            this.lblReceiptType.Name = "lblReceiptType";
-            this.lblReceiptType.Size = new System.Drawing.Size(68, 13);
-            this.lblReceiptType.TabIndex = 126;
-            this.lblReceiptType.Text = "Recipt Type:";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(842, 562);
             this.Controls.Add(this.tabBookShop);
+            this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "Bookshop Manager";
             this.tabBookShop.ResumeLayout(false);
@@ -1507,11 +1493,9 @@
         private System.Windows.Forms.MaskedTextBox maskedTxtReceivedDateLessThan;
         private System.Windows.Forms.Button btnBundleSummary;
         private System.Windows.Forms.Button btnBundleReceipt;
-        private System.Windows.Forms.Label lblSummaryAccountId;
-        private System.Windows.Forms.TextBox txtSummaryAccount;
-        private System.Windows.Forms.Label lblOfferingYear;
-        private System.Windows.Forms.ComboBox cmbOfferingYear;
-        private System.Windows.Forms.Button btnYearReceipt;
+        private System.Windows.Forms.Label lblBy;
+        private System.Windows.Forms.ComboBox cmbByCategory;
+        private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.ComboBox cmbSummaryType;
         private System.Windows.Forms.Label lblSummaryType;
         private System.Windows.Forms.DataGridViewButtonColumn AccountId;

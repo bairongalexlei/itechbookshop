@@ -30,10 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.rptPaymentSummaryViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.OfferingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rptPaymentSummaryViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.OfferingBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // OfferingBindingSource
+            // 
+            this.OfferingBindingSource.DataSource = typeof(BookShop.EFData.Offering);
             // 
             // rptPaymentSummaryViewer
             // 
@@ -46,16 +50,13 @@
             this.rptPaymentSummaryViewer.Size = new System.Drawing.Size(756, 474);
             this.rptPaymentSummaryViewer.TabIndex = 0;
             // 
-            // OfferingBindingSource
-            // 
-            this.OfferingBindingSource.DataSource = typeof(BookShop.EFData.Offering);
-            // 
             // frmPaymentSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 498);
             this.Controls.Add(this.rptPaymentSummaryViewer);
+            this.MaximizeBox = false;
             this.Name = "frmPaymentSummary";
             this.Text = "Payment Summary";
             this.Load += new System.EventHandler(this.frmPaymentSummary_Load);

@@ -179,6 +179,7 @@
             this.Controls.Add(this.lblStreet);
             this.Controls.Add(this.txtUnit);
             this.Controls.Add(this.lblUnit);
+            this.MaximizeBox = false;
             this.Name = "frmAddress";
             this.Text = "Address";
             this.ResumeLayout(false);
