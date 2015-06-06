@@ -253,7 +253,9 @@
     <EmbeddedResource Include="Forms\frmReceiptSummary.resx">
       <DependentUpon>frmReceiptSummary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\rptByIndividualReport.rdlc" />
+    <EmbeddedResource Include="Forms\rptByIndividualReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\rptByOrganizationReport.rdlc" />
     <EmbeddedResource Include="Forms\rptByProvinceReport.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

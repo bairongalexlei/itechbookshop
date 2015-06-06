@@ -63,5 +63,35 @@ namespace BookShop.Common
                 return null;
             }
         }
+
+        public static string GetFormattedAddressLine(string unitNum, 
+            string streetName, 
+            string city,
+            string province,
+            string country,
+            string postalCode)
+        {
+            List<string> addressElements = new List<string>();
+
+            if (!string.IsNullOrEmpty(unitNum))
+                addressElements.Add(unitNum);
+
+            if (!string.IsNullOrEmpty(streetName))
+                addressElements.Add(streetName);
+
+            if (!string.IsNullOrEmpty(city))
+                addressElements.Add(city);
+
+            if (!string.IsNullOrEmpty(province))
+                addressElements.Add(province);
+
+            if (!string.IsNullOrEmpty(country))
+                addressElements.Add(country);
+
+            if (!string.IsNullOrEmpty(postalCode))
+                addressElements.Add(postalCode);
+
+            return string.Join(", ", addressElements);
+        }
     }
 }

@@ -982,25 +982,15 @@ namespace BookShop
 
             if (cmbByCategory.SelectedIndex == 0)
             {
-                //var receiptForm = new frmReceipt(strDateGreaterThan, strDateLessThan);
-                //receiptForm.StartPosition = FormStartPosition.CenterParent;
-                //receiptForm.ShowDialog();
-
-                try
-                {
-                    var byProvinceForm = new frmByProvince(strDateGreaterThan, strDateLessThan);
-                    byProvinceForm.StartPosition = FormStartPosition.CenterParent;
-                    byProvinceForm.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                }
+                var byProvinceForm = new frmByProvince(strDateGreaterThan, strDateLessThan);
+                byProvinceForm.StartPosition = FormStartPosition.CenterParent;
+                byProvinceForm.ShowDialog();
             }
-            else
+            else if (cmbByCategory.SelectedIndex == 1)
             {
-                //var receiptForm = new frmNontaxableReceipt(strDateGreaterThan, strDateLessThan);
-                //receiptForm.StartPosition = FormStartPosition.CenterParent;
-                //receiptForm.ShowDialog();
+                var byIndividualForm = new frmByIndividual(strDateGreaterThan, strDateLessThan);
+                byIndividualForm.StartPosition = FormStartPosition.CenterParent;
+                byIndividualForm.ShowDialog();
             }
         }
     }
