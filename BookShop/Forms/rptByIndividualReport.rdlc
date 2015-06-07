@@ -18,7 +18,7 @@
               <Width>1.72299in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.07763in</Width>
+              <Width>1.53596in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -128,7 +128,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=DateTime.Now.ToShortDateString()</Value>
+                              <Value>=string.Format("Printed On: {0}", DateTime.Now.ToShortDateString())</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -701,7 +701,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Spouse.Value</Value>
+                              <Value>=string.Format("Spouse:{0}", Fields!Spouse.Value)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1211,7 +1211,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Subtotal</Value>
+                              <Value>Subtotal:</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -1496,24 +1496,45 @@
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
+                  <Visibility>
+                    <Hidden>=string.IsNullOrEmpty(Fields!AccountType.Value)</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
+                  <Visibility>
+                    <Hidden>=string.IsNullOrEmpty(Fields!FirstName.Value)</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
+                  <Visibility>
+                    <Hidden>=string.IsNullOrEmpty(Fields!LastName.Value)</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
+                  <Visibility>
+                    <Hidden>=string.IsNullOrEmpty(Fields!Telephone.Value)</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
+                  <Visibility>
+                    <Hidden>=string.IsNullOrEmpty(Fields!FullAddress.Value)</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
+                  <Visibility>
+                    <Hidden>=string.IsNullOrEmpty(Fields!Email.Value)</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
+                  <Visibility>
+                    <Hidden>=string.IsNullOrEmpty(Fields!Spouse.Value)</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
@@ -1552,7 +1573,7 @@
         <Top>0.38499cm</Top>
         <Left>0.24606cm</Left>
         <Height>9.23813cm</Height>
-        <Width>7.63351in</Width>
+        <Width>8.09184in</Width>
         <Style>
           <Border>
             <Style>None</Style>

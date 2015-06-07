@@ -992,6 +992,12 @@ namespace BookShop
                 byIndividualForm.StartPosition = FormStartPosition.CenterParent;
                 byIndividualForm.ShowDialog();
             }
+            else if (cmbByCategory.SelectedIndex == 2)
+            {
+                var byIndividualForm = new frmByOrganization(strDateGreaterThan, strDateLessThan);
+                byIndividualForm.StartPosition = FormStartPosition.CenterParent;
+                byIndividualForm.ShowDialog();
+            }
         }
     }
 }
