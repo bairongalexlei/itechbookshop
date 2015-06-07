@@ -34,10 +34,6 @@
             this.lblDateReceiptIssued = new System.Windows.Forms.Label();
             this.txtReceiptNumber = new System.Windows.Forms.TextBox();
             this.lblReceiptNumber = new System.Windows.Forms.Label();
-            this.txtYEndReceiptNumber = new System.Windows.Forms.TextBox();
-            this.lblYearEndReceiptNumber = new System.Windows.Forms.Label();
-            this.txtYEndReceiptIssuedDate = new System.Windows.Forms.TextBox();
-            this.lblYEndReceiptIssuedDate = new System.Windows.Forms.Label();
             this.lblAccountId = new System.Windows.Forms.Label();
             this.cmbAccountId = new System.Windows.Forms.ComboBox();
             this.txtOfferYear = new System.Windows.Forms.TextBox();
@@ -136,44 +132,10 @@
             this.lblReceiptNumber.TabIndex = 4;
             this.lblReceiptNumber.Text = "Receipt #:";
             // 
-            // txtYEndReceiptNumber
-            // 
-            this.txtYEndReceiptNumber.Enabled = false;
-            this.txtYEndReceiptNumber.Location = new System.Drawing.Point(639, 38);
-            this.txtYEndReceiptNumber.Name = "txtYEndReceiptNumber";
-            this.txtYEndReceiptNumber.Size = new System.Drawing.Size(100, 20);
-            this.txtYEndReceiptNumber.TabIndex = 9;
-            // 
-            // lblYearEndReceiptNumber
-            // 
-            this.lblYearEndReceiptNumber.AutoSize = true;
-            this.lblYearEndReceiptNumber.Location = new System.Drawing.Point(547, 41);
-            this.lblYearEndReceiptNumber.Name = "lblYearEndReceiptNumber";
-            this.lblYearEndReceiptNumber.Size = new System.Drawing.Size(86, 13);
-            this.lblYearEndReceiptNumber.TabIndex = 8;
-            this.lblYearEndReceiptNumber.Text = "YEnd Receipt #:";
-            // 
-            // txtYEndReceiptIssuedDate
-            // 
-            this.txtYEndReceiptIssuedDate.Enabled = false;
-            this.txtYEndReceiptIssuedDate.Location = new System.Drawing.Point(417, 38);
-            this.txtYEndReceiptIssuedDate.Name = "txtYEndReceiptIssuedDate";
-            this.txtYEndReceiptIssuedDate.Size = new System.Drawing.Size(100, 20);
-            this.txtYEndReceiptIssuedDate.TabIndex = 7;
-            // 
-            // lblYEndReceiptIssuedDate
-            // 
-            this.lblYEndReceiptIssuedDate.AutoSize = true;
-            this.lblYEndReceiptIssuedDate.Location = new System.Drawing.Point(275, 41);
-            this.lblYEndReceiptIssuedDate.Name = "lblYEndReceiptIssuedDate";
-            this.lblYEndReceiptIssuedDate.Size = new System.Drawing.Size(136, 13);
-            this.lblYEndReceiptIssuedDate.TabIndex = 6;
-            this.lblYEndReceiptIssuedDate.Text = "YEnd Receipt Issued Date:";
-            // 
             // lblAccountId
             // 
             this.lblAccountId.AutoSize = true;
-            this.lblAccountId.Location = new System.Drawing.Point(50, 75);
+            this.lblAccountId.Location = new System.Drawing.Point(50, 44);
             this.lblAccountId.Name = "lblAccountId";
             this.lblAccountId.Size = new System.Drawing.Size(64, 13);
             this.lblAccountId.TabIndex = 10;
@@ -182,7 +144,7 @@
             // cmbAccountId
             // 
             this.cmbAccountId.FormattingEnabled = true;
-            this.cmbAccountId.Location = new System.Drawing.Point(120, 72);
+            this.cmbAccountId.Location = new System.Drawing.Point(120, 41);
             this.cmbAccountId.Name = "cmbAccountId";
             this.cmbAccountId.Size = new System.Drawing.Size(100, 21);
             this.cmbAccountId.TabIndex = 11;
@@ -191,7 +153,7 @@
             // txtOfferYear
             // 
             this.txtOfferYear.Enabled = false;
-            this.txtOfferYear.Location = new System.Drawing.Point(639, 72);
+            this.txtOfferYear.Location = new System.Drawing.Point(639, 41);
             this.txtOfferYear.Name = "txtOfferYear";
             this.txtOfferYear.Size = new System.Drawing.Size(100, 20);
             this.txtOfferYear.TabIndex = 15;
@@ -199,7 +161,7 @@
             // lblOfferYear
             // 
             this.lblOfferYear.AutoSize = true;
-            this.lblOfferYear.Location = new System.Drawing.Point(575, 75);
+            this.lblOfferYear.Location = new System.Drawing.Point(575, 44);
             this.lblOfferYear.Name = "lblOfferYear";
             this.lblOfferYear.Size = new System.Drawing.Size(58, 13);
             this.lblOfferYear.TabIndex = 14;
@@ -208,7 +170,7 @@
             // txtReceivedDate
             // 
             this.txtReceivedDate.Enabled = false;
-            this.txtReceivedDate.Location = new System.Drawing.Point(417, 72);
+            this.txtReceivedDate.Location = new System.Drawing.Point(417, 41);
             this.txtReceivedDate.Name = "txtReceivedDate";
             this.txtReceivedDate.Size = new System.Drawing.Size(100, 20);
             this.txtReceivedDate.TabIndex = 13;
@@ -216,7 +178,7 @@
             // lblReceivedDate
             // 
             this.lblReceivedDate.AutoSize = true;
-            this.lblReceivedDate.Location = new System.Drawing.Point(329, 75);
+            this.lblReceivedDate.Location = new System.Drawing.Point(329, 44);
             this.lblReceivedDate.Name = "lblReceivedDate";
             this.lblReceivedDate.Size = new System.Drawing.Size(82, 13);
             this.lblReceivedDate.TabIndex = 12;
@@ -225,7 +187,7 @@
             // lblAccountType
             // 
             this.lblAccountType.AutoSize = true;
-            this.lblAccountType.Location = new System.Drawing.Point(37, 101);
+            this.lblAccountType.Location = new System.Drawing.Point(37, 70);
             this.lblAccountType.Name = "lblAccountType";
             this.lblAccountType.Size = new System.Drawing.Size(77, 13);
             this.lblAccountType.TabIndex = 56;
@@ -234,7 +196,7 @@
             // txtFirstName
             // 
             this.txtFirstName.Enabled = false;
-            this.txtFirstName.Location = new System.Drawing.Point(226, 124);
+            this.txtFirstName.Location = new System.Drawing.Point(226, 93);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(100, 20);
             this.txtFirstName.TabIndex = 80;
@@ -242,7 +204,7 @@
             // txtLastName
             // 
             this.txtLastName.Enabled = false;
-            this.txtLastName.Location = new System.Drawing.Point(120, 124);
+            this.txtLastName.Location = new System.Drawing.Point(120, 93);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(100, 20);
             this.txtLastName.TabIndex = 79;
@@ -250,7 +212,7 @@
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(53, 127);
+            this.lblFullName.Location = new System.Drawing.Point(53, 96);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(57, 13);
             this.lblFullName.TabIndex = 78;
@@ -259,7 +221,7 @@
             // txtOrganization
             // 
             this.txtOrganization.Enabled = false;
-            this.txtOrganization.Location = new System.Drawing.Point(120, 178);
+            this.txtOrganization.Location = new System.Drawing.Point(120, 147);
             this.txtOrganization.Name = "txtOrganization";
             this.txtOrganization.Size = new System.Drawing.Size(206, 20);
             this.txtOrganization.TabIndex = 84;
@@ -267,7 +229,7 @@
             // txtTitle
             // 
             this.txtTitle.Enabled = false;
-            this.txtTitle.Location = new System.Drawing.Point(120, 150);
+            this.txtTitle.Location = new System.Drawing.Point(120, 119);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(100, 20);
             this.txtTitle.TabIndex = 83;
@@ -275,7 +237,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(84, 153);
+            this.lblTitle.Location = new System.Drawing.Point(84, 122);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(30, 13);
             this.lblTitle.TabIndex = 82;
@@ -284,7 +246,7 @@
             // lblOrganization
             // 
             this.lblOrganization.AutoSize = true;
-            this.lblOrganization.Location = new System.Drawing.Point(45, 181);
+            this.lblOrganization.Location = new System.Drawing.Point(45, 150);
             this.lblOrganization.Name = "lblOrganization";
             this.lblOrganization.Size = new System.Drawing.Size(69, 13);
             this.lblOrganization.TabIndex = 81;
@@ -293,7 +255,7 @@
             // txtCountry
             // 
             this.txtCountry.Enabled = false;
-            this.txtCountry.Location = new System.Drawing.Point(417, 175);
+            this.txtCountry.Location = new System.Drawing.Point(417, 144);
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(100, 20);
             this.txtCountry.TabIndex = 96;
@@ -301,7 +263,7 @@
             // txtProvince
             // 
             this.txtProvince.Enabled = false;
-            this.txtProvince.Location = new System.Drawing.Point(639, 147);
+            this.txtProvince.Location = new System.Drawing.Point(639, 116);
             this.txtProvince.Name = "txtProvince";
             this.txtProvince.Size = new System.Drawing.Size(99, 20);
             this.txtProvince.TabIndex = 95;
@@ -309,7 +271,7 @@
             // txtPostalCode
             // 
             this.txtPostalCode.Enabled = false;
-            this.txtPostalCode.Location = new System.Drawing.Point(639, 175);
+            this.txtPostalCode.Location = new System.Drawing.Point(639, 144);
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(99, 20);
             this.txtPostalCode.TabIndex = 94;
@@ -317,7 +279,7 @@
             // lblPostalCode
             // 
             this.lblPostalCode.AutoSize = true;
-            this.lblPostalCode.Location = new System.Drawing.Point(566, 178);
+            this.lblPostalCode.Location = new System.Drawing.Point(566, 147);
             this.lblPostalCode.Name = "lblPostalCode";
             this.lblPostalCode.Size = new System.Drawing.Size(67, 13);
             this.lblPostalCode.TabIndex = 93;
@@ -326,7 +288,7 @@
             // lblCountry
             // 
             this.lblCountry.AutoSize = true;
-            this.lblCountry.Location = new System.Drawing.Point(365, 178);
+            this.lblCountry.Location = new System.Drawing.Point(365, 147);
             this.lblCountry.Name = "lblCountry";
             this.lblCountry.Size = new System.Drawing.Size(46, 13);
             this.lblCountry.TabIndex = 92;
@@ -335,7 +297,7 @@
             // lblProvince
             // 
             this.lblProvince.AutoSize = true;
-            this.lblProvince.Location = new System.Drawing.Point(581, 150);
+            this.lblProvince.Location = new System.Drawing.Point(581, 119);
             this.lblProvince.Name = "lblProvince";
             this.lblProvince.Size = new System.Drawing.Size(52, 13);
             this.lblProvince.TabIndex = 91;
@@ -344,7 +306,7 @@
             // txtCity
             // 
             this.txtCity.Enabled = false;
-            this.txtCity.Location = new System.Drawing.Point(417, 147);
+            this.txtCity.Location = new System.Drawing.Point(417, 116);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(100, 20);
             this.txtCity.TabIndex = 90;
@@ -352,7 +314,7 @@
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(384, 150);
+            this.lblCity.Location = new System.Drawing.Point(384, 119);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(27, 13);
             this.lblCity.TabIndex = 89;
@@ -361,7 +323,7 @@
             // txtStreet
             // 
             this.txtStreet.Enabled = false;
-            this.txtStreet.Location = new System.Drawing.Point(640, 121);
+            this.txtStreet.Location = new System.Drawing.Point(640, 90);
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.Size = new System.Drawing.Size(99, 20);
             this.txtStreet.TabIndex = 88;
@@ -369,7 +331,7 @@
             // lblStreet
             // 
             this.lblStreet.AutoSize = true;
-            this.lblStreet.Location = new System.Drawing.Point(595, 124);
+            this.lblStreet.Location = new System.Drawing.Point(595, 93);
             this.lblStreet.Name = "lblStreet";
             this.lblStreet.Size = new System.Drawing.Size(38, 13);
             this.lblStreet.TabIndex = 87;
@@ -378,7 +340,7 @@
             // txtUnit
             // 
             this.txtUnit.Enabled = false;
-            this.txtUnit.Location = new System.Drawing.Point(417, 121);
+            this.txtUnit.Location = new System.Drawing.Point(417, 90);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.Size = new System.Drawing.Size(100, 20);
             this.txtUnit.TabIndex = 86;
@@ -386,7 +348,7 @@
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(332, 124);
+            this.lblUnit.Location = new System.Drawing.Point(332, 93);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(79, 13);
             this.lblUnit.TabIndex = 85;
@@ -402,7 +364,7 @@
             "Others",
             "Master Card",
             "Visa"});
-            this.cmbOfferingMethod.Location = new System.Drawing.Point(119, 205);
+            this.cmbOfferingMethod.Location = new System.Drawing.Point(119, 174);
             this.cmbOfferingMethod.Name = "cmbOfferingMethod";
             this.cmbOfferingMethod.Size = new System.Drawing.Size(101, 21);
             this.cmbOfferingMethod.TabIndex = 101;
@@ -410,7 +372,7 @@
             // lblOfferingMethod
             // 
             this.lblOfferingMethod.AutoSize = true;
-            this.lblOfferingMethod.Location = new System.Drawing.Point(68, 208);
+            this.lblOfferingMethod.Location = new System.Drawing.Point(68, 177);
             this.lblOfferingMethod.Name = "lblOfferingMethod";
             this.lblOfferingMethod.Size = new System.Drawing.Size(46, 13);
             this.lblOfferingMethod.TabIndex = 100;
@@ -419,7 +381,7 @@
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(365, 208);
+            this.lblAmount.Location = new System.Drawing.Point(365, 177);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(46, 13);
             this.lblAmount.TabIndex = 102;
@@ -427,7 +389,7 @@
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(417, 205);
+            this.txtAmount.Location = new System.Drawing.Point(417, 174);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(100, 20);
             this.txtAmount.TabIndex = 103;
@@ -440,7 +402,7 @@
             "Personal",
             "Organization",
             "Other"});
-            this.cmbOfferingReceiptType.Location = new System.Drawing.Point(640, 205);
+            this.cmbOfferingReceiptType.Location = new System.Drawing.Point(640, 174);
             this.cmbOfferingReceiptType.Name = "cmbOfferingReceiptType";
             this.cmbOfferingReceiptType.Size = new System.Drawing.Size(99, 21);
             this.cmbOfferingReceiptType.TabIndex = 105;
@@ -448,7 +410,7 @@
             // lblOfferingReceiptType
             // 
             this.lblOfferingReceiptType.AutoSize = true;
-            this.lblOfferingReceiptType.Location = new System.Drawing.Point(559, 208);
+            this.lblOfferingReceiptType.Location = new System.Drawing.Point(559, 177);
             this.lblOfferingReceiptType.Name = "lblOfferingReceiptType";
             this.lblOfferingReceiptType.Size = new System.Drawing.Size(74, 13);
             this.lblOfferingReceiptType.TabIndex = 104;
@@ -456,7 +418,7 @@
             // 
             // txtOthers
             // 
-            this.txtOthers.Location = new System.Drawing.Point(120, 232);
+            this.txtOthers.Location = new System.Drawing.Point(120, 201);
             this.txtOthers.Name = "txtOthers";
             this.txtOthers.Size = new System.Drawing.Size(618, 20);
             this.txtOthers.TabIndex = 107;
@@ -464,7 +426,7 @@
             // lblOthers
             // 
             this.lblOthers.AutoSize = true;
-            this.lblOthers.Location = new System.Drawing.Point(73, 235);
+            this.lblOthers.Location = new System.Drawing.Point(73, 204);
             this.lblOthers.Name = "lblOthers";
             this.lblOthers.Size = new System.Drawing.Size(41, 13);
             this.lblOthers.TabIndex = 106;
@@ -477,9 +439,9 @@
             this.ProjectDepartment,
             this.OfferSubAmount,
             this.OfferingLineItemId});
-            this.dataGridViewOfferLines.Location = new System.Drawing.Point(40, 258);
+            this.dataGridViewOfferLines.Location = new System.Drawing.Point(40, 231);
             this.dataGridViewOfferLines.Name = "dataGridViewOfferLines";
-            this.dataGridViewOfferLines.Size = new System.Drawing.Size(698, 150);
+            this.dataGridViewOfferLines.Size = new System.Drawing.Size(698, 176);
             this.dataGridViewOfferLines.TabIndex = 108;
             this.dataGridViewOfferLines.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewOfferLines_EditingControlShowing);
             // 
@@ -553,7 +515,7 @@
             // txtAccountType
             // 
             this.txtAccountType.Enabled = false;
-            this.txtAccountType.Location = new System.Drawing.Point(120, 98);
+            this.txtAccountType.Location = new System.Drawing.Point(120, 67);
             this.txtAccountType.Name = "txtAccountType";
             this.txtAccountType.Size = new System.Drawing.Size(100, 20);
             this.txtAccountType.TabIndex = 115;
@@ -604,10 +566,6 @@
             this.Controls.Add(this.lblReceivedDate);
             this.Controls.Add(this.cmbAccountId);
             this.Controls.Add(this.lblAccountId);
-            this.Controls.Add(this.txtYEndReceiptNumber);
-            this.Controls.Add(this.lblYearEndReceiptNumber);
-            this.Controls.Add(this.txtYEndReceiptIssuedDate);
-            this.Controls.Add(this.lblYEndReceiptIssuedDate);
             this.Controls.Add(this.txtReceiptNumber);
             this.Controls.Add(this.lblReceiptNumber);
             this.Controls.Add(this.txtDateReceiptIssued);
@@ -637,10 +595,6 @@
         private System.Windows.Forms.Label lblDateReceiptIssued;
         private System.Windows.Forms.TextBox txtReceiptNumber;
         private System.Windows.Forms.Label lblReceiptNumber;
-        private System.Windows.Forms.TextBox txtYEndReceiptNumber;
-        private System.Windows.Forms.Label lblYearEndReceiptNumber;
-        private System.Windows.Forms.TextBox txtYEndReceiptIssuedDate;
-        private System.Windows.Forms.Label lblYEndReceiptIssuedDate;
         private System.Windows.Forms.Label lblAccountId;
         private System.Windows.Forms.ComboBox cmbAccountId;
         private System.Windows.Forms.TextBox txtOfferYear;
