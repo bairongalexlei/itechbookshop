@@ -35,7 +35,7 @@ namespace BookShop
                 dsYears.Add(year);
             }
 
-            cmbYEndOfferingYear.DataSource = dsYears;
+            cmbYEndOfferingYear.DataSource = dsYears; 
             cmbYEndOfferingYear.SelectedIndex = dsYears.Count - 1;
         }
 
