@@ -21,7 +21,22 @@ namespace BookShop
             BindAccounts();
             BindOfferings();
             BindSignature();
+            BindYearEndCombo();
             cmbDepartments.DropDown += new System.EventHandler(cmbDepartments_DropDown);
+        }
+
+        private void BindYearEndCombo()
+        {
+            int currentYear = DateTime.Now.Year;
+            List<int> dsYears = new List<int>();
+
+            for (int year = 1998; year <= currentYear; year++)
+            {
+                dsYears.Add(year);
+            }
+
+            cmbYEndOfferingYear.DataSource = dsYears;
+            cmbYEndOfferingYear.SelectedIndex = dsYears.Count - 1;
         }
 
         private void BindSignature()
@@ -889,6 +904,7 @@ namespace BookShop
             if (cmbReceiptType.SelectedIndex == 0)
             {
                 var receiptForm = new frmReceipt(strDateGreaterThan, strDateLessThan);
+                //var receiptForm = new frmReceipt(strDateGreaterThan, strDateLessThan, false);
                 receiptForm.StartPosition = FormStartPosition.CenterParent;
                 receiptForm.ShowDialog(); 
             }
@@ -997,6 +1013,49 @@ namespace BookShop
                 var byIndividualForm = new frmByOrganization(strDateGreaterThan, strDateLessThan);
                 byIndividualForm.StartPosition = FormStartPosition.CenterParent;
                 byIndividualForm.ShowDialog();
+            }
+        }
+
+        private void btnYearEndReceipt_Click(object sender, EventArgs e)
+        {
+            string strYearEndAccountId = txtYEndAccountId.Text;
+            int yearEndAccountId = 0;
+
+            int.TryParse(strYearEndAccountId, out yearEndAccountId);
+            //if (yearEndAccountId <= 0)
+            //{
+            //    MessageBox.Show("Invalid input for account id. Please input a proper account id.");
+            //    return;
+            //}
+
+            int selectedReceiptType = cmbYEndReceiptType.SelectedIndex;
+            if (selectedReceiptType <= -1)
+            {
+                MessageBox.Show("Please select a receipt type first.");
+                return;
+            }
+
+            int selectedYear = cmbYEndOfferingYear.SelectedIndex;
+            if (selectedYear <= -1)
+            {
+                MessageBox.Show("Please select a year first.");
+                return;
+            }
+
+            int year = 0;
+            int.TryParse(cmbYEndOfferingYear.Text, out year);
+
+            if (selectedReceiptType == 0)
+            {
+                var taxableReceiptForm = new frmReceipt(yearEndAccountId, year);
+                taxableReceiptForm.StartPosition = FormStartPosition.CenterParent;
+                taxableReceiptForm.ShowDialog();
+            }
+            else
+            {
+                var nonTaxableReceiptForm = new frmNontaxableReceipt(yearEndAccountId, year);
+                nonTaxableReceiptForm.StartPosition = FormStartPosition.CenterParent;
+                nonTaxableReceiptForm.ShowDialog();
             }
         }
     }

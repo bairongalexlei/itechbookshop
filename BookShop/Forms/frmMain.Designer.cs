@@ -153,6 +153,15 @@
             this.maskedTxtReceivedDateLessThan = new System.Windows.Forms.MaskedTextBox();
             this.maskedTxtReceivedDateGreaterThan = new System.Windows.Forms.MaskedTextBox();
             this.lblReceivedDateForSummary = new System.Windows.Forms.Label();
+            this.grpBoxReceiptAndSummary = new System.Windows.Forms.GroupBox();
+            this.grpBoxYearEndReceipt = new System.Windows.Forms.GroupBox();
+            this.lblYEndAccountId = new System.Windows.Forms.Label();
+            this.txtYEndAccountId = new System.Windows.Forms.TextBox();
+            this.lblYEndOfferingYear = new System.Windows.Forms.Label();
+            this.cmbYEndOfferingYear = new System.Windows.Forms.ComboBox();
+            this.btnYearEndReceipt = new System.Windows.Forms.Button();
+            this.lblYEndReceiptType = new System.Windows.Forms.Label();
+            this.cmbYEndReceiptType = new System.Windows.Forms.ComboBox();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
@@ -161,6 +170,8 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgPictureBox)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.grpBoxReceiptAndSummary.SuspendLayout();
+            this.grpBoxYearEndReceipt.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabBookShop
@@ -1199,20 +1210,8 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.lblReceiptType);
-            this.tabPage4.Controls.Add(this.cmbReceiptType);
-            this.tabPage4.Controls.Add(this.cmbSummaryType);
-            this.tabPage4.Controls.Add(this.lblSummaryType);
-            this.tabPage4.Controls.Add(this.btnGenerateReport);
-            this.tabPage4.Controls.Add(this.cmbByCategory);
-            this.tabPage4.Controls.Add(this.lblBy);
-            this.tabPage4.Controls.Add(this.btnBundleSummary);
-            this.tabPage4.Controls.Add(this.btnBundleReceipt);
-            this.tabPage4.Controls.Add(this.lblReceivedDateLessThan);
-            this.tabPage4.Controls.Add(this.lblReceivedDateGreaterThan);
-            this.tabPage4.Controls.Add(this.maskedTxtReceivedDateLessThan);
-            this.tabPage4.Controls.Add(this.maskedTxtReceivedDateGreaterThan);
-            this.tabPage4.Controls.Add(this.lblReceivedDateForSummary);
+            this.tabPage4.Controls.Add(this.grpBoxYearEndReceipt);
+            this.tabPage4.Controls.Add(this.grpBoxReceiptAndSummary);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(816, 500);
@@ -1223,7 +1222,7 @@
             // lblReceiptType
             // 
             this.lblReceiptType.AutoSize = true;
-            this.lblReceiptType.Location = new System.Drawing.Point(141, 89);
+            this.lblReceiptType.Location = new System.Drawing.Point(156, 84);
             this.lblReceiptType.Name = "lblReceiptType";
             this.lblReceiptType.Size = new System.Drawing.Size(68, 13);
             this.lblReceiptType.TabIndex = 126;
@@ -1236,7 +1235,7 @@
             this.cmbReceiptType.Items.AddRange(new object[] {
             "Taxable",
             "Non-Taxable"});
-            this.cmbReceiptType.Location = new System.Drawing.Point(232, 86);
+            this.cmbReceiptType.Location = new System.Drawing.Point(247, 81);
             this.cmbReceiptType.Name = "cmbReceiptType";
             this.cmbReceiptType.Size = new System.Drawing.Size(120, 21);
             this.cmbReceiptType.TabIndex = 125;
@@ -1249,7 +1248,7 @@
             "Receipt",
             "Payment",
             "Department/Project"});
-            this.cmbSummaryType.Location = new System.Drawing.Point(583, 86);
+            this.cmbSummaryType.Location = new System.Drawing.Point(562, 81);
             this.cmbSummaryType.Name = "cmbSummaryType";
             this.cmbSummaryType.Size = new System.Drawing.Size(120, 21);
             this.cmbSummaryType.TabIndex = 124;
@@ -1257,7 +1256,7 @@
             // lblSummaryType
             // 
             this.lblSummaryType.AutoSize = true;
-            this.lblSummaryType.Location = new System.Drawing.Point(487, 89);
+            this.lblSummaryType.Location = new System.Drawing.Point(466, 84);
             this.lblSummaryType.Name = "lblSummaryType";
             this.lblSummaryType.Size = new System.Drawing.Size(80, 13);
             this.lblSummaryType.TabIndex = 123;
@@ -1265,7 +1264,7 @@
             // 
             // btnGenerateReport
             // 
-            this.btnGenerateReport.Location = new System.Drawing.Point(583, 251);
+            this.btnGenerateReport.Location = new System.Drawing.Point(562, 221);
             this.btnGenerateReport.Name = "btnGenerateReport";
             this.btnGenerateReport.Size = new System.Drawing.Size(120, 32);
             this.btnGenerateReport.TabIndex = 122;
@@ -1281,7 +1280,7 @@
             "Province",
             "Individual",
             "Organization"});
-            this.cmbByCategory.Location = new System.Drawing.Point(583, 213);
+            this.cmbByCategory.Location = new System.Drawing.Point(562, 183);
             this.cmbByCategory.Name = "cmbByCategory";
             this.cmbByCategory.Size = new System.Drawing.Size(120, 21);
             this.cmbByCategory.TabIndex = 121;
@@ -1289,7 +1288,7 @@
             // lblBy
             // 
             this.lblBy.AutoSize = true;
-            this.lblBy.Location = new System.Drawing.Point(545, 216);
+            this.lblBy.Location = new System.Drawing.Point(524, 186);
             this.lblBy.Name = "lblBy";
             this.lblBy.Size = new System.Drawing.Size(22, 13);
             this.lblBy.TabIndex = 120;
@@ -1297,7 +1296,7 @@
             // 
             // btnBundleSummary
             // 
-            this.btnBundleSummary.Location = new System.Drawing.Point(583, 123);
+            this.btnBundleSummary.Location = new System.Drawing.Point(562, 118);
             this.btnBundleSummary.Name = "btnBundleSummary";
             this.btnBundleSummary.Size = new System.Drawing.Size(120, 32);
             this.btnBundleSummary.TabIndex = 117;
@@ -1307,7 +1306,7 @@
             // 
             // btnBundleReceipt
             // 
-            this.btnBundleReceipt.Location = new System.Drawing.Point(232, 123);
+            this.btnBundleReceipt.Location = new System.Drawing.Point(247, 118);
             this.btnBundleReceipt.Name = "btnBundleReceipt";
             this.btnBundleReceipt.Size = new System.Drawing.Size(120, 32);
             this.btnBundleReceipt.TabIndex = 116;
@@ -1318,7 +1317,7 @@
             // lblReceivedDateLessThan
             // 
             this.lblReceivedDateLessThan.AutoSize = true;
-            this.lblReceivedDateLessThan.Location = new System.Drawing.Point(265, 54);
+            this.lblReceivedDateLessThan.Location = new System.Drawing.Point(280, 49);
             this.lblReceivedDateLessThan.Name = "lblReceivedDateLessThan";
             this.lblReceivedDateLessThan.Size = new System.Drawing.Size(85, 13);
             this.lblReceivedDateLessThan.TabIndex = 115;
@@ -1327,7 +1326,7 @@
             // lblReceivedDateGreaterThan
             // 
             this.lblReceivedDateGreaterThan.AutoSize = true;
-            this.lblReceivedDateGreaterThan.Location = new System.Drawing.Point(47, 54);
+            this.lblReceivedDateGreaterThan.Location = new System.Drawing.Point(62, 49);
             this.lblReceivedDateGreaterThan.Name = "lblReceivedDateGreaterThan";
             this.lblReceivedDateGreaterThan.Size = new System.Drawing.Size(85, 13);
             this.lblReceivedDateGreaterThan.TabIndex = 114;
@@ -1335,7 +1334,7 @@
             // 
             // maskedTxtReceivedDateLessThan
             // 
-            this.maskedTxtReceivedDateLessThan.Location = new System.Drawing.Point(268, 31);
+            this.maskedTxtReceivedDateLessThan.Location = new System.Drawing.Point(283, 26);
             this.maskedTxtReceivedDateLessThan.Mask = "00/00/0000";
             this.maskedTxtReceivedDateLessThan.Name = "maskedTxtReceivedDateLessThan";
             this.maskedTxtReceivedDateLessThan.Size = new System.Drawing.Size(84, 20);
@@ -1344,7 +1343,7 @@
             // 
             // maskedTxtReceivedDateGreaterThan
             // 
-            this.maskedTxtReceivedDateGreaterThan.Location = new System.Drawing.Point(50, 31);
+            this.maskedTxtReceivedDateGreaterThan.Location = new System.Drawing.Point(65, 26);
             this.maskedTxtReceivedDateGreaterThan.Mask = "00/00/0000";
             this.maskedTxtReceivedDateGreaterThan.Name = "maskedTxtReceivedDateGreaterThan";
             this.maskedTxtReceivedDateGreaterThan.Size = new System.Drawing.Size(85, 20);
@@ -1354,11 +1353,118 @@
             // lblReceivedDateForSummary
             // 
             this.lblReceivedDateForSummary.AutoSize = true;
-            this.lblReceivedDateForSummary.Location = new System.Drawing.Point(141, 34);
+            this.lblReceivedDateForSummary.Location = new System.Drawing.Point(156, 29);
             this.lblReceivedDateForSummary.Name = "lblReceivedDateForSummary";
             this.lblReceivedDateForSummary.Size = new System.Drawing.Size(121, 13);
             this.lblReceivedDateForSummary.TabIndex = 0;
             this.lblReceivedDateForSummary.Text = "<=   Received Date   <=";
+            // 
+            // grpBoxReceiptAndSummary
+            // 
+            this.grpBoxReceiptAndSummary.Controls.Add(this.cmbByCategory);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.lblReceiptType);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.lblBy);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.cmbReceiptType);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.btnGenerateReport);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.btnBundleReceipt);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.cmbSummaryType);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.lblReceivedDateLessThan);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.lblSummaryType);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.lblReceivedDateGreaterThan);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.btnBundleSummary);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.maskedTxtReceivedDateLessThan);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.maskedTxtReceivedDateGreaterThan);
+            this.grpBoxReceiptAndSummary.Controls.Add(this.lblReceivedDateForSummary);
+            this.grpBoxReceiptAndSummary.Location = new System.Drawing.Point(32, 14);
+            this.grpBoxReceiptAndSummary.Name = "grpBoxReceiptAndSummary";
+            this.grpBoxReceiptAndSummary.Size = new System.Drawing.Size(742, 264);
+            this.grpBoxReceiptAndSummary.TabIndex = 127;
+            this.grpBoxReceiptAndSummary.TabStop = false;
+            this.grpBoxReceiptAndSummary.Text = "Receipt And Summary";
+            // 
+            // grpBoxYearEndReceipt
+            // 
+            this.grpBoxYearEndReceipt.Controls.Add(this.lblYEndReceiptType);
+            this.grpBoxYearEndReceipt.Controls.Add(this.cmbYEndReceiptType);
+            this.grpBoxYearEndReceipt.Controls.Add(this.btnYearEndReceipt);
+            this.grpBoxYearEndReceipt.Controls.Add(this.cmbYEndOfferingYear);
+            this.grpBoxYearEndReceipt.Controls.Add(this.lblYEndOfferingYear);
+            this.grpBoxYearEndReceipt.Controls.Add(this.txtYEndAccountId);
+            this.grpBoxYearEndReceipt.Controls.Add(this.lblYEndAccountId);
+            this.grpBoxYearEndReceipt.Location = new System.Drawing.Point(32, 305);
+            this.grpBoxYearEndReceipt.Name = "grpBoxYearEndReceipt";
+            this.grpBoxYearEndReceipt.Size = new System.Drawing.Size(742, 173);
+            this.grpBoxYearEndReceipt.TabIndex = 128;
+            this.grpBoxYearEndReceipt.TabStop = false;
+            this.grpBoxYearEndReceipt.Text = "Year End Receipt(s)";
+            // 
+            // lblYEndAccountId
+            // 
+            this.lblYEndAccountId.AutoSize = true;
+            this.lblYEndAccountId.Location = new System.Drawing.Point(62, 47);
+            this.lblYEndAccountId.Name = "lblYEndAccountId";
+            this.lblYEndAccountId.Size = new System.Drawing.Size(62, 13);
+            this.lblYEndAccountId.TabIndex = 124;
+            this.lblYEndAccountId.Text = "Account Id:";
+            // 
+            // txtYEndAccountId
+            // 
+            this.txtYEndAccountId.Location = new System.Drawing.Point(133, 44);
+            this.txtYEndAccountId.Name = "txtYEndAccountId";
+            this.txtYEndAccountId.Size = new System.Drawing.Size(91, 20);
+            this.txtYEndAccountId.TabIndex = 125;
+            // 
+            // lblYEndOfferingYear
+            // 
+            this.lblYEndOfferingYear.AutoSize = true;
+            this.lblYEndOfferingYear.Location = new System.Drawing.Point(52, 115);
+            this.lblYEndOfferingYear.Name = "lblYEndOfferingYear";
+            this.lblYEndOfferingYear.Size = new System.Drawing.Size(72, 13);
+            this.lblYEndOfferingYear.TabIndex = 126;
+            this.lblYEndOfferingYear.Text = "Offering Year:";
+            // 
+            // cmbYEndOfferingYear
+            // 
+            this.cmbYEndOfferingYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbYEndOfferingYear.FormattingEnabled = true;
+            this.cmbYEndOfferingYear.Items.AddRange(new object[] {
+            "Taxable",
+            "Non-Taxable"});
+            this.cmbYEndOfferingYear.Location = new System.Drawing.Point(133, 112);
+            this.cmbYEndOfferingYear.Name = "cmbYEndOfferingYear";
+            this.cmbYEndOfferingYear.Size = new System.Drawing.Size(91, 21);
+            this.cmbYEndOfferingYear.TabIndex = 127;
+            // 
+            // btnYearEndReceipt
+            // 
+            this.btnYearEndReceipt.Location = new System.Drawing.Point(250, 105);
+            this.btnYearEndReceipt.Name = "btnYearEndReceipt";
+            this.btnYearEndReceipt.Size = new System.Drawing.Size(120, 32);
+            this.btnYearEndReceipt.TabIndex = 128;
+            this.btnYearEndReceipt.Text = "Year End Receipt(s)";
+            this.btnYearEndReceipt.UseVisualStyleBackColor = true;
+            this.btnYearEndReceipt.Click += new System.EventHandler(this.btnYearEndReceipt_Click);
+            // 
+            // lblYEndReceiptType
+            // 
+            this.lblYEndReceiptType.AutoSize = true;
+            this.lblYEndReceiptType.Location = new System.Drawing.Point(56, 81);
+            this.lblYEndReceiptType.Name = "lblYEndReceiptType";
+            this.lblYEndReceiptType.Size = new System.Drawing.Size(68, 13);
+            this.lblYEndReceiptType.TabIndex = 130;
+            this.lblYEndReceiptType.Text = "Recipt Type:";
+            // 
+            // cmbYEndReceiptType
+            // 
+            this.cmbYEndReceiptType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbYEndReceiptType.FormattingEnabled = true;
+            this.cmbYEndReceiptType.Items.AddRange(new object[] {
+            "Taxable",
+            "Non-Taxable"});
+            this.cmbYEndReceiptType.Location = new System.Drawing.Point(133, 78);
+            this.cmbYEndReceiptType.Name = "cmbYEndReceiptType";
+            this.cmbYEndReceiptType.Size = new System.Drawing.Size(91, 21);
+            this.cmbYEndReceiptType.TabIndex = 129;
             // 
             // frmMain
             // 
@@ -1380,7 +1486,10 @@
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgPictureBox)).EndInit();
             this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.grpBoxReceiptAndSummary.ResumeLayout(false);
+            this.grpBoxReceiptAndSummary.PerformLayout();
+            this.grpBoxYearEndReceipt.ResumeLayout(false);
+            this.grpBoxYearEndReceipt.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1512,6 +1621,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AddressId;
         private System.Windows.Forms.Label lblReceiptType;
         private System.Windows.Forms.ComboBox cmbReceiptType;
+        private System.Windows.Forms.GroupBox grpBoxReceiptAndSummary;
+        private System.Windows.Forms.GroupBox grpBoxYearEndReceipt;
+        private System.Windows.Forms.Label lblYEndAccountId;
+        private System.Windows.Forms.TextBox txtYEndAccountId;
+        private System.Windows.Forms.Label lblYEndOfferingYear;
+        private System.Windows.Forms.ComboBox cmbYEndOfferingYear;
+        private System.Windows.Forms.Button btnYearEndReceipt;
+        private System.Windows.Forms.Label lblYEndReceiptType;
+        private System.Windows.Forms.ComboBox cmbYEndReceiptType;
     }
 }
 

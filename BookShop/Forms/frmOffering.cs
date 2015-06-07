@@ -575,6 +575,12 @@ namespace BookShop.Forms
                 int currentReceiptCount = 1;
                 int offeringYear;
                 int receiptTypeId = 0;
+                int[] yearEndReceiptTypes = 
+                    {
+                        (int)Common.CommonEnum.AccountType.YChurch,
+                        (int)Common.CommonEnum.AccountType.YIndividual,
+                        (int)Common.CommonEnum.AccountType.YOrganization
+                    };
 
                 if (offeringId > 0)
                 {
@@ -590,42 +596,17 @@ namespace BookShop.Forms
                             return;
                         }
 
+                        if (yearEndReceiptTypes.Contains(currentOffering.Account.AccountTypeId))
+                        {
+                            DialogResult dialogResult = MessageBox.Show("This is a year end receipt. Are you sure to print it now?",
+                                                "Print Receipt", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
+
                         receiptTypeId = currentOffering.ReceiptTypeId ?? 0;
-
-                        //if (!currentOffering.ReceiptId.HasValue)
-                        //{
-                        //    currentOffering.ReceiptDate = currentOffering.CreatedDate;
-                        //    currentOffering.ReceiptIssuedDate = DateTime.Now;
-
-                        //    offeringYear = currentOffering.CreatedDate.Year;
-                        //    var currentYearReceiptCounter = dbContext.ReceiptCounters.FirstOrDefault(c =>
-                        //        c.ReceiptYear == offeringYear);
-
-                        //    if (currentYearReceiptCounter == null)
-                        //    {
-                        //        currentYearReceiptCounter = new ReceiptCounter
-                        //        {
-                        //            ReceiptYear = offeringYear,
-                        //            ReceiptCount = currentReceiptCount
-                        //        };
-
-                        //        dbContext.ReceiptCounters.Add(currentYearReceiptCounter);
-                        //    }
-                        //    else
-                        //    {
-                        //        currentReceiptCount = currentReceiptCount + currentYearReceiptCounter.ReceiptCount;
-                        //        currentYearReceiptCounter.ReceiptCount = currentReceiptCount;
-                        //    }
-
-                        //    //update offering receipt id
-                        //    currentOffering.ReceiptId = currentReceiptCount;
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show(string.Format("Receipt has been generated on: {0}", 
-                        //        currentOffering.ReceiptIssuedDate.Value.ToShortDateString()));
-                        //    return;
-                        //}
 
                         if (!currentOffering.ReceiptId.HasValue)
                         {

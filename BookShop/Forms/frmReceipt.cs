@@ -19,6 +19,8 @@ namespace BookShop.Forms
         private bool isBundlePrint;
         private int offeringYear;
         private int offeringAccountId;
+        private int yearEndReceiptYear;
+        private int yearEndAccountId;
 
         public int OfferingId { get; set; }
         public string ReceiptNumber { get; set; }
@@ -54,11 +56,27 @@ namespace BookShop.Forms
             isBundlePrint = true;
         }
 
+        public frmReceipt(int yEndAccountId, int year)
+        {
+            yearEndAccountId = yEndAccountId;
+            yearEndReceiptYear = year;
+            isBundlePrint = true;
+            InitializeComponent();
+        }
+
         private void frmReceipt_Load(object sender, EventArgs e)
         {
             if (isBundlePrint)
             {
-                GenerateBundleReceipt();
+                if (yearEndReceiptYear <= 0)
+                {
+                    GenerateNonYearEndBundleReceipt();
+                }
+                else
+                {
+                    GenerateYearEndBundleReceipt();
+                }
+
                 return;
             }
 
@@ -133,7 +151,7 @@ namespace BookShop.Forms
             }
         }
 
-        private void GenerateBundleReceipt()
+        private void GenerateYearEndBundleReceipt()
         {
             try
             {
@@ -142,6 +160,134 @@ namespace BookShop.Forms
                 var localReport = reportViewer1.LocalReport;
 
                 localReport.ReportPath = "Forms\\rptOfferingReceipt.rdlc";
+
+                int[] yearEndReceiptTypes = { 
+                                                (int)Common.CommonEnum.AccountType.YChurch,
+                                                (int)Common.CommonEnum.AccountType.YIndividual,
+                                                (int)Common.CommonEnum.AccountType.YOrganization,
+                                            };
+
+                //Get data source here
+                using (var dbContext = new BookShopEntities())
+                {
+                    //var query = dbContext.Offerings.Where(offr => offr.StatusId == (int)Common.CommonEnum.Status.Active);
+                    var query = dbContext.Offerings.Where(offr =>
+                        offr.StatusId == (int)Common.CommonEnum.Status.Active &&
+                        offr.ReceiptTypeId == (int)Common.CommonEnum.ReceiptType.Individual);
+                    
+                    //if (dateGreaterThan != null && dateGreaterThan > DateTime.MinValue)
+                    //    query = query.Where(offr => offr.CreatedDate >= dateGreaterThan);
+
+                    //if (dateLessThan != null && dateLessThan > DateTime.MinValue)
+                    //    query = query.Where(offr => offr.CreatedDate <= dateLessThan);
+
+                    if (yearEndAccountId > 0)
+                    {
+                        query = query.Where(offr => offr.AccountId == yearEndAccountId);
+                    }
+
+                    if (yearEndReceiptYear > 0)
+                    {
+                        query = query.Where(offr => offr.CreatedDate.Year == yearEndReceiptYear);
+                    }
+
+                    query = query.Where(offr => yearEndReceiptTypes.Contains(offr.Account.AccountTypeId));
+
+                    var offeringReceipts = query.Select(offr => new
+                    {
+                        Amount = offr.Amount ?? 0,
+                        OfferingYear = offr.OfferingYear ?? 0,
+                        ReceiptDate = offr.ReceiptDate ?? DateTime.MinValue,
+                        ReceiptId = offr.ReceiptId ?? 0,
+                        ReceiptIssuedDate = offr.ReceiptIssuedDate.HasValue ?
+                            offr.ReceiptIssuedDate.Value : DateTime.MinValue,
+                        ReceiptTypeId = offr.ReceiptTypeId ?? 0,
+                        ReceivedDate = offr.ReceivedDate ?? DateTime.MinValue,
+                        SignatureUserId = offr.SignatureUserId,
+                        CreatedDate = offr.CreatedDate,
+
+                        OfferingId = offr.OfferingId,
+                        FirstName = offr.Account.FirstName,
+                        LastName = offr.Account.LastName,
+                        UnitNumber = (offr.Account.Address != null ?
+                            (offr.Account.Address.UnitSuiteNumber ?? 0) : 0),
+                        StreetName = offr.Account.Address != null ?
+                            offr.Account.Address.StreetName : "",
+                        City = offr.Account.Address != null ?
+                            offr.Account.Address.City : "",
+                        Province = offr.Account.Address != null ?
+                            offr.Account.Address.Province : "",
+                        Country = offr.Account.Address != null ?
+                            offr.Account.Address.Country : "",
+                        PostalCode = offr.Account.Address != null ?
+                            offr.Account.Address.PostalCode : "",
+                        SingatureImage = offr.User.SignatureImageBytes,
+                        //ReceiptNumber = ReceiptNumber,
+                        //ReceiptNumber = (offr.ReceiptId ?? 0) > 0 ?
+                        //    string.Format("{0}-{1}", offr.CreatedDate.Year.ToString(), offr.ReceiptId.Value.ToString().PadLeft(6, '0'))
+                        //    : "",
+                        ReceiptYear = offr.CreatedDate.Year.ToString(),
+                    }).ToList();
+
+                    var offeringReceiptBEs = offeringReceipts.Select(offr => new
+                    {
+                        Amount = offr.Amount,
+                        OfferingYear = offr.OfferingYear,
+                        ReceiptDate = offr.ReceiptDate,
+                        ReceiptId = offr.ReceiptId,
+                        ReceiptIssuedDate = offr.ReceiptIssuedDate,
+                        ReceiptTypeId = offr.ReceiptTypeId,
+                        ReceivedDate = offr.ReceivedDate,
+                        SignatureUserId = offr.SignatureUserId,
+
+                        OfferingId = offr.OfferingId,
+                        FirstName = offr.FirstName,
+                        LastName = offr.LastName,
+                        UnitNumber = offr.UnitNumber,
+                        StreetName = offr.StreetName,
+                        City = offr.City,
+                        Province = offr.Province,
+                        Country = offr.Country,
+                        PostalCode = offr.PostalCode,
+                        SingatureImage = offr.SingatureImage,
+                        //ReceiptNumber = ReceiptNumber,
+                        ReceiptNumber = offr.ReceiptId > 0 ?
+                            string.Format("{0}-{1}", offr.CreatedDate.Year.ToString(), offr.ReceiptId.ToString().PadLeft(6, '0'))
+                            : "",
+                        //ReceiptYear = offr.CreatedDate.Year.ToString(),
+                    }).ToList();
+
+                    var dsOfferingReceipt = new ReportDataSource();
+                    dsOfferingReceipt.Name = "ReceiptOfferingDataSet";
+                    //dsOfferingReceipt.Value = offeringReceipts;
+                    dsOfferingReceipt.Value = offeringReceiptBEs;
+
+                    localReport.DataSources.Add(dsOfferingReceipt);
+                }
+
+                this.reportViewer1.RefreshReport();
+            }
+            catch
+            {
+                MessageBox.Show("Error on generating year end receipts. Please contact iTech support for assistance.");
+            }
+        }
+
+        private void GenerateNonYearEndBundleReceipt()
+        {
+            try
+            {
+                reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
+
+                var localReport = reportViewer1.LocalReport;
+
+                localReport.ReportPath = "Forms\\rptOfferingReceipt.rdlc";
+
+                int[] yearEndReceiptTypes = { 
+                                                (int)Common.CommonEnum.AccountType.YChurch,
+                                                (int)Common.CommonEnum.AccountType.YIndividual,
+                                                (int)Common.CommonEnum.AccountType.YOrganization,
+                                            };
 
                 //Get data source here
                 using (var dbContext = new BookShopEntities())
@@ -156,6 +302,7 @@ namespace BookShop.Forms
                     if (dateLessThan != null && dateLessThan > DateTime.MinValue)
                         query = query.Where(offr => offr.CreatedDate <= dateLessThan);
 
+                    query = query.Where(offr => !yearEndReceiptTypes.Contains(offr.Account.AccountTypeId));
 
                     var offeringReceipts = query.Select(offr => new
                             {
@@ -233,7 +380,7 @@ namespace BookShop.Forms
             }
             catch
             {
-                MessageBox.Show("Error on generating bundle receipt. Please contact iTech support for assistance.");
+                MessageBox.Show("Error on generating non-year end receipts. Please contact iTech support for assistance.");
             }
         }
     }
