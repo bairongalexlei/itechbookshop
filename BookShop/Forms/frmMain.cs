@@ -445,19 +445,34 @@ namespace BookShop
             txtCountry.Clear();
             txtPostalCode.Clear();
 
-            //dataGridViewAccounts.Columns[0].DataPropertyName = "AccountId";
+            //dataGridViewAccounts.DataSource = null;
+            //dataGridViewAccounts.Rows.Clear();
 
-            dataGridViewAccounts.DataSource = null;
-            dataGridViewAccounts.Rows.Clear();
+            using (var dbContext = new BookShopEntities())
+            {
+                var accounts = dbContext.Accounts.Where(ac =>
+                    ac.StatusId != (int)Common.CommonEnum.Status.Active);
 
-            //dataGridViewAccounts.Columns.Clear();
 
-            //DataGridViewButtonColumn col = new DataGridViewButtonColumn();
-            //col.HeaderText = "Account Id";
-            //col.Name = "AccountId";
-            //col.DataPropertyName = "AccountId";//This is very important to match the corresponding Property or DataMember name of your DataSource.
-            //col.FlatStyle = FlatStyle.Popup;//I suggest this because it looks more elegant.
-            //dataGridViewAccounts.Columns.Add(col); 
+                var accountBEs = accounts.Select(ac =>
+                                new
+                                {
+                                    AccountId = ac.AccountId,
+                                    FirstName = ac.FirstName,
+                                    LastName = ac.LastName,
+                                    ChineseName = ac.ChineseName,
+                                    Title = ac.Title,
+                                    SpouseFirstName = ac.SpouseFirstName,
+                                    PostalCode = (ac.Address != null ? ac.Address.PostalCode : ""),
+                                    OrganizationName = ac.OrganizationName,
+                                    Phone = ac.Phone,
+                                    Fax = ac.Fax,
+                                    Email = ac.Email,
+                                    AddressId = ac.AddressId,
+                                }).ToList();
+
+                dataGridViewAccounts.DataSource = accountBEs;
+            }
         }
 
         private void SetupOfferingGridViewColumns()
