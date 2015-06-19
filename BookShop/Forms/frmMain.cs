@@ -307,7 +307,7 @@ namespace BookShop
                     if (selectedLanguage >= 0)
                     {
                         int selectedLanguageId = selectedLanguage + 1;
-                        accounts = accounts.Where(ac => ac.LanguageId == selectedLanguageId);
+                        accounts = accounts.Where(ac => (ac.LanguageId ?? 0) == selectedLanguageId);
                     }
 
                     int unitNumber = 0;
