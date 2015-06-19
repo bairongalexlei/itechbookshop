@@ -506,15 +506,15 @@ namespace BookShop
                     var offerings = dbContext.Offerings.Where(offr =>
                         offr.StatusId == (int)Common.CommonEnum.Status.Active);
 
-                    string searchedLastName = Common.Helper.TrimString(txtLastName.Text);
+                    string searchedLastName = Common.Helper.TrimString(txtOfferingLastName.Text);
                     if (!string.IsNullOrEmpty(searchedLastName))
                         offerings = offerings.Where(offr => offr.Account.LastName.Contains(searchedLastName));
 
-                    string searchedFirstName = Common.Helper.TrimString(txtFirstName.Text);
+                    string searchedFirstName = Common.Helper.TrimString(txtOfferingFirstName.Text);
                     if (!string.IsNullOrEmpty(searchedFirstName))
                         offerings = offerings.Where(offr => offr.Account.FirstName.Contains(searchedFirstName));
 
-                    string searchedOrganization = Common.Helper.TrimString(txtOrganization.Text);
+                    string searchedOrganization = Common.Helper.TrimString(txtOfferingOrganization.Text);
                     if (!string.IsNullOrEmpty(searchedOrganization))
                         offerings = offerings.Where(offr => offr.Account.OrganizationName.Contains(searchedOrganization));
 
@@ -528,30 +528,35 @@ namespace BookShop
                         offerings = offerings.Where(offr => offr.Account.Email == searchedEmail);
 
                     int unitNumber = 0;
-                    int.TryParse(Common.Helper.TrimString(txtUnit.Text), out unitNumber);
+                    int.TryParse(Common.Helper.TrimString(txtOfferingUnit.Text), out unitNumber);
                     if (unitNumber > 0)
                         offerings = offerings.Where(offr => offr.Account.Address != null &&
                                                             offr.Account.Address.UnitSuiteNumber == unitNumber);
 
-                    string searchedStreet = Common.Helper.TrimString(txtStreet.Text);
+                    string searchedStreet = Common.Helper.TrimString(txtOfferingStreet.Text);
                     if (!string.IsNullOrEmpty(searchedStreet))
                         offerings = offerings.Where(offr => offr.Account.Address != null &&
-                                                            offr.Account.Address.StreetName == searchedStreet);
+                                                            offr.Account.Address.StreetName.Contains(searchedStreet));
 
-                    string searchedCity = Common.Helper.TrimString(txtCity.Text);
+                    string searchedCity = Common.Helper.TrimString(txtOfferingCity.Text);
                     if (!string.IsNullOrEmpty(searchedCity))
                         offerings = offerings.Where(offr => offr.Account.Address != null &&
-                                                            offr.Account.Address.City == searchedCity);
+                                                            offr.Account.Address.City.Contains(searchedCity));
 
-                    string searchedProvince = Common.Helper.TrimString(txtProvince.Text);
+                    string searchedProvince = Common.Helper.TrimString(txtOfferingProvince.Text);
                     if (!string.IsNullOrEmpty(searchedProvince))
                         offerings = offerings.Where(offr => offr.Account.Address != null &&
-                                                            offr.Account.Address.Province == searchedProvince);
+                                                            offr.Account.Address.Province.Contains(searchedProvince));
 
-                    string searchedPostalCode = Common.Helper.TrimString(txtPostalCode.Text);
+                    string searchedPostalCode = Common.Helper.TrimString(txtOfferingPostalCode.Text);
                     if (!string.IsNullOrEmpty(searchedPostalCode))
                         offerings = offerings.Where(offr => offr.Account.Address != null &&
-                                                            offr.Account.Address.PostalCode == searchedPostalCode);
+                                                            offr.Account.Address.PostalCode.Contains(searchedPostalCode));
+
+                    string searchedCountry = Common.Helper.TrimString(txtOfferingCountry.Text);
+                    if (!string.IsNullOrEmpty(searchedCountry))
+                        offerings = offerings.Where(offr => offr.Account.Address != null &&
+                                                            offr.Account.Address.Country.Contains(searchedCountry));
 
                     int selectedMethod = cmbOfferingMethod.SelectedIndex;
                     if (selectedMethod > -1)
@@ -570,8 +575,11 @@ namespace BookShop
                             DateTime.TryParse(strSearchedDate, out searchedDate);
 
                             if (searchedDate != null && searchedDate > DateTime.MinValue)
+                            {
+                                searchedDate = searchedDate.AddDays(1);
                                 offerings = offerings.Where(offr =>
-                                    offr.ReceiptIssuedDate <= searchedDate);
+                                       offr.ReceiptIssuedDate <= searchedDate);
+                            }
                         }
                         catch { } 
                     }
@@ -587,7 +595,7 @@ namespace BookShop
 
                     }
 
-                    int selectedAccountType = cmbAccountType.SelectedIndex;
+                    int selectedAccountType = cmbOfferingAccountType.SelectedIndex;
                     if (selectedAccountType > -1)
                         offerings = offerings.Where(offr => offr.Account.AccountTypeId == (selectedAccountType + 1));
 
@@ -702,6 +710,27 @@ namespace BookShop
             txtOfferingAccountId.Clear();
 
             cmbOfferingAccountType.SelectedIndex = -1;
+
+            using (var dbContext = new BookShopEntities())
+            {
+                var offeringBEs = dbContext.Offerings.Where(offr => offr.StatusId != (int)CommonEnum.Status.Active)
+                                .Select(offr =>
+                                new
+                                {
+                                    OfferingId = offr.OfferingId,
+                                    LastName = offr.Account.LastName,
+                                    FirstName = offr.Account.FirstName,
+                                    Phone = offr.Account.Phone,
+                                    Organization = offr.Account.OrganizationName,
+                                    Email = offr.Account.Email,
+                                    PaymentMethod = ((Common.CommonEnum.PaymentMethod)offr.MethodId).ToString(),
+                                    ReceiptType = ((Common.CommonEnum.ReceiptType)offr.ReceiptTypeId).ToString(),
+                                    AccountId = offr.AccountId,
+                                    AccountType = ((Common.CommonEnum.AccountType)offr.Account.AccountTypeId).ToString(),
+                                }).ToList();
+
+                dataGridViewOfferings.DataSource = offeringBEs;
+            }
         }
 
         private void btnNewOffering_Click(object sender, EventArgs e)
