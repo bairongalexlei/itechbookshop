@@ -32,6 +32,10 @@ namespace BookShop.Forms
             if (!string.IsNullOrEmpty(strDateLessThan))
             {
                 DateTime.TryParse(strDateLessThan, out dateLessThan);
+                if (dateLessThan != null && dateLessThan > DateTime.MinValue)
+                {
+                    dateLessThan = dateLessThan.AddDays(1);
+                }
             }
 
             InitializeComponent();

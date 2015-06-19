@@ -17,8 +17,6 @@ namespace BookShop.Forms
         private DateTime dateGreaterThan;
         private DateTime dateLessThan;
         private bool isBundlePrint;
-        private int offeringYear;
-        private int offeringAccountId;
         private int yearEndReceiptYear;
         private int yearEndAccountId;
 

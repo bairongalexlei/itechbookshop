@@ -1005,7 +1005,7 @@ namespace BookShop
             {
                 DateTime.TryParse(strDateLessThan, out dateLessThan);
                 if (dateLessThan != null && dateLessThan > DateTime.MinValue)
-                    summarySearchParms.ToDate = dateLessThan;
+                    summarySearchParms.ToDate = dateLessThan.AddDays(1);
             }
 
             if (cmbSummaryType.SelectedIndex == 0)
