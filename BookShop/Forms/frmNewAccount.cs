@@ -55,7 +55,8 @@ namespace BookShop.Forms
 
             if (isMissingCritalFelds)
             {
-                MessageBox.Show("First name, last name and account type can not be empty");
+                //MessageBox.Show("First name, last name and account type can not be empty");
+                MessageBox.Show("Missing fields.");
                 return;
             }
 
@@ -155,7 +156,25 @@ namespace BookShop.Forms
             }
             catch { }
 
-            bool isMissingCritalFields = (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || accountTypeId <= 0);
+            //bool isMissingCritalFields = (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || accountTypeId <= 0);
+            bool isMissingCritalFields = false;
+
+            if (accountTypeId > 0)
+            {
+                if (accountTypeId == 2 || accountTypeId == 5)
+                {
+                    isMissingCritalFields = (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName));
+                }
+                else
+                {
+                    isMissingCritalFields = string.IsNullOrEmpty(txtOrganization.Text);
+                } 
+            }
+            else
+            {
+                isMissingCritalFields = true;
+            }
+
             return isMissingCritalFields;
         }
 
