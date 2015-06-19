@@ -272,14 +272,17 @@ namespace BookShop
                     int selectedAccountTypeId = cmbAccountType.SelectedIndex;
                     if (selectedAccountTypeId >= 0)
                     {
-                        int accountTypeId = 0;
-                        string strAccountTypeId = Common.Helper.TrimString(cmbAccountType.Text);
-                        int.TryParse(strAccountTypeId, out accountTypeId);
+                        //int accountTypeId = 0;
+                        //string strAccountTypeId = Common.Helper.TrimString(cmbAccountType.Text);
+                        //int.TryParse(strAccountTypeId, out accountTypeId);
 
-                        if (accountTypeId > 0)
-                        {
-                            accounts = accounts.Where(ac => ac.AccountTypeId == accountTypeId);
-                        }
+                        //if (accountTypeId > 0)
+                        //{
+                        //    accounts = accounts.Where(ac => ac.AccountTypeId == accountTypeId);
+                        //}
+
+                        int accountTypeId = selectedAccountTypeId + 1;
+                        accounts = accounts.Where(ac => ac.AccountTypeId == accountTypeId);
                     }
 
                     string organization = Common.Helper.TrimString(txtOrganization.Text);
@@ -442,8 +445,19 @@ namespace BookShop
             txtCountry.Clear();
             txtPostalCode.Clear();
 
+            //dataGridViewAccounts.Columns[0].DataPropertyName = "AccountId";
+
             dataGridViewAccounts.DataSource = null;
             dataGridViewAccounts.Rows.Clear();
+
+            //dataGridViewAccounts.Columns.Clear();
+
+            //DataGridViewButtonColumn col = new DataGridViewButtonColumn();
+            //col.HeaderText = "Account Id";
+            //col.Name = "AccountId";
+            //col.DataPropertyName = "AccountId";//This is very important to match the corresponding Property or DataMember name of your DataSource.
+            //col.FlatStyle = FlatStyle.Popup;//I suggest this because it looks more elegant.
+            //dataGridViewAccounts.Columns.Add(col); 
         }
 
         private void SetupOfferingGridViewColumns()
