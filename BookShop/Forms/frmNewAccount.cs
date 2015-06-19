@@ -211,10 +211,14 @@ namespace BookShop.Forms
             if (cmbAccountType.SelectedIndex == 1 || cmbAccountType.SelectedIndex == 4)
             {
                 txtOrganization.Enabled = false;
+                txtFirstName.Enabled = true;
+                txtLastName.Enabled = true;
             }
             else
             {
                 txtOrganization.Enabled = true;
+                txtFirstName.Enabled = false;
+                txtLastName.Enabled = false;
             }
         }
     }

@@ -453,7 +453,6 @@ namespace BookShop
                 var accounts = dbContext.Accounts.Where(ac =>
                     ac.StatusId != (int)Common.CommonEnum.Status.Active);
 
-
                 var accountBEs = accounts.Select(ac =>
                                 new
                                 {
