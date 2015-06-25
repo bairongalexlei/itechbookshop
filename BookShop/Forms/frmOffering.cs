@@ -21,6 +21,8 @@ namespace BookShop.Forms
         {
             InitializeComponent();
 
+            btnPrintReceipt.Visible = false;
+
             try
             {
                 using (var dbContext = new BookShopEntities())
@@ -60,7 +62,7 @@ namespace BookShop.Forms
                     txtReceiptNumber.Text = receiptNumber;
 
                     txtOfferYear.Text = DateTime.Now.Year.ToString();
-                    txtReceivedDate.Text = DateTime.Now.ToShortDateString();
+                    //txtReceivedDate.Text = DateTime.Now.ToShortDateString();
                 }
             }
             catch
@@ -142,12 +144,15 @@ namespace BookShop.Forms
                         if (oneOffering != null)
                         {
                             txtOfferingId.Text = offeringId.ToString();
-                            txtReceivedDate.Text = oneOffering.CreatedDate.ToShortDateString();
+                            //txtReceivedDate.Text = oneOffering.CreatedDate.ToShortDateString();
+                            maskedTxtReceivedDate.Text = oneOffering.CreatedDate.ToShortDateString();
                             txtOfferYear.Text = oneOffering.CreatedDate.Year.ToString();
 
                             if (oneOffering.ReceiptId.HasValue)
                             {
-                                string receiptNumber = string.Format("{0}-{1}", oneOffering.CreatedDate.Year.ToString(),
+                                //string receiptNumber = string.Format("{0}-{1}", oneOffering.CreatedDate.Year.ToString(),
+                                //                        oneOffering.ReceiptId.Value.ToString().PadLeft(6, '0'));
+                                string receiptNumber = string.Format("{0}-{1}", oneOffering.ReceiptDate.Value.Year.ToString(),
                                                         oneOffering.ReceiptId.Value.ToString().PadLeft(6, '0'));
 
                                 txtReceiptNumber.Text = receiptNumber;
@@ -156,7 +161,10 @@ namespace BookShop.Forms
                             if (oneOffering.ReceiptIssuedDate.HasValue)
                             {
                                 if (oneOffering.ReceiptIssuedDate.Value > DateTime.MinValue)
-                                    txtDateReceiptIssued.Text = oneOffering.ReceiptIssuedDate.Value.ToShortDateString();
+                                {
+                                    //txtDateReceiptIssued.Text = oneOffering.ReceiptIssuedDate.Value.ToShortDateString();
+                                    maskedTxtDateReceiptIssued.Text = oneOffering.ReceiptIssuedDate.Value.ToShortDateString();
+                                }
                             }
 
                             BindOfferingLineItems(dbContext);
@@ -389,7 +397,8 @@ namespace BookShop.Forms
                     if (offering == null)
                     {
                         offering = new Offering();
-                        offering.CreatedDate = DateTime.Now;
+                        //offering.CreatedDate = DateTime.Now;
+                        offering.CreatedDate = DateTime.Parse(maskedTxtReceivedDate.Text);
                         addNewOffering = true;
                     }
 
@@ -498,6 +507,9 @@ namespace BookShop.Forms
             if (cmbOfferingReceiptType.SelectedIndex < 0)
                 errorMessages.Add("Receipt type is not selected.");
 
+            if (!maskedTxtReceivedDate.MaskCompleted)
+                errorMessages.Add("Received date is not set yet.");
+
             decimal rowsSubtotal = 0;
             foreach(DataGridViewRow oneRow in dataGridViewOfferLines.Rows)
             {
@@ -592,7 +604,7 @@ namespace BookShop.Forms
 
                         if (currentOffering == null)
                         {
-                            MessageBox.Show("Empty offering!");
+                            MessageBox.Show("Please save the offering first!");
                             return;
                         }
 
@@ -610,10 +622,12 @@ namespace BookShop.Forms
 
                         if (!currentOffering.ReceiptId.HasValue)
                         {
-                            currentOffering.ReceiptDate = currentOffering.CreatedDate;
+                            //currentOffering.ReceiptDate = currentOffering.CreatedDate;
+                            currentOffering.ReceiptDate = DateTime.Now;
                             currentOffering.ReceiptIssuedDate = DateTime.Now;
 
-                            offeringYear = currentOffering.CreatedDate.Year;
+                            //offeringYear = currentOffering.CreatedDate.Year;
+                            offeringYear = DateTime.Now.Year;
                             var currentYearReceiptCounter = dbContext.ReceiptCounters.FirstOrDefault(c =>
                                 c.ReceiptYear == offeringYear);
 
@@ -641,7 +655,8 @@ namespace BookShop.Forms
                             MessageBox.Show(string.Format("Receipt has been generated on: {0}",
                                 currentOffering.ReceiptIssuedDate.Value.ToShortDateString()));
 
-                            offeringYear = currentOffering.CreatedDate.Year;
+                            //offeringYear = currentOffering.CreatedDate.Year;
+                            offeringYear = (currentOffering.ReceiptDate.Value).Year;
                             currentReceiptCount = currentOffering.ReceiptId ?? 0;
                         }
 

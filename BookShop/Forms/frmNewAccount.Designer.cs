@@ -173,6 +173,7 @@
             // 
             // cmbLanguage
             // 
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLanguage.FormattingEnabled = true;
             this.cmbLanguage.Items.AddRange(new object[] {
             "Chinese",
@@ -220,6 +221,7 @@
             // 
             // cmbAccountType
             // 
+            this.cmbAccountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAccountType.FormattingEnabled = true;
             this.cmbAccountType.Items.AddRange(new object[] {
             "Church",

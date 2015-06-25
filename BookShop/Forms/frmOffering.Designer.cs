@@ -30,7 +30,6 @@
         {
             this.lblOffering = new System.Windows.Forms.Label();
             this.txtOfferingId = new System.Windows.Forms.TextBox();
-            this.txtDateReceiptIssued = new System.Windows.Forms.TextBox();
             this.lblDateReceiptIssued = new System.Windows.Forms.Label();
             this.txtReceiptNumber = new System.Windows.Forms.TextBox();
             this.lblReceiptNumber = new System.Windows.Forms.Label();
@@ -38,7 +37,6 @@
             this.cmbAccountId = new System.Windows.Forms.ComboBox();
             this.txtOfferYear = new System.Windows.Forms.TextBox();
             this.lblOfferYear = new System.Windows.Forms.Label();
-            this.txtReceivedDate = new System.Windows.Forms.TextBox();
             this.lblReceivedDate = new System.Windows.Forms.Label();
             this.lblAccountType = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
@@ -78,6 +76,9 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPrintReceipt = new System.Windows.Forms.Button();
             this.txtAccountType = new System.Windows.Forms.TextBox();
+            this.maskedTxtReceivedDate = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTxtDateReceiptIssued = new System.Windows.Forms.MaskedTextBox();
+            this.lblReceivedDateLessThan = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferLines)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,14 +98,6 @@
             this.txtOfferingId.Name = "txtOfferingId";
             this.txtOfferingId.Size = new System.Drawing.Size(100, 20);
             this.txtOfferingId.TabIndex = 1;
-            // 
-            // txtDateReceiptIssued
-            // 
-            this.txtDateReceiptIssued.Enabled = false;
-            this.txtDateReceiptIssued.Location = new System.Drawing.Point(417, 15);
-            this.txtDateReceiptIssued.Name = "txtDateReceiptIssued";
-            this.txtDateReceiptIssued.Size = new System.Drawing.Size(100, 20);
-            this.txtDateReceiptIssued.TabIndex = 3;
             // 
             // lblDateReceiptIssued
             // 
@@ -166,14 +159,6 @@
             this.lblOfferYear.Size = new System.Drawing.Size(58, 13);
             this.lblOfferYear.TabIndex = 14;
             this.lblOfferYear.Text = "Offer Year:";
-            // 
-            // txtReceivedDate
-            // 
-            this.txtReceivedDate.Enabled = false;
-            this.txtReceivedDate.Location = new System.Drawing.Point(417, 41);
-            this.txtReceivedDate.Name = "txtReceivedDate";
-            this.txtReceivedDate.Size = new System.Drawing.Size(100, 20);
-            this.txtReceivedDate.TabIndex = 13;
             // 
             // lblReceivedDate
             // 
@@ -520,11 +505,40 @@
             this.txtAccountType.Size = new System.Drawing.Size(100, 20);
             this.txtAccountType.TabIndex = 115;
             // 
+            // maskedTxtReceivedDate
+            // 
+            this.maskedTxtReceivedDate.Location = new System.Drawing.Point(417, 41);
+            this.maskedTxtReceivedDate.Mask = "00/00/0000";
+            this.maskedTxtReceivedDate.Name = "maskedTxtReceivedDate";
+            this.maskedTxtReceivedDate.Size = new System.Drawing.Size(100, 20);
+            this.maskedTxtReceivedDate.TabIndex = 116;
+            // 
+            // maskedTxtDateReceiptIssued
+            // 
+            this.maskedTxtDateReceiptIssued.Enabled = false;
+            this.maskedTxtDateReceiptIssued.Location = new System.Drawing.Point(417, 15);
+            this.maskedTxtDateReceiptIssued.Mask = "00/00/0000";
+            this.maskedTxtDateReceiptIssued.Name = "maskedTxtDateReceiptIssued";
+            this.maskedTxtDateReceiptIssued.Size = new System.Drawing.Size(100, 20);
+            this.maskedTxtDateReceiptIssued.TabIndex = 117;
+            // 
+            // lblReceivedDateLessThan
+            // 
+            this.lblReceivedDateLessThan.AutoSize = true;
+            this.lblReceivedDateLessThan.Location = new System.Drawing.Point(414, 64);
+            this.lblReceivedDateLessThan.Name = "lblReceivedDateLessThan";
+            this.lblReceivedDateLessThan.Size = new System.Drawing.Size(85, 13);
+            this.lblReceivedDateLessThan.TabIndex = 118;
+            this.lblReceivedDateLessThan.Text = "(DD/MM/YYYY)";
+            // 
             // frmOffering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 498);
+            this.Controls.Add(this.lblReceivedDateLessThan);
+            this.Controls.Add(this.maskedTxtDateReceiptIssued);
+            this.Controls.Add(this.maskedTxtReceivedDate);
             this.Controls.Add(this.txtAccountType);
             this.Controls.Add(this.btnPrintReceipt);
             this.Controls.Add(this.btnCancel);
@@ -562,13 +576,11 @@
             this.Controls.Add(this.lblAccountType);
             this.Controls.Add(this.txtOfferYear);
             this.Controls.Add(this.lblOfferYear);
-            this.Controls.Add(this.txtReceivedDate);
             this.Controls.Add(this.lblReceivedDate);
             this.Controls.Add(this.cmbAccountId);
             this.Controls.Add(this.lblAccountId);
             this.Controls.Add(this.txtReceiptNumber);
             this.Controls.Add(this.lblReceiptNumber);
-            this.Controls.Add(this.txtDateReceiptIssued);
             this.Controls.Add(this.lblDateReceiptIssued);
             this.Controls.Add(this.txtOfferingId);
             this.Controls.Add(this.lblOffering);
@@ -591,7 +603,6 @@
 
         private System.Windows.Forms.Label lblOffering;
         private System.Windows.Forms.TextBox txtOfferingId;
-        private System.Windows.Forms.TextBox txtDateReceiptIssued;
         private System.Windows.Forms.Label lblDateReceiptIssued;
         private System.Windows.Forms.TextBox txtReceiptNumber;
         private System.Windows.Forms.Label lblReceiptNumber;
@@ -599,7 +610,6 @@
         private System.Windows.Forms.ComboBox cmbAccountId;
         private System.Windows.Forms.TextBox txtOfferYear;
         private System.Windows.Forms.Label lblOfferYear;
-        private System.Windows.Forms.TextBox txtReceivedDate;
         private System.Windows.Forms.Label lblReceivedDate;
         private System.Windows.Forms.Label lblAccountType;
         private System.Windows.Forms.TextBox txtFirstName;
@@ -639,5 +649,8 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn ProjectDepartment;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferSubAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferingLineItemId;
+        private System.Windows.Forms.MaskedTextBox maskedTxtReceivedDate;
+        private System.Windows.Forms.MaskedTextBox maskedTxtDateReceiptIssued;
+        private System.Windows.Forms.Label lblReceivedDateLessThan;
     }
 }

@@ -17,6 +17,8 @@ namespace BookShop.Forms
         {
             InitializeComponent();
             BindAccountId();
+            txtCountry.Text = "Canada";
+            txtProvince.Text = "Ontario";
         }
 
         private void BindAccountId()

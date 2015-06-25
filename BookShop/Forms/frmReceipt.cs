@@ -302,6 +302,13 @@ namespace BookShop.Forms
 
                     query = query.Where(offr => !yearEndReceiptTypes.Contains(offr.Account.AccountTypeId));
 
+                    //bug fix
+                    var firstTimePrintOfferings = query.Where(offr => !offr.ReceiptIssuedDate.HasValue).ToList();
+                    if (firstTimePrintOfferings != null && firstTimePrintOfferings.Count > 0)
+                    {
+                        SetReceiptIssuedDate(dbContext, firstTimePrintOfferings);
+                    }
+
                     var offeringReceipts = query.Select(offr => new
                             {
                                 Amount = offr.Amount ?? 0,
@@ -380,6 +387,45 @@ namespace BookShop.Forms
             {
                 MessageBox.Show("Error on generating non-year end receipts. Please contact iTech support for assistance.");
             }
+        }
+
+        private void SetReceiptIssuedDate(BookShopEntities dbContext, List<Offering> firstTimePrintOfferings)
+        {
+            int currentReceiptCount = 1;
+            int offeringYear = DateTime.Now.Year;
+            var currentYearReceiptCounter = dbContext.ReceiptCounters.FirstOrDefault(c =>
+                c.ReceiptYear == offeringYear);
+
+            if (currentYearReceiptCounter == null)
+            {
+                currentYearReceiptCounter = new ReceiptCounter
+                {
+                    ReceiptYear = offeringYear,
+                    ReceiptCount = currentReceiptCount
+                };
+
+                dbContext.ReceiptCounters.Add(currentYearReceiptCounter);
+            }
+            else
+            {
+                currentReceiptCount = currentReceiptCount + currentYearReceiptCounter.ReceiptCount;
+                currentYearReceiptCounter.ReceiptCount = currentReceiptCount;
+            }
+
+            foreach (var offering in firstTimePrintOfferings)
+            {
+                var dateTimeNow = DateTime.Now;
+                offering.ReceiptDate = dateTimeNow;
+                offering.ReceiptId = currentReceiptCount;
+                string receiptNumber = string.Format("{0}-{1}", offeringYear.ToString(),
+                        currentReceiptCount.ToString().PadLeft(6, '0'));
+
+                offering.ReceiptIssuedDate = dateTimeNow;
+                currentYearReceiptCounter.ReceiptCount = currentReceiptCount;
+                currentReceiptCount++;
+            }
+
+            dbContext.SaveChanges();
         }
     }
 }
