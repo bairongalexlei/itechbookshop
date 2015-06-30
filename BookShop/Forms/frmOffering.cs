@@ -563,6 +563,14 @@ namespace BookShop.Forms
                 txtBox.TextChanged -= new EventHandler(offeringLineItemAmount_TextChanged);
                 txtBox.TextChanged += new EventHandler(offeringLineItemAmount_TextChanged);
             }
+            else if (e.Control is DataGridViewComboBoxEditingControl)
+            {
+                DataGridViewComboBoxEditingControl combo = e.Control as DataGridViewComboBoxEditingControl;
+                if (combo != null)
+                {
+                    combo.SelectedIndex = -1;
+                }
+            }
         }
 
         private void offeringLineItemAmount_TextChanged(object sender, EventArgs e)
@@ -649,6 +657,9 @@ namespace BookShop.Forms
 
                             //update offering receipt id
                             currentOffering.ReceiptId = currentReceiptCount;
+
+                            //set current date as the receipt issue day
+                            maskedTxtDateReceiptIssued.Text = DateTime.Now.ToShortDateString();
                         }
                         else
                         {
@@ -679,6 +690,7 @@ namespace BookShop.Forms
                         receiptForm.StartPosition = FormStartPosition.CenterParent;
                         receiptForm.ShowDialog();
                     }
+                    
                     return;
                 }
                 else
@@ -690,6 +702,11 @@ namespace BookShop.Forms
             {
                 MessageBox.Show("Error on saving receipt information. Please contact iTech support for assistance.");
             }
+        }
+
+        private void dataGridViewOfferLines_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
