@@ -1266,7 +1266,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!FirstName.Value + " " + Fields!LastName.Value</Value>
+                              <Value>=Fields!Organization.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1286,6 +1286,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -1863,7 +1864,7 @@
         <DataSetName>ReceiptOfferingDataSet</DataSetName>
         <Top>0.25929cm</Top>
         <Left>0.22225cm</Left>
-        <Height>12.13635cm</Height>
+        <Height>12.13634cm</Height>
         <Width>8.05835in</Width>
         <Style>
           <Border>
@@ -1940,6 +1941,10 @@
         <Field Name="SingatureImage">
           <DataField>SingatureImage</DataField>
           <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+        <Field Name="Organization">
+          <DataField>Organization</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="FirstName">
           <DataField>FirstName</DataField>

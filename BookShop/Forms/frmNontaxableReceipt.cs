@@ -141,6 +141,7 @@ namespace BookShop.Forms
                                     offr.Account.Address.PostalCode : "",
                                 SingatureImage = offr.User.SignatureImageBytes,
                                 ReceiptNumber = ReceiptNumber,
+                                Organization = offr.Account.OrganizationName,
                                 //FormattedAddress = ""
                             }).ToList();
 
@@ -333,6 +334,7 @@ namespace BookShop.Forms
                         CreatedDate = offr.CreatedDate,
 
                         OfferingId = offr.OfferingId,
+                        Organization = offr.Account.OrganizationName,
                         FirstName = offr.Account.FirstName,
                         LastName = offr.Account.LastName,
                         UnitNumber = (offr.Account.Address != null ?
@@ -364,6 +366,7 @@ namespace BookShop.Forms
                         SignatureUserId = offr.SignatureUserId,
 
                         OfferingId = offr.OfferingId,
+                        Organization = offr.Organization,
                         FirstName = offr.FirstName,
                         LastName = offr.LastName,
                         UnitNumber = offr.UnitNumber,
