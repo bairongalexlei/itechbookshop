@@ -100,9 +100,11 @@ namespace BookShop
             dataGridViewOfferings.Columns[0].DataPropertyName = "OfferingId";
             dataGridViewOfferings.Columns[1].DataPropertyName = "LastName";
             dataGridViewOfferings.Columns[2].DataPropertyName = "FirstName";
-            dataGridViewOfferings.Columns[3].DataPropertyName = "Phone";
+            //dataGridViewOfferings.Columns[3].DataPropertyName = "Phone";
+            dataGridViewOfferings.Columns[3].DataPropertyName = "ReceiptNumber";
             dataGridViewOfferings.Columns[4].DataPropertyName = "Organization";
-            dataGridViewOfferings.Columns[5].DataPropertyName = "Email";
+            //dataGridViewOfferings.Columns[5].DataPropertyName = "Email";
+            dataGridViewOfferings.Columns[5].DataPropertyName = "ReceivedDate";
             dataGridViewOfferings.Columns[6].DataPropertyName = "PaymentMethod";
             dataGridViewOfferings.Columns[7].DataPropertyName = "ReceiptType";
             dataGridViewOfferings.Columns[8].DataPropertyName = "AccountId";
@@ -474,21 +476,23 @@ namespace BookShop
             }
         }
 
-        private void SetupOfferingGridViewColumns()
-        {
-            dataGridViewOfferings.Columns[0].DataPropertyName = "AccountId";
-            dataGridViewOfferings.Columns[1].DataPropertyName = "FirstName";
-            dataGridViewOfferings.Columns[2].DataPropertyName = "LastName";
-            dataGridViewOfferings.Columns[3].DataPropertyName = "ChineseName";
-            dataGridViewOfferings.Columns[4].DataPropertyName = "Title";
-            dataGridViewOfferings.Columns[5].DataPropertyName = "SpouseFirstName";
-            dataGridViewOfferings.Columns[6].DataPropertyName = "PostalCode";
-            dataGridViewOfferings.Columns[7].DataPropertyName = "OrganizationName";
-            dataGridViewOfferings.Columns[8].DataPropertyName = "Phone";
-            dataGridViewOfferings.Columns[9].DataPropertyName = "Fax";
-            dataGridViewOfferings.Columns[10].DataPropertyName = "Email";
-            dataGridViewOfferings.Columns[11].DataPropertyName = "AddressId";
-        }
+        //private void SetupOfferingGridViewColumns()
+        //{
+        //    dataGridViewOfferings.Columns[0].DataPropertyName = "AccountId";
+        //    dataGridViewOfferings.Columns[1].DataPropertyName = "FirstName";
+        //    dataGridViewOfferings.Columns[2].DataPropertyName = "LastName";
+        //    dataGridViewOfferings.Columns[3].DataPropertyName = "ChineseName";
+        //    dataGridViewOfferings.Columns[4].DataPropertyName = "Title";
+        //    dataGridViewOfferings.Columns[5].DataPropertyName = "SpouseFirstName";
+        //    dataGridViewOfferings.Columns[6].DataPropertyName = "PostalCode";
+        //    dataGridViewOfferings.Columns[7].DataPropertyName = "OrganizationName";
+        //    //dataGridViewOfferings.Columns[8].DataPropertyName = "Phone";
+        //    dataGridViewOfferings.Columns[8].DataPropertyName = "ReceiptNumber";
+        //    dataGridViewOfferings.Columns[9].DataPropertyName = "Fax";
+        //    //dataGridViewOfferings.Columns[10].DataPropertyName = "Email";
+        //    dataGridViewOfferings.Columns[10].DataPropertyName = "ReceivedDate";
+        //    dataGridViewOfferings.Columns[11].DataPropertyName = "AddressId";
+        //}
 
         private void btnOfferingSearch_Click(object sender, EventArgs e)
         {
@@ -599,29 +603,54 @@ namespace BookShop
                     if (selectedAccountType > -1)
                         offerings = offerings.Where(offr => offr.Account.AccountTypeId == (selectedAccountType + 1));
 
-                    var offeringBEs = offerings.Select(offr =>
+                    var offeringData = offerings.Select(offr =>
                                 new
                                 {
                                     OfferingId = offr.OfferingId,
                                     LastName = offr.Account.LastName,
                                     FirstName = offr.Account.FirstName,
-                                    Phone = offr.Account.Phone,
+                                    //Phone = offr.Account.Phone,
+                                    ReceiptYear = offr.ReceiptDate.HasValue ? offr.ReceiptDate.Value.Year : 0,
+                                    ReceiptId = offr.ReceiptId ?? 0,
                                     Organization = offr.Account.OrganizationName,
-                                    Email = offr.Account.Email,
-                                    PaymentMethod = ((Common.CommonEnum.PaymentMethod)offr.MethodId).ToString(),
-                                    ReceiptType = ((Common.CommonEnum.ReceiptType)offr.ReceiptTypeId).ToString(),
+                                    //Email = offr.Account.Email,
+                                    ReceivedDate = offr.CreatedDate,
+                                    PaymentMethod = (offr.MethodId ?? 0) > 0 ? ((Common.CommonEnum.PaymentMethod)offr.MethodId).ToString() : "",
+                                    ReceiptType = (offr.ReceiptTypeId ?? 0) > 0 ? ((Common.CommonEnum.ReceiptType)offr.ReceiptTypeId).ToString() : "",
                                     AccountId = offr.AccountId,
                                     AccountType = ((Common.CommonEnum.AccountType)offr.Account.AccountTypeId).ToString(),
                                 }).ToList();
+
+                    var offeringBEs = offeringData.Select(offr => new
+                        {
+                            OfferingId = offr.OfferingId,
+                            LastName = offr.LastName,
+                            FirstName = offr.FirstName,
+                            //Phone = offr.Account.Phone,
+                            ReceiptNumber = (offr.ReceiptId > 0 && offr.ReceiptYear > 0) ? 
+                                            string.Format("{0}-{1}", offr.ReceiptYear.ToString(),
+                                                        offr.ReceiptId.ToString().PadLeft(6, '0')) : "",
+                            Organization = offr.Organization,
+                            //Email = offr.Account.Email,
+                            ReceivedDate = offr.ReceivedDate.ToShortDateString(),
+                            PaymentMethod = offr.PaymentMethod,
+                            ReceiptType = offr.ReceiptType,
+                            AccountId = offr.AccountId,
+                            AccountType = offr.AccountType,
+                        }).ToList();
+
+                    offeringBEs = offeringBEs.OrderBy(offr => offr.ReceiptNumber).ToList();
 
                     if (dataGridViewOfferings.DataSource != null)
                     {
                         dataGridViewOfferings.Columns[0].DataPropertyName = "OfferingId";
                         dataGridViewOfferings.Columns[1].DataPropertyName = "LastName";
                         dataGridViewOfferings.Columns[2].DataPropertyName = "FirstName";
-                        dataGridViewOfferings.Columns[3].DataPropertyName = "Phone";
+                        //dataGridViewOfferings.Columns[3].DataPropertyName = "Phone";
+                        dataGridViewOfferings.Columns[3].DataPropertyName = "ReceiptNumber";
                         dataGridViewOfferings.Columns[4].DataPropertyName = "Organization";
-                        dataGridViewOfferings.Columns[5].DataPropertyName = "Email";
+                        //dataGridViewOfferings.Columns[5].DataPropertyName = "Email";
+                        dataGridViewOfferings.Columns[5].DataPropertyName = "ReceivedDate";
                         dataGridViewOfferings.Columns[6].DataPropertyName = "PaymentMethod";
                         dataGridViewOfferings.Columns[7].DataPropertyName = "ReceiptType";
                         dataGridViewOfferings.Columns[8].DataPropertyName = "AccountId";

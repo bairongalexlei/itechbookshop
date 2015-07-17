@@ -73,16 +73,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lblOfferDateHint = new System.Windows.Forms.Label();
             this.dataGridViewOfferings = new System.Windows.Forms.DataGridView();
-            this.OfferingId = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.OfferingLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingOrganization = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingPaymentMethod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingReceiptType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingAccountId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OfferingAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnOfferingSearch = new System.Windows.Forms.Button();
             this.btnOfferingClear = new System.Windows.Forms.Button();
             this.btnNewOffering = new System.Windows.Forms.Button();
@@ -162,6 +152,16 @@
             this.maskedTxtReceivedDateLessThan = new System.Windows.Forms.MaskedTextBox();
             this.maskedTxtReceivedDateGreaterThan = new System.Windows.Forms.MaskedTextBox();
             this.lblReceivedDateForSummary = new System.Windows.Forms.Label();
+            this.OfferingId = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.OfferingLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingReceiptNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingOrganization = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingReceivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingPaymentMethod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingReceiptType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingAccountId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OfferingAccountType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabBookShop.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
@@ -624,9 +624,9 @@
             this.OfferingId,
             this.OfferingLastName,
             this.OfferingFirstName,
-            this.OfferingPhone,
+            this.OfferingReceiptNumber,
             this.OfferingOrganization,
-            this.OfferingEmail,
+            this.OfferingReceivedDate,
             this.OfferingPaymentMethod,
             this.OfferingReceiptType,
             this.OfferingAccountId,
@@ -636,72 +636,6 @@
             this.dataGridViewOfferings.Size = new System.Drawing.Size(777, 203);
             this.dataGridViewOfferings.TabIndex = 112;
             this.dataGridViewOfferings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOfferings_CellContentClick);
-            // 
-            // OfferingId
-            // 
-            this.OfferingId.HeaderText = "Offering Id";
-            this.OfferingId.Name = "OfferingId";
-            this.OfferingId.ReadOnly = true;
-            this.OfferingId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.OfferingId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // OfferingLastName
-            // 
-            this.OfferingLastName.HeaderText = "Last Name";
-            this.OfferingLastName.Name = "OfferingLastName";
-            this.OfferingLastName.ReadOnly = true;
-            // 
-            // OfferingFirstName
-            // 
-            this.OfferingFirstName.HeaderText = "First Name";
-            this.OfferingFirstName.Name = "OfferingFirstName";
-            this.OfferingFirstName.ReadOnly = true;
-            // 
-            // OfferingPhone
-            // 
-            this.OfferingPhone.HeaderText = "Phone";
-            this.OfferingPhone.Name = "OfferingPhone";
-            this.OfferingPhone.ReadOnly = true;
-            // 
-            // OfferingOrganization
-            // 
-            this.OfferingOrganization.HeaderText = "Organization";
-            this.OfferingOrganization.Name = "OfferingOrganization";
-            this.OfferingOrganization.ReadOnly = true;
-            // 
-            // OfferingEmail
-            // 
-            this.OfferingEmail.HeaderText = "Email";
-            this.OfferingEmail.Name = "OfferingEmail";
-            this.OfferingEmail.ReadOnly = true;
-            // 
-            // OfferingPaymentMethod
-            // 
-            this.OfferingPaymentMethod.HeaderText = "Payment Method";
-            this.OfferingPaymentMethod.Name = "OfferingPaymentMethod";
-            this.OfferingPaymentMethod.ReadOnly = true;
-            // 
-            // OfferingReceiptType
-            // 
-            this.OfferingReceiptType.HeaderText = "Receipt Type";
-            this.OfferingReceiptType.Name = "OfferingReceiptType";
-            this.OfferingReceiptType.ReadOnly = true;
-            // 
-            // OfferingAccountId
-            // 
-            this.OfferingAccountId.HeaderText = "Account Id";
-            this.OfferingAccountId.Name = "OfferingAccountId";
-            this.OfferingAccountId.ReadOnly = true;
-            this.OfferingAccountId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.OfferingAccountId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // OfferingAccountType
-            // 
-            this.OfferingAccountType.HeaderText = "Account Type";
-            this.OfferingAccountType.Name = "OfferingAccountType";
-            this.OfferingAccountType.ReadOnly = true;
-            this.OfferingAccountType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.OfferingAccountType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // btnOfferingSearch
             // 
@@ -1469,6 +1403,72 @@
             this.lblReceivedDateForSummary.TabIndex = 0;
             this.lblReceivedDateForSummary.Text = "<=   Received Date   <=";
             // 
+            // OfferingId
+            // 
+            this.OfferingId.HeaderText = "Offering Id";
+            this.OfferingId.Name = "OfferingId";
+            this.OfferingId.ReadOnly = true;
+            this.OfferingId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OfferingId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // OfferingLastName
+            // 
+            this.OfferingLastName.HeaderText = "Last Name";
+            this.OfferingLastName.Name = "OfferingLastName";
+            this.OfferingLastName.ReadOnly = true;
+            // 
+            // OfferingFirstName
+            // 
+            this.OfferingFirstName.HeaderText = "First Name";
+            this.OfferingFirstName.Name = "OfferingFirstName";
+            this.OfferingFirstName.ReadOnly = true;
+            // 
+            // OfferingReceiptNumber
+            // 
+            this.OfferingReceiptNumber.HeaderText = "Receipt Number";
+            this.OfferingReceiptNumber.Name = "OfferingReceiptNumber";
+            this.OfferingReceiptNumber.ReadOnly = true;
+            // 
+            // OfferingOrganization
+            // 
+            this.OfferingOrganization.HeaderText = "Organization";
+            this.OfferingOrganization.Name = "OfferingOrganization";
+            this.OfferingOrganization.ReadOnly = true;
+            // 
+            // OfferingReceivedDate
+            // 
+            this.OfferingReceivedDate.HeaderText = "Received Date";
+            this.OfferingReceivedDate.Name = "OfferingReceivedDate";
+            this.OfferingReceivedDate.ReadOnly = true;
+            // 
+            // OfferingPaymentMethod
+            // 
+            this.OfferingPaymentMethod.HeaderText = "Payment Method";
+            this.OfferingPaymentMethod.Name = "OfferingPaymentMethod";
+            this.OfferingPaymentMethod.ReadOnly = true;
+            // 
+            // OfferingReceiptType
+            // 
+            this.OfferingReceiptType.HeaderText = "Receipt Type";
+            this.OfferingReceiptType.Name = "OfferingReceiptType";
+            this.OfferingReceiptType.ReadOnly = true;
+            // 
+            // OfferingAccountId
+            // 
+            this.OfferingAccountId.HeaderText = "Account Id";
+            this.OfferingAccountId.Name = "OfferingAccountId";
+            this.OfferingAccountId.ReadOnly = true;
+            this.OfferingAccountId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OfferingAccountId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // OfferingAccountType
+            // 
+            this.OfferingAccountType.HeaderText = "Account Type";
+            this.OfferingAccountType.Name = "OfferingAccountType";
+            this.OfferingAccountType.ReadOnly = true;
+            this.OfferingAccountType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OfferingAccountType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1569,16 +1569,6 @@
         private System.Windows.Forms.Button btnNewOffering;
         private System.Windows.Forms.DataGridView dataGridViewOfferings;
         private System.Windows.Forms.Label lblOfferDateHint;
-        private System.Windows.Forms.DataGridViewButtonColumn OfferingId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingLastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingFirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingOrganization;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingPaymentMethod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingReceiptType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingAccountId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingAccountType;
         private System.Windows.Forms.Label lblDepartmentName;
         private System.Windows.Forms.TextBox txtDepartmentName;
         private System.Windows.Forms.Button btnAddDepartment;
@@ -1633,6 +1623,16 @@
         private System.Windows.Forms.Button btnYearEndReceipt;
         private System.Windows.Forms.Label lblYEndReceiptType;
         private System.Windows.Forms.ComboBox cmbYEndReceiptType;
+        private System.Windows.Forms.DataGridViewButtonColumn OfferingId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingReceiptNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingOrganization;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingReceivedDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingPaymentMethod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingReceiptType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingAccountId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferingAccountType;
     }
 }
 
