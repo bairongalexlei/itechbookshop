@@ -319,7 +319,8 @@ namespace BookShop.Forms
                                 ReceiptIssuedDate = offr.ReceiptIssuedDate.HasValue ?
                                     offr.ReceiptIssuedDate.Value : DateTime.MinValue,
                                 ReceiptTypeId = offr.ReceiptTypeId ?? 0,
-                                ReceivedDate = offr.ReceivedDate ?? DateTime.MinValue,
+                                //ReceivedDate = offr.ReceivedDate ?? DateTime.MinValue,
+                                ReceivedDate = offr.CreatedDate,
                                 SignatureUserId = offr.SignatureUserId,
                                 CreatedDate = offr.CreatedDate,
 
