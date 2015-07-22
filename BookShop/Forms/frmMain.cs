@@ -156,9 +156,11 @@ namespace BookShop
                     //dataGridViewAccounts.DataSource = accounts;
 
                     //var accountIds = accounts.Select(ac => ac.AccountId.ToString()).ToArray();
-                    var accountIds = accounts.Select(ac => ac.AccountId.ToString()).ToList();
-                    accountIds.Insert(0, "");
-                    cmbAccountId.DataSource = accountIds;
+                    //var accountIds = accounts.Select(ac => ac.AccountId.ToString()).ToList();
+                    //accountIds.Insert(0, "");
+                    //cmbAccountId.DataSource = accountIds;
+
+                    txtAccountId.TextChanged += new EventHandler(txtAccountId_TextChanged);
 
                     dataGridViewAccounts.DataSource = null;
                     dataGridViewAccounts.Rows.Clear();
@@ -167,6 +169,53 @@ namespace BookShop
             catch (Exception)
             {
                 MessageBox.Show("Error occurs when binding accounts. Please contact iTech support for assistance.");
+            }
+        }
+
+        private void txtAccountId_TextChanged(object sender, EventArgs e)
+        {
+            //btnClear_Click(sender, new EventArgs());
+            cmbAccountType.SelectedIndex = -1;
+            txtOrganization.Clear();
+            txtLastName.Clear();
+            txtFirstName.Clear();
+            cmbLanguage.SelectedIndex = -1;
+            txtUnit.Clear();
+            txtStreet.Clear();
+            txtCity.Clear();
+            txtProvince.Clear();
+            txtCountry.Clear();
+            txtPostalCode.Clear();
+
+            int accountId = 0;
+            int.TryParse(txtAccountId.Text, out accountId);
+
+            if (accountId > 0)
+            {
+                try
+                {
+                    using (var dbContext = new BookShopEntities())
+                    {
+                        var account = dbContext.Accounts.FirstOrDefault(acct => acct.AccountId == accountId);
+
+                        if (account != null)
+                        {                           
+                            txtLastName.Text = account.LastName;
+                            txtFirstName.Text = account.FirstName;
+                            txtOrganization.Text = account.OrganizationName;
+                            txtUnit.Text = account.Address.UnitSuiteNumber.ToString();
+                            txtStreet.Text = account.Address.StreetName;
+                            txtCity.Text = account.Address.City;
+                            txtProvince.Text = account.Address.Province;
+                            txtCountry.Text = account.Address.Country;
+                            txtPostalCode.Text = account.Address.PostalCode;
+
+                            cmbLanguage.SelectedIndex = ((account.LanguageId ?? -1) > -1) ? (account.LanguageId.Value - 1) : -1;
+                            cmbAccountType.SelectedIndex = account.AccountTypeId - 1;
+                        }
+                    }
+                }
+                catch { }
             }
         }
 
@@ -258,12 +307,16 @@ namespace BookShop
                     var accounts = dbContext.Accounts.Where(ac => 
                         ac.StatusId == (int)Common.CommonEnum.Status.Active);
 
-                    int selectedAccountId = cmbAccountId.SelectedIndex;
+                    //int selectedAccountId = cmbAccountId.SelectedIndex;
+                    int selectedAccountId = 0;
+                    int.TryParse(txtAccountId.Text, out selectedAccountId);
                     if (selectedAccountId >= 0)
                     {
                         int searchAccountId = 0;
-                        string strSearchAccountId = Common.Helper.TrimString(cmbAccountId.Text);
-                        int.TryParse(strSearchAccountId, out searchAccountId);
+                        //string strSearchAccountId = Common.Helper.TrimString(cmbAccountId.Text);
+                        //int.TryParse(strSearchAccountId, out searchAccountId);
+
+                        searchAccountId = selectedAccountId;
 
                         if (searchAccountId > 0) 
                         { 
@@ -401,7 +454,8 @@ namespace BookShop
 
         private bool IsSearchParamsEmpty()
         {
-            int selectedAccountId = cmbAccountId.SelectedIndex;
+            //int selectedAccountId = cmbAccountId.SelectedIndex;
+            string accountId = txtAccountId.Text;
             int selectedAccountTypeId = cmbAccountType.SelectedIndex;
             string organization = Common.Helper.TrimString(txtOrganization.Text);
             string selectedLastName = Common.Helper.TrimString(txtLastName.Text);
@@ -416,7 +470,8 @@ namespace BookShop
             string country = Common.Helper.TrimString(txtCountry.Text);
             string postalCode = Common.Helper.TrimString(txtPostalCode.Text);
 
-            bool isParamsEmpty = (selectedAccountId <= 0 &&
+            bool isParamsEmpty = (//selectedAccountId <= 0 &&
+                                    string.IsNullOrEmpty(accountId) &&
                                     selectedAccountTypeId < 0 &&
                                     string.IsNullOrEmpty(organization) &&
                                     string.IsNullOrEmpty(selectedLastName) &&
@@ -434,7 +489,8 @@ namespace BookShop
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            cmbAccountId.SelectedIndex = -1;
+            //cmbAccountId.SelectedIndex = -1;
+            txtAccountId.Clear();
             cmbAccountType.SelectedIndex = -1;
             txtOrganization.Clear();
             txtLastName.Clear();
