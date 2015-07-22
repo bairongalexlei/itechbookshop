@@ -89,9 +89,14 @@ namespace BookShop.Forms
 
                     localReport.DataSources.Add(dsDepartmentProject);
 
-                    ReportParameter[] rptPerameters = new ReportParameter[2];
+                    var totalAmount = departmentProjectGroups.Sum(g => g.Amount);
+                    var totalOfferings = departmentProjectGroups.Sum(g => g.OfferingsCount);
+
+                    ReportParameter[] rptPerameters = new ReportParameter[4];
                     rptPerameters[0] = new ReportParameter("FromDate", fromDateParameter);
                     rptPerameters[1] = new ReportParameter("ToDate", toDateParameter);
+                    rptPerameters[2] = new ReportParameter("TotalAmount", string.Format("${0}", totalAmount.ToString()));
+                    rptPerameters[3] = new ReportParameter("TotalOfferings", totalOfferings.ToString());
                     localReport.SetParameters(rptPerameters);
                 }
             }

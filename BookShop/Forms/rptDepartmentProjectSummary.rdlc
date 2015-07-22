@@ -87,7 +87,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -926,7 +925,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="$" + Sum(Fields!Amount.Value, "DepartmentProjectSummaryDataSet").ToString()</Value>
+                              <Value>=Parameters!TotalAmount.Value</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -1000,7 +999,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!OfferingsCount.Value, "DepartmentProjectSummaryDataSet").ToString()</Value>
+                              <Value>=Parameters!TotalOfferings.Value</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -1026,6 +1025,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -1142,6 +1142,16 @@
       <DataType>String</DataType>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter2</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TotalAmount">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter3</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TotalOfferings">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter4</Prompt>
     </ReportParameter>
   </ReportParameters>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>

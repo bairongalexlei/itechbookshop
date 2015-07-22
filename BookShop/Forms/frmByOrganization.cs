@@ -69,6 +69,21 @@ namespace BookShop.Forms
                         toDateParameter = dateLessThan.ToShortDateString();
                     }
 
+                    //test here
+                    //        [DisplayValue("Church")]
+                    //Church = 1,
+                    //[DisplayValue("Individual")]
+                    //Individual = 2,
+                    //[DisplayValue("Organization")]
+                    //Organization = 3,
+                    //[DisplayValue("Y-Church")]
+                    //YChurch = 4,
+                    //[DisplayValue("Y-Individual")]
+                    //YIndividual = 5,
+                    //[DisplayValue("Y-Organization")]
+                    //YOrganization = 6
+                    int[] organizationTypeIds = { 1, 3, 4, 6 };
+                    query = query.Where(offr => organizationTypeIds.Contains(offr.Account.AccountTypeId));
 
                     var offerings = query.Select(offr => new
                     {

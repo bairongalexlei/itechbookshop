@@ -1096,9 +1096,9 @@ namespace BookShop
             }
             else if (cmbByCategory.SelectedIndex == 2)
             {
-                var byIndividualForm = new frmByOrganization(strDateGreaterThan, strDateLessThan);
-                byIndividualForm.StartPosition = FormStartPosition.CenterParent;
-                byIndividualForm.ShowDialog();
+                var byOrganizationForm = new frmByOrganization(strDateGreaterThan, strDateLessThan);
+                byOrganizationForm.StartPosition = FormStartPosition.CenterParent;
+                byOrganizationForm.ShowDialog();
             }
         }
 
