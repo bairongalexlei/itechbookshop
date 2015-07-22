@@ -26,7 +26,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.49417cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -154,7 +154,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.52063cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -282,7 +282,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.52063cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -410,7 +410,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.49417cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -541,7 +541,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.52062cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1036,7 +1036,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1324,7 +1323,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.86458cm</Height>
+              <Height>0.62645cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1617,7 +1616,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.49417cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1749,7 +1748,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Authorized Signature</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -1820,7 +1821,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>For more inofrmation on all registered charities in Canada </Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1829,7 +1832,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>under the Income Tax Act please contact: </Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1838,7 +1843,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Canada Revenue Agency www.cra.gc.ca/charities</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1872,7 +1879,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Location Receipt Issued: Scarborough, Ontario</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1981,7 +1990,7 @@
         <DataSetName>ReceiptOfferingDataSet</DataSetName>
         <Top>0.31432cm</Top>
         <Left>0.28787cm</Left>
-        <Height>9.93442cm</Height>
+        <Height>9.14067cm</Height>
         <Width>8.12084in</Width>
         <Style>
           <Border>
