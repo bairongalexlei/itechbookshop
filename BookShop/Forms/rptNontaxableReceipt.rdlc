@@ -825,7 +825,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Microsoft.VisualBasic.Interaction.IIF(System.Convert.ToDateTime(Fields!ReceiptIssuedDate.Value) &gt; System.DateTime.MinValue, System.Convert.ToDateTime(Fields!ReceiptIssuedDate.Value).ToShortDateString(), "")</Value>
+                              <Value>=Microsoft.VisualBasic.Interaction.IIF(System.Convert.ToDateTime(Fields!ReceivedDate.Value) &gt; System.DateTime.MinValue, System.Convert.ToDateTime(Fields!ReceivedDate.Value).ToShortDateString(), "")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -851,6 +851,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1286,7 +1287,6 @@
                       </Style>
                     </Textbox>
                     <ColSpan>3</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
