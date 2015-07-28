@@ -85,8 +85,10 @@ namespace BookShop.Forms
             if (AccountId > 0)
             {
                 accountId = AccountId;
-                cmbAccountId.Text = accountId.ToString();
-                cmbAccountId.Enabled = false;
+                //cmbAccountId.Text = accountId.ToString();
+                //cmbAccountId.Enabled = false;
+                txtBoxAccountId.Text = accountId.ToString();
+                txtBoxAccountId.Enabled = false;
                 try
                 {
                     using (var dbContext = new BookShopEntities())
@@ -239,34 +241,14 @@ namespace BookShop.Forms
 
         private void frmOffering_Load(object sender, EventArgs e)
         {
-            cmbAccountId.DropDown +=
-                new System.EventHandler(cmbAccountId_DropDown);
+            //cmbAccountId.DropDown +=
+            //    new System.EventHandler(cmbAccountId_DropDown);
+
+            txtBoxAccountId.TextChanged += new EventHandler(txtBoxAccountId_TextChanged);
         }
 
-        private void cmbAccountId_DropDown(object sender, EventArgs e)
+        private void txtBoxAccountId_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                using (var dbContext = new BookShopEntities())
-                {
-                    var accountIds = dbContext.Accounts.Where(acct => acct.StatusId == 1)
-                            .Select(ac => ac.AccountId.ToString()).ToList();
-
-                    accountIds.Insert(0, "");
-                    cmbAccountId.DataSource = accountIds;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Error on getting account id list. Please contact iTech support for assistance.");
-            }
-        }
-
-        private void cmbAccountId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbAccountId.SelectedIndex == -1 || string.IsNullOrEmpty(cmbAccountId.Text))
-                return;
-
             //clear account fields
             txtAccountType.Clear();
             txtOrganization.Clear();
@@ -280,9 +262,11 @@ namespace BookShop.Forms
             txtPostalCode.Clear();
             txtTitle.Clear();
 
-            string strAccountId = cmbAccountId.Text;
+            string strAccountId = txtBoxAccountId.Text;
             int.TryParse(strAccountId, out accountId);
-            cmbAccountId.Text = accountId.ToString();
+
+            if (accountId <= 0)
+                return;
 
             try
             {
@@ -321,6 +305,85 @@ namespace BookShop.Forms
                 MessageBox.Show("Error on populating account information. Please contact iTech support for assistance.");
             }
         }
+
+        //private void cmbAccountId_DropDown(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        using (var dbContext = new BookShopEntities())
+        //        {
+        //            var accountIds = dbContext.Accounts.Where(acct => acct.StatusId == 1)
+        //                    .Select(ac => ac.AccountId.ToString()).ToList();
+
+        //            accountIds.Insert(0, "");
+        //            cmbAccountId.DataSource = accountIds;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Error on getting account id list. Please contact iTech support for assistance.");
+        //    }
+        //}
+
+        //private void cmbAccountId_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (cmbAccountId.SelectedIndex == -1 || string.IsNullOrEmpty(cmbAccountId.Text))
+        //        return;
+
+        //    //clear account fields
+        //    txtAccountType.Clear();
+        //    txtOrganization.Clear();
+        //    txtLastName.Clear();
+        //    txtFirstName.Clear();
+        //    txtUnit.Clear();
+        //    txtStreet.Clear();
+        //    txtCity.Clear();
+        //    txtProvince.Clear();
+        //    txtCountry.Clear();
+        //    txtPostalCode.Clear();
+        //    txtTitle.Clear();
+
+        //    string strAccountId = cmbAccountId.Text;
+        //    int.TryParse(strAccountId, out accountId);
+        //    cmbAccountId.Text = accountId.ToString();
+
+        //    try
+        //    {
+        //        using (var dbContext = new BookShopEntities())
+        //        {
+        //            var account = dbContext.Accounts.FirstOrDefault(ac =>
+        //                ac.AccountId == accountId &&
+        //                ac.StatusId == (int)Common.CommonEnum.Status.Active);
+
+        //            if (account == null)
+        //            {
+        //                MessageBox.Show("The account does not exist any more.");
+        //                return;
+        //            }
+
+        //            txtAccountType.Text = ((Common.CommonEnum.AccountType)account.AccountTypeId).ToString();
+        //            txtOrganization.Text = account.OrganizationName;
+        //            txtLastName.Text = account.LastName;
+        //            txtFirstName.Text = account.FirstName;
+        //            txtTitle.Text = account.Title;
+
+        //            var accountAddress = account.Address;
+        //            if (accountAddress != null)
+        //            {
+        //                txtUnit.Text = accountAddress.UnitSuiteNumber.ToString();
+        //                txtStreet.Text = accountAddress.StreetName;
+        //                txtCity.Text = accountAddress.City;
+        //                txtProvince.Text = accountAddress.Province;
+        //                txtCountry.Text = accountAddress.Country;
+        //                txtPostalCode.Text = accountAddress.PostalCode;
+        //            }
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Error on populating account information. Please contact iTech support for assistance.");
+        //    }
+        //}
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

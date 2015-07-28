@@ -34,7 +34,6 @@
             this.txtReceiptNumber = new System.Windows.Forms.TextBox();
             this.lblReceiptNumber = new System.Windows.Forms.Label();
             this.lblAccountId = new System.Windows.Forms.Label();
-            this.cmbAccountId = new System.Windows.Forms.ComboBox();
             this.txtOfferYear = new System.Windows.Forms.TextBox();
             this.lblOfferYear = new System.Windows.Forms.Label();
             this.lblReceivedDate = new System.Windows.Forms.Label();
@@ -79,6 +78,7 @@
             this.maskedTxtReceivedDate = new System.Windows.Forms.MaskedTextBox();
             this.maskedTxtDateReceiptIssued = new System.Windows.Forms.MaskedTextBox();
             this.lblReceivedDateLessThan = new System.Windows.Forms.Label();
+            this.txtBoxAccountId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferLines)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,15 +133,6 @@
             this.lblAccountId.Size = new System.Drawing.Size(64, 13);
             this.lblAccountId.TabIndex = 10;
             this.lblAccountId.Text = "Account ID:";
-            // 
-            // cmbAccountId
-            // 
-            this.cmbAccountId.FormattingEnabled = true;
-            this.cmbAccountId.Location = new System.Drawing.Point(120, 41);
-            this.cmbAccountId.Name = "cmbAccountId";
-            this.cmbAccountId.Size = new System.Drawing.Size(100, 21);
-            this.cmbAccountId.TabIndex = 11;
-            this.cmbAccountId.SelectedIndexChanged += new System.EventHandler(this.cmbAccountId_SelectedIndexChanged);
             // 
             // txtOfferYear
             // 
@@ -532,11 +523,19 @@
             this.lblReceivedDateLessThan.TabIndex = 118;
             this.lblReceivedDateLessThan.Text = "(DD/MM/YYYY)";
             // 
+            // txtBoxAccountId
+            // 
+            this.txtBoxAccountId.Location = new System.Drawing.Point(120, 41);
+            this.txtBoxAccountId.Name = "txtBoxAccountId";
+            this.txtBoxAccountId.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxAccountId.TabIndex = 119;
+            // 
             // frmOffering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 498);
+            this.Controls.Add(this.txtBoxAccountId);
             this.Controls.Add(this.lblReceivedDateLessThan);
             this.Controls.Add(this.maskedTxtDateReceiptIssued);
             this.Controls.Add(this.maskedTxtReceivedDate);
@@ -578,7 +577,6 @@
             this.Controls.Add(this.txtOfferYear);
             this.Controls.Add(this.lblOfferYear);
             this.Controls.Add(this.lblReceivedDate);
-            this.Controls.Add(this.cmbAccountId);
             this.Controls.Add(this.lblAccountId);
             this.Controls.Add(this.txtReceiptNumber);
             this.Controls.Add(this.lblReceiptNumber);
@@ -608,7 +606,6 @@
         private System.Windows.Forms.TextBox txtReceiptNumber;
         private System.Windows.Forms.Label lblReceiptNumber;
         private System.Windows.Forms.Label lblAccountId;
-        private System.Windows.Forms.ComboBox cmbAccountId;
         private System.Windows.Forms.TextBox txtOfferYear;
         private System.Windows.Forms.Label lblOfferYear;
         private System.Windows.Forms.Label lblReceivedDate;
@@ -653,5 +650,6 @@
         private System.Windows.Forms.MaskedTextBox maskedTxtReceivedDate;
         private System.Windows.Forms.MaskedTextBox maskedTxtDateReceiptIssued;
         private System.Windows.Forms.Label lblReceivedDateLessThan;
+        private System.Windows.Forms.TextBox txtBoxAccountId;
     }
 }
