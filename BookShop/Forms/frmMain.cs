@@ -805,13 +805,13 @@ namespace BookShop
                                     OfferingId = offr.OfferingId,
                                     LastName = offr.Account.LastName,
                                     FirstName = offr.Account.FirstName,
-                                    Phone = offr.Account.Phone,
+                                    ReceiptNumber = "",
                                     Organization = offr.Account.OrganizationName,
-                                    Email = offr.Account.Email,
-                                    PaymentMethod = ((Common.CommonEnum.PaymentMethod)offr.MethodId).ToString(),
-                                    ReceiptType = ((Common.CommonEnum.ReceiptType)offr.ReceiptTypeId).ToString(),
+                                    ReceivedDate = "",
+                                    PaymentMethod = "",
+                                    ReceiptType = "",
                                     AccountId = offr.AccountId,
-                                    AccountType = ((Common.CommonEnum.AccountType)offr.Account.AccountTypeId).ToString(),
+                                    AccountType = 0,
                                 }).ToList();
 
                 dataGridViewOfferings.DataSource = offeringBEs;
