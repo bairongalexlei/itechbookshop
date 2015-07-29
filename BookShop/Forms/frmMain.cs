@@ -109,6 +109,7 @@ namespace BookShop
             dataGridViewOfferings.Columns[7].DataPropertyName = "ReceiptType";
             dataGridViewOfferings.Columns[8].DataPropertyName = "AccountId";
             dataGridViewOfferings.Columns[9].DataPropertyName = "AccountType";
+            dataGridViewOfferings.Columns[10].DataPropertyName = "Amount";
 
             dataGridViewOfferings.DataSource = null;
             dataGridViewOfferings.Rows.Clear();
@@ -675,6 +676,7 @@ namespace BookShop
                                     ReceiptType = (offr.ReceiptTypeId ?? 0) > 0 ? ((Common.CommonEnum.ReceiptType)offr.ReceiptTypeId).ToString() : "",
                                     AccountId = offr.AccountId,
                                     AccountType = ((Common.CommonEnum.AccountType)offr.Account.AccountTypeId).ToString(),
+                                    Amount = offr.Amount,
                                 }).ToList();
 
                     var offeringBEs = offeringData.Select(offr => new
@@ -693,6 +695,7 @@ namespace BookShop
                             ReceiptType = offr.ReceiptType,
                             AccountId = offr.AccountId,
                             AccountType = offr.AccountType,
+                            Amount = offr.Amount,
                         }).ToList();
 
                     offeringBEs = offeringBEs.OrderBy(offr => offr.ReceiptNumber).ToList();
@@ -711,6 +714,7 @@ namespace BookShop
                         dataGridViewOfferings.Columns[7].DataPropertyName = "ReceiptType";
                         dataGridViewOfferings.Columns[8].DataPropertyName = "AccountId";
                         dataGridViewOfferings.Columns[9].DataPropertyName = "AccountType";
+                        dataGridViewOfferings.Columns[10].DataPropertyName = "Amount";
                     }
 
                     dataGridViewOfferings.DataSource = offeringBEs;
@@ -812,6 +816,7 @@ namespace BookShop
                                     ReceiptType = "",
                                     AccountId = offr.AccountId,
                                     AccountType = 0,
+                                    Amount = 0,
                                 }).ToList();
 
                 dataGridViewOfferings.DataSource = offeringBEs;
