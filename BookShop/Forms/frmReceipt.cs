@@ -192,7 +192,45 @@ namespace BookShop.Forms
 
                     query = query.Where(offr => yearEndReceiptTypes.Contains(offr.Account.AccountTypeId));
 
-                    var offeringReceipts = query.Select(offr => new
+                    //test begins here autogenerate receipt id for non receipt id offerings
+                    var offerings = query.ToList();
+                    var nonReceiptIdOfferings = offerings.Where(offr => !offr.ReceiptId.HasValue).ToList();
+                    if (nonReceiptIdOfferings != null && nonReceiptIdOfferings.Count > 0)
+                    {
+                        int currentReceiptCount = 0;
+                        int offeringYear = DateTime.Now.Year;
+                        var currentYearReceiptCounter = dbContext.ReceiptCounters.FirstOrDefault(c =>
+                            c.ReceiptYear == offeringYear);
+
+                        if (currentYearReceiptCounter == null)
+                        {
+                            currentYearReceiptCounter = new ReceiptCounter
+                            {
+                                ReceiptYear = offeringYear,
+                                ReceiptCount = currentReceiptCount
+                            };
+
+                            dbContext.ReceiptCounters.Add(currentYearReceiptCounter);
+                            dbContext.SaveChanges();
+                        }
+                        else
+                        {
+                            currentReceiptCount = currentYearReceiptCounter.ReceiptCount;
+                        }
+
+                        foreach (var offering in nonReceiptIdOfferings)
+                        {
+                            currentReceiptCount++;
+                            offering.ReceiptId = currentReceiptCount;
+                        }
+
+                        currentYearReceiptCounter.ReceiptCount = currentReceiptCount;
+                        dbContext.SaveChanges();
+                    }
+                    //test ends here
+
+                    //var offeringReceipts = query.Select(offr => new
+                    var offeringReceipts = offerings.Select(offr => new
                     {
                         Amount = offr.Amount ?? 0,
                         OfferingYear = offr.OfferingYear ?? 0,
@@ -201,7 +239,8 @@ namespace BookShop.Forms
                         ReceiptIssuedDate = offr.ReceiptIssuedDate.HasValue ?
                             offr.ReceiptIssuedDate.Value : DateTime.MinValue,
                         ReceiptTypeId = offr.ReceiptTypeId ?? 0,
-                        ReceivedDate = offr.ReceivedDate ?? DateTime.MinValue,
+                        //ReceivedDate = offr.ReceivedDate ?? DateTime.MinValue,
+                        ReceivedDate = offr.CreatedDate,
                         SignatureUserId = offr.SignatureUserId,
                         CreatedDate = offr.CreatedDate,
 
