@@ -236,8 +236,10 @@ namespace BookShop.Forms
                         OfferingYear = offr.OfferingYear ?? 0,
                         ReceiptDate = offr.ReceiptDate ?? DateTime.MinValue,
                         ReceiptId = offr.ReceiptId ?? 0,
+                        //ReceiptIssuedDate = offr.ReceiptIssuedDate.HasValue ?
+                        //    offr.ReceiptIssuedDate.Value : DateTime.MinValue,
                         ReceiptIssuedDate = offr.ReceiptIssuedDate.HasValue ?
-                            offr.ReceiptIssuedDate.Value : DateTime.MinValue,
+                            offr.ReceiptIssuedDate.Value : DateTime.Now,
                         ReceiptTypeId = offr.ReceiptTypeId ?? 0,
                         //ReceivedDate = offr.ReceivedDate ?? DateTime.MinValue,
                         ReceivedDate = offr.CreatedDate,
