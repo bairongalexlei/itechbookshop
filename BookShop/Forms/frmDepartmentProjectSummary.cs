@@ -66,7 +66,8 @@ namespace BookShop.Forms
                     {
                         //offerings = offerings.Where(oneOffering => oneOffering.CreatedDate <= toDate);
                         offeringLines = offeringLines.Where(oneOfferinLine => oneOfferinLine.CreatedDate <= toDate);
-                        toDateParameter = toDate.ToShortDateString();
+                        //toDateParameter = toDate.ToShortDateString();
+                        toDateParameter = toDate.AddDays(-1).ToShortDateString();
                     }
 
                     var departmentProjectGroups = offeringLines.GroupBy(ofl =>
