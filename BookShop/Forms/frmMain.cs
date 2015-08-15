@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BookShop.EFData;
 using BookShop.Forms;
 using BookShop.Common;
+using System.Globalization;
 
 namespace BookShop
 {
@@ -1084,16 +1085,20 @@ namespace BookShop
             DateTime dateLessThan;
             var summarySearchParms = new SummarySearchParams();
 
+            var culture = CultureInfo.CreateSpecificCulture("en-CA");
+
             if (!string.IsNullOrEmpty(strDateGreaterThan))
             {
-                DateTime.TryParse(strDateGreaterThan, out dateGreaterThan);
+                //DateTime.TryParse(strDateGreaterThan, out dateGreaterThan);
+                DateTime.TryParseExact(strDateGreaterThan, "dd/MM/yyyy", culture, DateTimeStyles.None, out dateGreaterThan);
                 if (dateGreaterThan != null && dateGreaterThan > DateTime.MinValue)
                     summarySearchParms.FromDate = dateGreaterThan;
             }
 
             if (!string.IsNullOrEmpty(strDateLessThan))
             {
-                DateTime.TryParse(strDateLessThan, out dateLessThan);
+                //DateTime.TryParse(strDateLessThan, out dateLessThan);
+                DateTime.TryParseExact(strDateLessThan, "dd/MM/yyyy", culture, DateTimeStyles.None, out dateLessThan);
                 if (dateLessThan != null && dateLessThan > DateTime.MinValue)
                     summarySearchParms.ToDate = dateLessThan.AddDays(1);
             }

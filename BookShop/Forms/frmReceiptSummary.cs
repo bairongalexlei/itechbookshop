@@ -51,12 +51,15 @@ namespace BookShop.Forms
                     {
                         offerings = offerings.Where(oneOffering => oneOffering.CreatedDate >= fromDate);
                         fromDateParameter = fromDate.ToShortDateString();
+                        //fromDateParameter = fromDate.ToString("dd/MM/yyyy");
                     }
 
                     if (toDate != null && toDate > DateTime.MinValue)
                     {
                         offerings = offerings.Where(oneOffering => oneOffering.CreatedDate <= toDate);
+                        toDate = toDate.AddDays(-1);
                         toDateParameter = toDate.ToShortDateString();
+                        //toDateParameter = toDate.ToString("dd/MM/yyyy");
                     }
 
                     var offeringReceiptSummaries = offerings.GroupBy(oneOffering => (oneOffering.ReceiptTypeId ?? 0))
