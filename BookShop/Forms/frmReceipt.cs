@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,14 +42,19 @@ namespace BookShop.Forms
         {
             InitializeComponent();
 
+            var culture = CultureInfo.CreateSpecificCulture("en-CA");
+            var parseShortDateFormat = "dd/MM/yyyy";
+
             if (!string.IsNullOrEmpty(strDateGreaterThan))
             {
-                DateTime.TryParse(strDateGreaterThan, out dateGreaterThan);
+                //DateTime.TryParse(strDateGreaterThan, out dateGreaterThan);
+                DateTime.TryParseExact(strDateGreaterThan, parseShortDateFormat, culture, DateTimeStyles.None, out dateGreaterThan);
             }
 
             if (!string.IsNullOrEmpty(strDateLessThan))
             {
-                DateTime.TryParse(strDateLessThan, out dateLessThan);
+                //DateTime.TryParse(strDateLessThan, out dateLessThan);
+                DateTime.TryParseExact(strDateLessThan, parseShortDateFormat, culture, DateTimeStyles.None, out dateLessThan);
             }
 
             isBundlePrint = true;

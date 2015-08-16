@@ -440,7 +440,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=System.String.Format("Receipt Issued Date:   {0}", System.Convert.ToDateTime(Fields!ReceiptIssuedDate.Value).ToShortDateString())</Value>
+                              <Value>=System.String.Format("Receipt Issued Date:   {0}", System.Convert.ToDateTime(Fields!ReceiptIssuedDate.Value).ToString("dd/MM/yyyy"))</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -459,6 +459,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -619,7 +620,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Microsoft.VisualBasic.Interaction.IIF(System.Convert.ToDateTime(Fields!ReceivedDate.Value) &gt; System.DateTime.MinValue, System.Convert.ToDateTime(Fields!ReceivedDate.Value).ToShortDateString(), "")</Value>
+                              <Value>=Microsoft.VisualBasic.Interaction.IIF(System.Convert.ToDateTime(Fields!ReceivedDate.Value) &gt; System.DateTime.MinValue, System.Convert.ToDateTime(Fields!ReceivedDate.Value).ToString("dd/MM/yyyy"), "")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1584,7 +1585,7 @@
         <DataSetName>ReceiptOfferingDataSet</DataSetName>
         <Top>0.31432cm</Top>
         <Left>0.28787cm</Left>
-        <Height>7.95804cm</Height>
+        <Height>7.95803cm</Height>
         <Width>8.12084in</Width>
         <Style>
           <Border>

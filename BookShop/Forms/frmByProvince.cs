@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +25,19 @@ namespace BookShop.Forms
 
         public frmByProvince(string strDateGreaterThan, string strDateLessThan)
         {
+            var culture = CultureInfo.CreateSpecificCulture("en-CA");
+            var parseDateFormat = "dd/MM/yyyy";
+
             if (!string.IsNullOrEmpty(strDateGreaterThan))
             {
-                DateTime.TryParse(strDateGreaterThan, out dateGreaterThan);
+                //DateTime.TryParse(strDateGreaterThan, out dateGreaterThan);
+                DateTime.TryParseExact(strDateGreaterThan, parseDateFormat, culture, DateTimeStyles.None, out dateGreaterThan);
             }
 
             if (!string.IsNullOrEmpty(strDateLessThan))
             {
-                DateTime.TryParse(strDateLessThan, out dateLessThan);
+                //DateTime.TryParse(strDateLessThan, out dateLessThan);
+                DateTime.TryParseExact(strDateLessThan, parseDateFormat, culture, DateTimeStyles.None, out dateLessThan);
                 if (dateLessThan != null && dateLessThan > DateTime.MinValue)
                 {
                     dateLessThan = dateLessThan.AddDays(1);
@@ -63,13 +69,15 @@ namespace BookShop.Forms
                     if (dateGreaterThan != null && dateGreaterThan > DateTime.MinValue)
                     {
                         query = query.Where(offr => offr.CreatedDate >= dateGreaterThan);
-                        fromDateParameter = dateGreaterThan.ToShortDateString();
+                        //fromDateParameter = dateGreaterThan.ToShortDateString();
+                        fromDateParameter = dateGreaterThan.ToString("dd/MM/yyyy");
                     }
 
                     if (dateLessThan != null && dateLessThan > DateTime.MinValue)
                     {
                         query = query.Where(offr => offr.CreatedDate <= dateLessThan);
-                        toDateParameter = dateLessThan.ToShortDateString();
+                        //toDateParameter = dateLessThan.ToShortDateString();
+                        toDateParameter = dateLessThan.ToString("dd/MM/yyyy");
                     }
 
 

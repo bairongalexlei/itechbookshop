@@ -59,7 +59,8 @@ namespace BookShop.Forms
                     {
                         //offerings = offerings.Where(oneOffering => oneOffering.CreatedDate >= fromDate);
                         offeringLines = offeringLines.Where(oneOfferinLine => oneOfferinLine.CreatedDate >= fromDate);
-                        fromDateParameter = fromDate.ToShortDateString();
+                        //fromDateParameter = fromDate.ToShortDateString();
+                        fromDateParameter = fromDate.ToString("dd/MM/yyyy");
                     }
 
                     if (toDate != null && toDate > DateTime.MinValue)
@@ -67,7 +68,8 @@ namespace BookShop.Forms
                         //offerings = offerings.Where(oneOffering => oneOffering.CreatedDate <= toDate);
                         offeringLines = offeringLines.Where(oneOfferinLine => oneOfferinLine.CreatedDate <= toDate);
                         //toDateParameter = toDate.ToShortDateString();
-                        toDateParameter = toDate.AddDays(-1).ToShortDateString();
+                        //toDateParameter = toDate.AddDays(-1).ToShortDateString();
+                        toDateParameter = toDate.AddDays(-1).ToString("dd/MM/yyyy");
                     }
 
                     var departmentProjectGroups = offeringLines.GroupBy(ofl =>

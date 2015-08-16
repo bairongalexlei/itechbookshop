@@ -825,7 +825,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Microsoft.VisualBasic.Interaction.IIF(System.Convert.ToDateTime(Fields!ReceivedDate.Value) &gt; System.DateTime.MinValue, System.Convert.ToDateTime(Fields!ReceivedDate.Value).ToShortDateString(), "")</Value>
+                              <Value>=Microsoft.VisualBasic.Interaction.IIF(System.Convert.ToDateTime(Fields!ReceivedDate.Value) &gt; System.DateTime.MinValue, System.Convert.ToDateTime(Fields!ReceivedDate.Value).ToString("dd/MM/yyyy"), "")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -891,7 +891,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.25604cm</Height>
+              <Height>0.571cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1019,7 +1019,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>(dd/mm/yyyy)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1864,7 +1864,7 @@
         <DataSetName>ReceiptOfferingDataSet</DataSetName>
         <Top>0.25929cm</Top>
         <Left>0.22225cm</Left>
-        <Height>12.13634cm</Height>
+        <Height>12.4513cm</Height>
         <Width>8.05835in</Width>
         <Style>
           <Border>

@@ -161,7 +161,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=string.Format("Printed On: {0}", DateTime.Now.ToShortDateString())</Value>
+                              <Value>=string.Format("Printed On: {0}", DateTime.Now.ToString("dd/MM/yyyy"))</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -182,6 +182,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
